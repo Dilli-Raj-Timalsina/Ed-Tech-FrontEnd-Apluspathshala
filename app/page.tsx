@@ -1,5 +1,5 @@
-export default function(){
-return <div className="bg-green-600 font-extrabold font-serif">
+export default function Home(){
+return <div className="bg-slate-200 font-extrabold font-serif">
   Hello Guys
 </div>
 }
