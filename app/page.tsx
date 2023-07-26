@@ -1,6 +1,7 @@
 "use client";
 
 import ButtonAuth from "@/components/ButtonAuth";
+import Signup from "@/components/Signup";
 import { useState } from "react";
 
 export default function Home() {
@@ -14,6 +15,16 @@ export default function Home() {
                 }}
             />
             <ButtonAuth label={name} />
+            <Signup
+                onSubmit={({
+                    firstName,
+                    lastName,
+                    email,
+                    phone,
+                    password,
+                    passwordConfirm,
+                }) => {}}
+            />
         </>
     );
 }
