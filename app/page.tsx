@@ -1,7 +1,19 @@
+"use client";
+
+import ButtonAuth from "@/components/ButtonAuth";
+import { useState } from "react";
+
 export default function Home() {
+    const [name, setName] = useState("Login");
     return (
-        <div className=" bg-gradient-to-b from-purple-100 via-blue-50 to-green-50  ">
-            <div className="font-extrabold ">Hello Bro</div>
-        </div>
+        <>
+            <ButtonAuth
+                label={"Signup"}
+                onClick={() => {
+                    name == "Login" ? setName("Signup") : setName("Login");
+                }}
+            />
+            <ButtonAuth label={name} />
+        </>
     );
 }
