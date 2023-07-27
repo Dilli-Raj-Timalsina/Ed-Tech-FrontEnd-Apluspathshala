@@ -26,7 +26,7 @@ export default function Login({ onSubmit }: LoginFormProps) {
         router.push("/signupsuccess");
     }
     return (
-        <div className=" w-1/3 h-4/6 p-4 drop-shadow-2xl mt-6 rounded-2xl bg-white">
+        <div className=" w-1/3 h-3/5 p-4 drop-shadow-2xl mt-6 rounded-2xl bg-white">
             <h1 className="text-3xl font-bold ml-11 mt-4">
                 Log Into Your Account
             </h1>

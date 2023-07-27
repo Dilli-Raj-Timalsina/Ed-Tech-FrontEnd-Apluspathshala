@@ -1,16 +1,10 @@
-export default function Login() {
+"use client";
+import Login from "@/components/login";
+
+export default function LoginPage() {
     return (
-        <>
-            <h1>Login Successfull</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Asperiores aliquam explicabo mollitia fuga numquam sequi quasi
-                hic rem nemo? Quisquam sint perspiciatis iure nobis ullam
-                minima, debitis in repellendus atque dignissimos quos provident
-                natus sapiente eius numquam rerum dicta deleniti voluptatibus
-                obcaecati amet aperiam necessitatibus sed vel non? Delectus,
-                ratione!
-            </p>
-        </>
+        <div className="w-screen h-screen flex justify-center bg-gradient-to-r from-pink-50 via-purple-50 to-indigo-100 ">
+            <Login onSubmit={() => {}} />
+        </div>
     );
 }
