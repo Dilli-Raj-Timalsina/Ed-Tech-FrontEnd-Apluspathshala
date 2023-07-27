@@ -1,9 +1,9 @@
 "use client";
 
-export default function Home() {
+export default function Signup() {
     return (
         <>
-            <h1>suceess</h1>
+            <h1>Signup Successfull</h1>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores aliquam explicabo mollitia fuga numquam sequi quasi

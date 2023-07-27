@@ -1,9 +1,7 @@
-"use client";
-
-export default function Home() {
+export default function ForgetPassword() {
     return (
         <>
-            <h1>Failed</h1>
+            <h1>Forget Password Successfull</h1>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores aliquam explicabo mollitia fuga numquam sequi quasi

@@ -6,33 +6,24 @@ import Link from "next/link";
 
 interface SignupFormProps {
     onSubmit: (FormData: {
-        firstName: string;
-        lastName: string;
-        email: string;
+        fullName: string;
         phone: string;
         password: string;
-        passwordConfirm: string;
     }) => void;
 }
 export default function Signup({ onSubmit }: SignupFormProps) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
+    const [fullName, setFullName] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordConfirm, setPasswordConfirm] = useState("");
 
     const router = useRouter();
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         onSubmit({
-            firstName,
-            lastName,
-            email,
+            fullName,
             phone,
             password,
-            passwordConfirm,
         });
         console.log("success");
 
@@ -43,30 +34,14 @@ export default function Signup({ onSubmit }: SignupFormProps) {
             <Link href="/login">Log in here !</Link>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="firstName">First Name :</label>
+                    <label htmlFor="fullName">First Name :</label>
                     <input
                         type="text"
-                        id="firstName"
-                        onChange={(e) => setFirstName(e.target.value)}
+                        id="fullName"
+                        onChange={(e) => setFullName(e.target.value)}
                     />
                 </div>
-                <div>
-                    <label htmlFor="lastName">Last Name :</label>
-                    <input
-                        type="text"
-                        id="lastName"
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Email :</label>
-                    <input
-                        type="text"
-                        id="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
+
                 <div>
                     <label htmlFor="phone">Phone :</label>
                     <input
@@ -84,14 +59,7 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div>
-                    <label htmlFor="password">Password Confirm :</label>
-                    <input
-                        type="password"
-                        id="passwordConfirm"
-                        onChange={(e) => setPasswordConfirm(e.target.value)}
-                    />
-                </div>
+
                 <div>
                     <ButtonAuth label="submit" type="submit" />
                 </div>
