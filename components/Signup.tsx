@@ -14,14 +14,13 @@ interface SignupFormProps {
 }
 export default function Signup({ onSubmit }: SignupFormProps) {
     const [fullName, setFullName] = useState("");
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const router = useRouter();
 
-    function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         onSubmit({
             fullName,
@@ -29,9 +28,27 @@ export default function Signup({ onSubmit }: SignupFormProps) {
             email,
             password,
         });
-        console.log("success");
-
-        router.push("/signupsuccess");
+        const res = await fetch(
+            "https://a-pathshala-service-2.onrender.com/api/v1/user/signup",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: fullName,
+                    email: email,
+                    password: password,
+                    role: "user",
+                }),
+            }
+        );
+        console.log(res);
+        if (res.ok) {
+            const data = await res.json();
+            console.log(data);
+        }
+        router.push("/signupSuccess");
     }
     return (
         <div className=" w-1/3 h-3/5 p-4 drop-shadow-2xl mt-6 rounded-2xl bg-white">

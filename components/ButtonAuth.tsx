@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ThemeContext } from "@/app/page";
+
 interface ButtonProps {
     label?: string;
     onClick?: () => void;
@@ -10,6 +13,8 @@ export default function ButtonAuth({
     children,
     type,
 }: ButtonProps) {
+    const val = useContext(ThemeContext);
+
     return (
         <button
             className="bg-purple-700 px-3 py-1 m-1 rounded-md  text-white font-normal text-sm hover:drop-shadow-xl hover:bg-purple-800"
