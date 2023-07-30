@@ -10,7 +10,10 @@ import { useRouter } from "next/navigation";
 import { createContext } from "react";
 import Logo from "@/components/logoItem/logo";
 import NavLink from "@/components/navbar/NavLink";
+import SearchBar from "@/components/navbar/SearchBar";
+
 export const ThemeContext = createContext("light");
+
 export default function Home() {
     const [name, setName] = useState("Login");
 
@@ -19,10 +22,17 @@ export default function Home() {
         <>
             <NavBar>
                 <Logo />
-                <div className="flex justify-around items-center">
-                    <NavLink href={"#"}>Home</NavLink>
-                    <NavLink href={"#"}>about</NavLink>
-                    <NavLink href={"#"}>contact</NavLink>
+                <SearchBar></SearchBar>
+                <div className="flex justify-around items-center gap-2">
+                    <NavLink href={"#"} className="hover:text-blue-400 text-lg">
+                        Home
+                    </NavLink>
+                    <NavLink href={"#"} className="hover:text-blue-400 text-lg">
+                        about
+                    </NavLink>
+                    <NavLink href={"#"} className="hover:text-blue-400 text-lg">
+                        contact
+                    </NavLink>
                 </div>
             </NavBar>
 

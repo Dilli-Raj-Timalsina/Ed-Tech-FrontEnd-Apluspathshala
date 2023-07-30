@@ -3,14 +3,12 @@ import Link from "next/link";
 interface NavLinkType {
     href: string;
     children?: React.ReactNode;
+    className?: string;
 }
 
-export default function NavLink({ href, children }: NavLinkType) {
+export default function NavLink({ href, children, className }: NavLinkType) {
     return (
-        <Link
-            href={href}
-            className="text-lg font-mono font-semibold hover:text-xl"
-        >
+        <Link href={href} className={className}>
             {children}
         </Link>
     );
