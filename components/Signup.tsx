@@ -24,7 +24,6 @@ export default function Signup({ onSubmit }: SignupFormProps) {
         e.preventDefault();
         onSubmit({
             fullName,
-
             email,
             password,
         });

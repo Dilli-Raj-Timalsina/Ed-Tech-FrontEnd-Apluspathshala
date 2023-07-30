@@ -8,7 +8,8 @@ import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import { useRouter } from "next/navigation";
 import { createContext } from "react";
-
+import Logo from "@/components/logoItem/logo";
+import NavLink from "@/components/navbar/NavLink";
 export const ThemeContext = createContext("light");
 export default function Home() {
     const [name, setName] = useState("Login");
@@ -17,26 +18,11 @@ export default function Home() {
     return (
         <>
             <NavBar>
-                <div className="flex justify-end gap-">
-                    {/* <img
-                        src="/logo.png"
-                        alt="not found"
-                        className="w-20 h-20"
-                    /> */}
-                    <div>
-                        <ThemeContext.Provider value="light">
-                            <ButtonAuth
-                                onClick={() => {
-                                    router.push("/signup");
-                                }}
-                            >
-                                Signup
-                            </ButtonAuth>
-                            <ButtonAuth onClick={() => router.push("/login")}>
-                                Login
-                            </ButtonAuth>
-                        </ThemeContext.Provider>
-                    </div>
+                <Logo />
+                <div className="flex justify-around items-center">
+                    <NavLink href={"#"}>Home</NavLink>
+                    <NavLink href={"#"}>about</NavLink>
+                    <NavLink href={"#"}>contact</NavLink>
                 </div>
             </NavBar>
 
@@ -50,7 +36,7 @@ export default function Home() {
                     passwordConfirm,
                 }) => {}}
             /> */}
-            <div className="w-screen h-screen flex justify-center bg-gradient-to-r from-pink-50 via-purple-50 to-indigo-50 "></div>
+            <div className="w-screen h-screen flex justify-center bg-white "></div>
             <Footer></Footer>
         </>
     );

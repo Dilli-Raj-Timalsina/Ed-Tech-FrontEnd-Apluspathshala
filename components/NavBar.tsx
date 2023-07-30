@@ -3,5 +3,5 @@ interface NavProps {
 }
 
 export default function NavBar(props: NavProps) {
-    return <nav className="bg-purple-300 p-4 h-28">{props.children}</nav>;
+    return <nav className="p-4 h-28 bg-slate-50">{props.children}</nav>;
 }
