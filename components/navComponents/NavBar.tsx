@@ -7,7 +7,7 @@ export default function NavBar(props: NavProps) {
     return (
         <nav
             className={
-                "p-4 h-28 bg-slate-50 flex items-center justify-around gap-4" +
+                "p-4 h-20 bg-white flex items-center justify-around gap-1 md:gap-4 drop-shadow-xl " +
                 props.className
             }
         >

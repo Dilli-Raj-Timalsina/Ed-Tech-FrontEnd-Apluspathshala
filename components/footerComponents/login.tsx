@@ -1,86 +1,51 @@
 "use client";
 import { useState } from "react";
-import ButtonAuth from "./ButtonAuth";
+import ButtonAuth from "../navComponents/ButtonAuth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface SignupFormProps {
-    onSubmit: (FormData: {
-        fullName: string;
-        email: string;
-
-        password: string;
-    }) => void;
+interface LoginFormProps {
+    onSubmit: (FormData: { email: string; password: string }) => void;
 }
-export default function Signup({ onSubmit }: SignupFormProps) {
-    const [fullName, setFullName] = useState("");
+
+export default function Login({ onSubmit }: LoginFormProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const router = useRouter();
 
-    async function handleSubmit(e: React.FormEvent) {
+    function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         onSubmit({
-            fullName,
             email,
             password,
         });
-        const res = await fetch(
-            "https://a-pathshala-service-2.onrender.com/api/v1/user/signup",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: fullName,
-                    email: email,
-                    password: password,
-                    role: "user",
-                }),
-            }
-        );
-        console.log(res);
-        if (res.ok) {
-            const data = await res.json();
-            console.log(data);
-        }
-        router.push("/signupSuccess");
+        console.log("success");
+
+        router.push("/signupsuccess");
     }
     return (
         <div className=" w-1/3 h-3/5 p-4 drop-shadow-2xl mt-6 rounded-2xl bg-white">
             <h1 className="text-3xl font-bold ml-11 mt-4">
-                Create New Account
+                Log Into Your Account
             </h1>
 
             <div className="mt-1">
                 <span className="font-normal text-sm ml-20">
-                    Already have an Account ?
+                    Don't have an Account yet ?
                 </span>
                 <span> </span>
 
                 <Link
-                    href="/login"
+                    href="/signup"
                     className="text-sm font-medium text-purple-700 hover:text-purple-800"
                 >
-                    Login
+                    Signup
                 </Link>
             </div>
 
             <form onSubmit={handleSubmit} className="mt-6">
-                <div>
-                    <label htmlFor="fullName">FullName :</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        onChange={(e) => setFullName(e.target.value)}
-                        placeholder="Name"
-                        required
-                        className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-72"
-                    />
-                </div>
                 <div>
                     <label htmlFor="email">Email :</label>
                     <input
@@ -125,8 +90,16 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                         className="bg-purple-600 px-3 py-1 m-1 rounded-md  text-white font-normal text-sm hover:drop-shadow-xl hover:bg-purple-700 w-32"
                         type="submit"
                     >
-                        Signup
+                        Login
                     </button>
+                </div>
+                <div className="flex justify-center">
+                    <Link
+                        href="/forgetPassword "
+                        className="text-blue-800 tracking-tight text-sm hover:underline"
+                    >
+                        forget password ?
+                    </Link>
                 </div>
             </form>
         </div>

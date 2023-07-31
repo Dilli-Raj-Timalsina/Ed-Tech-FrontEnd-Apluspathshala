@@ -23,12 +23,12 @@ const SearchBar = () => (
             <input
                 type="search"
                 id="default-search"
-                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 focus:outline-none rounded-lg bg-gray-50 focus:drop-shadow-xl "
+                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 focus:outline-none rounded-2xl bg-gray-50 focus:drop-shadow-xl "
                 placeholder="search..."
             />
             <button
                 type="submit"
-                className="text-white absolute right-2.5 bottom-2.5 bg-blue-600 hover:bg-blue-700 hover:drop-shadow-md font-medium rounded-lg text-sm px-4 py-2  "
+                className="hidden md:flex text-white absolute right-2.5 bottom-2.5 bg-blue-600 hover:bg-blue-700 hover:drop-shadow-md font-medium rounded-lg text-sm px-4 py-2  "
             >
                 Search
             </button>

@@ -1,38 +1,30 @@
 "use client";
 
-import ButtonAuth from "@/components/ButtonAuth";
-import Signup from "@/components/Signup";
-import { useState } from "react";
-import Login from "@/components/login";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
-import { useRouter } from "next/navigation";
-import { createContext } from "react";
-import Logo from "@/components/logoItem/logo";
-import NavLink from "@/components/navbar/NavLink";
-import SearchBar from "@/components/navbar/SearchBar";
-
-export const ThemeContext = createContext("light");
-
+import ButtonAuth from "@/components/navComponents/ButtonAuth";
+import Footer from "@/components/footerComponents/Footer";
+import NavBar from "@/components/navComponents/NavBar";
+import Logo from "@/components/navComponents/logo";
+import NavLink from "@/components/navComponents/NavLink";
+import SearchBar from "@/components/navComponents/SearchBar";
+import Category from "@/components/navComponents/Category";
+import Cart from "@/components/navComponents/Cart";
 export default function Home() {
-    const [name, setName] = useState("Login");
-
-    const router = useRouter();
     return (
         <>
             <NavBar>
-                <Logo />
+                <Logo className="hidden md:flex" />
+                <Category></Category>
                 <SearchBar></SearchBar>
-                <div className="flex justify-around items-center gap-2">
-                    <NavLink href={"#"} className="hover:text-blue-400 text-lg">
-                        Home
-                    </NavLink>
-                    <NavLink href={"#"} className="hover:text-blue-400 text-lg">
-                        about
-                    </NavLink>
-                    <NavLink href={"#"} className="hover:text-blue-400 text-lg">
-                        contact
-                    </NavLink>
+                <Logo className="flex sm:hidden" />
+
+                <div className="flex justify-around items-center gap-4">
+                    <NavLink>Teach on A+</NavLink>
+                    <NavLink>Contact us</NavLink>
+                </div>
+                <Cart></Cart>
+                <div className="hidden md:flex md:gap-2">
+                    <ButtonAuth>Signup</ButtonAuth>
+                    <ButtonAuth>login</ButtonAuth>
                 </div>
             </NavBar>
 
