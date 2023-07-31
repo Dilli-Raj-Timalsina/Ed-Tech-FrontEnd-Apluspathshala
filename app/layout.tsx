@@ -15,7 +15,9 @@ interface Props {
 export default function RootLayout({ children }: Props) {
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className + " overflow-x-hidden"}>
+                {children}
+            </body>
         </html>
     );
 }

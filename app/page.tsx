@@ -8,6 +8,9 @@ import NavLink from "@/components/navComponents/NavLink";
 import SearchBar from "@/components/navComponents/SearchBar";
 import Category from "@/components/navComponents/Category";
 import Cart from "@/components/navComponents/Cart";
+import Section from "@/components/mainComponents/Section";
+import CourseCard from "@/components/mainComponents/CourseCard";
+
 export default function Home() {
     return (
         <>
@@ -38,8 +41,17 @@ export default function Home() {
                     passwordConfirm,
                 }) => {}}
             /> */}
-            <div className="w-screen h-screen flex justify-center bg-white "></div>
-            <Footer></Footer>
+            <div className="w-screen h-fit  bg-white ">
+                <Section></Section>
+            </div>
+            <div className="flex md:flex-row flex-col gap-3 m-6 border-2 border-slate-100 rounded-sm">
+                <CourseCard imgSrc="/itemclass.webp"></CourseCard>
+                <CourseCard></CourseCard>
+                <CourseCard></CourseCard>
+                <CourseCard></CourseCard>
+            </div>
+
+            {/* <Footer></Footer> */}
         </>
     );
 }
