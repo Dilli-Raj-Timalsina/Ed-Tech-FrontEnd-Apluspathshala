@@ -10,6 +10,7 @@ import Category from "@/components/navComponents/Category";
 import Cart from "@/components/navComponents/Cart";
 import Section from "@/components/mainComponents/Section";
 import CourseCard from "@/components/mainComponents/CourseCard";
+import Categories from "@/components/mainComponents/Categories";
 
 export default function Home() {
     return (
@@ -44,13 +45,18 @@ export default function Home() {
             <div className="w-screen h-fit  bg-white ">
                 <Section></Section>
             </div>
+            <div>
+                <h1 className="text-3xl font-semibold  drop-shadow-md p-6 pl-8">
+                    Popular Courses
+                </h1>
+            </div>
             <div className="flex md:flex-row flex-col gap-3 m-6 border-2 border-slate-100 rounded-sm">
                 <CourseCard imgSrc="/itemclass.webp"></CourseCard>
                 <CourseCard></CourseCard>
                 <CourseCard></CourseCard>
                 <CourseCard></CourseCard>
             </div>
-
+            <Categories></Categories>
             {/* <Footer></Footer> */}
         </>
     );
