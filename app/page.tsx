@@ -66,7 +66,7 @@ export default function Home() {
                 Top Categories
             </h1>
 
-            <div className="grid grid-cols-4 justify-around gap-2 border-2 border-slate-100 bg-slate-50 m-6 rounded-lg drop-shadow-lg mt-8 mb-8 pt-6 pb-6">
+            <div className="grid  grid-cols-1 sm:grid-cols-4 justify-around gap-2 border-2 border-slate-100 bg-slate-50 m-6 rounded-lg drop-shadow-lg mt-8 mb-8 pt-6 pb-6">
                 <Categories></Categories>
                 <Categories></Categories>
                 <Categories></Categories>
