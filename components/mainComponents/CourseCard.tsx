@@ -5,7 +5,7 @@ interface CourseCardProps {
 
 export default function CourseCard({ imgSrc }: CourseCardProps) {
     return (
-        <div className=" w-80  h-fit p-2 rounded-lg drop-shadow-2xl bg-white  mx-4 mb-4 ">
+        <div className=" w-80  h-fit p-2 rounded-lg drop-shadow-2xl bg-white  mx-4 mb-4  ">
             <a href="#">
                 <img
                     src={imgSrc || "/madam.jpg"}
