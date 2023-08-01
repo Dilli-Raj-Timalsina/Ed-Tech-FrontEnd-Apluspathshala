@@ -56,8 +56,21 @@ export default function Home() {
                 <CourseCard></CourseCard>
                 <CourseCard></CourseCard>
             </div>
-            <Categories></Categories>
-            {/* <Footer></Footer> */}
+            <h1 className="text-3xl font-semibold  drop-shadow-md p-4 pl-6">
+                Top Categories
+            </h1>
+
+            <div className="grid grid-cols-4 justify-around gap-2 border-2 border-slate-100 bg-slate-50 m-6 rounded-lg drop-shadow-lg mt-8 mb-8 pt-6 pb-6">
+                <Categories></Categories>
+                <Categories></Categories>
+                <Categories></Categories>
+                <Categories></Categories>
+                <Categories></Categories>
+                <Categories></Categories>
+                <Categories></Categories>
+                <Categories></Categories>
+            </div>
+            <Footer></Footer>
         </>
     );
 }
