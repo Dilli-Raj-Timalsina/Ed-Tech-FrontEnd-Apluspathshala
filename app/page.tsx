@@ -4,7 +4,7 @@ import ButtonAuth from "@/components/navComponents/ButtonAuth";
 import Footer from "@/components/footerComponents/Footer";
 import NavBar from "@/components/navComponents/NavBar";
 import Logo from "@/components/navComponents/logo";
-import NavLink from "@/components/navComponents/NavLink";
+import NavItem from "@/components/navComponents/NavItem";
 import SearchBar from "@/components/navComponents/SearchBar";
 import Category from "@/components/navComponents/Category";
 import Cart from "@/components/navComponents/Cart";
@@ -23,8 +23,8 @@ export default function Home() {
                 <Logo className="flex sm:hidden" />
 
                 <div className="flex justify-around items-center gap-4">
-                    <NavLink>Teach on A+</NavLink>
-                    <NavLink>Contact us</NavLink>
+                    <NavItem>Teach on A+</NavItem>
+                    <NavItem>Contact us</NavItem>
                 </div>
                 <Cart></Cart>
                 <div className="hidden md:flex md:gap-2">
