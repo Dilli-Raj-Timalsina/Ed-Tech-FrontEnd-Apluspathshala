@@ -50,7 +50,7 @@ export default function Home() {
                     Popular Courses
                 </h1>
             </div>
-            <div className="flex md:flex-row flex-col gap-3 m-6 border-2 border-slate-100 overflow-x-auto rounded-sm">
+            <div className="flex flex-row  gap-3 m-6 border-2 border-slate-100 overflow-x-auto rounded-sm">
                 <CourseCard imgSrc="/itemclass.webp"></CourseCard>
                 <CourseCard></CourseCard>
                 <CourseCard></CourseCard>

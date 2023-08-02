@@ -1,3 +1,5 @@
+import Dropdown from "../helperComponents/DropDownButton";
+
 export default function Categories() {
     return (
         <div className="w-72 h-60 bg-white rounded-xl m-4 flex flex-col justify-center hover:drop-shadow-lg">
