@@ -1,8 +1,13 @@
 export default function DropDownButton() {
     return (
         <div>
+            <img
+                src="/barIcon.svg"
+                alt="icon"
+                className="w-8 h-8 font-bold md:hidden"
+            />
             <button
-                className="text-blue-800 bg-white hover:text-blue-900 border border-slate-300 font-semibold rounded-lg text-base px-3 py-2 text-center items-center inline-flex   hover:drop-shadow-md"
+                className="hidden md:inline-flex text-blue-800 bg-white hover:text-blue-900 border border-slate-300 font-semibold rounded-lg text-base px-3 py-2 text-center items-center    hover:drop-shadow-md"
                 type="button"
             >
                 Categories
