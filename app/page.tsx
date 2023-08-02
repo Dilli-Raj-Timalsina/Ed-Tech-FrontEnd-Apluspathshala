@@ -11,7 +11,8 @@ import Cart from "@/components/navComponents/Cart";
 import Section from "@/components/mainComponents/Section";
 import CourseCard from "@/components/mainComponents/CourseCard";
 import Categories from "@/components/mainComponents/Categories";
-
+import SideBar from "@/components/helperComponents/SideBar";
+import DropDownItems from "@/components/helperComponents/DropDownItems";
 export default function Home() {
     return (
         <>
@@ -31,6 +32,9 @@ export default function Home() {
                     <ButtonAuth>login</ButtonAuth>
                 </div>
             </NavBar>
+
+            {/* <SideBar></SideBar> */}
+            {/* <DropDownItems></DropDownItems> */}
 
             {/* <Signup
                 onSubmit={({
