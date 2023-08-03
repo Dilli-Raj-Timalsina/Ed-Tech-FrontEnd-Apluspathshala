@@ -2,7 +2,7 @@ import Dropdown from "../helperComponents/DropDownButton";
 
 export default function Categories() {
     return (
-        <div className="w-72 h-60 bg-white rounded-xl m-4 flex flex-col justify-center items-center hover:drop-shadow-2xl border border-slate-200 p-0">
+        <div className="w-72 h-60 bg-white rounded-xl m-1 mx-4 md:m-4 flex flex-col justify-center items-center hover:drop-shadow-2xl border border-slate-200 px-2">
             <h1 className=" mb-1 mt-0 text-gray-900 text-2xl font-bold">
                 Engineering
             </h1>
