@@ -12,7 +12,7 @@ export default function Section({ imgSrc, paragraph }: SectionProps) {
                 <motion.div
                     initial={{ opacity: 0, y: -40 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.5 }}
+                    transition={{ duration: 1 }}
                     className="fade-top-down"
                 >
                     <h1 className=" text-xl md:text-3xl font-semibold ">

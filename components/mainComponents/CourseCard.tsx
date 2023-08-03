@@ -1,9 +1,18 @@
-import StarIcon from "./StarIcon";
 interface CourseCardProps {
     imgSrc?: string;
+    title?: string;
+    price?: number;
+    rating?: number;
+    student?: number;
 }
 
-export default function CourseCard({ imgSrc }: CourseCardProps) {
+export default function CourseCard({
+    imgSrc,
+    title,
+    price,
+    rating,
+    student,
+}: CourseCardProps) {
     return (
         <div className=" w-80  h-fit p-2 rounded-lg drop-shadow-2xl bg-white  mx-4 mb-4  ">
             <a href="#">
@@ -15,8 +24,8 @@ export default function CourseCard({ imgSrc }: CourseCardProps) {
             <div>
                 <a href="#">
                     <h5 className="text-xl font-semibold m-3">
-                        Apple Watch Series 7 GPS, Aluminium Case, Starlight
-                        Sport
+                        {` Apple Watch Series 7 GPS, Aluminium Case, Starlight
+                        Sport` || title}
                     </h5>
                 </a>
             </div>
@@ -68,13 +77,15 @@ export default function CourseCard({ imgSrc }: CourseCardProps) {
                 </svg>
 
                 <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded  ml-3">
-                    5.0
+                    {rating || "5.0"}
                 </span>
-                <span className="text-sm font-semibold">(12245)</span>
+                <span className="text-sm font-semibold">
+                    ({student || 52545})
+                </span>
             </div>
             <div className="flex items-center justify-between">
                 <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                    $599
+                    {`$` + (price || "500")}
                 </span>
                 <a
                     href="#"
