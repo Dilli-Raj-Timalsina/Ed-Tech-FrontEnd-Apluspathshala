@@ -17,8 +17,8 @@ export default function Section() {
                     courses from top teachers worldwide.
                 </p>
                 <a
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded-md hover:drop-shadow-lg "
-                    href="/signup"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-md hover:drop-shadow-lg "
+                    href="#"
                 >
                     Join Our Community
                 </a>

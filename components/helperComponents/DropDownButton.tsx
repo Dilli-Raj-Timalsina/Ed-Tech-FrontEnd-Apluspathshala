@@ -23,12 +23,6 @@ export default function DropDownButton({
                     alt="icon"
                     className="w-2.5 h-2.5 ml-2.5 "
                 />
-                {/* This is for upArrow icon */}
-                {/* <img
-                    src="/categories-icon2.svg"
-                    alt="icon"
-                    className="w-2.5 h-2.5 ml-2.5 "
-                /> */}
             </button>
         </div>
     );
