@@ -15,7 +15,7 @@ export default function Section({ imgSrc, paragraph }: SectionProps) {
                     transition={{ duration: 1 }}
                     className="fade-top-down"
                 >
-                    <h1 className=" text-xl md:text-3xl font-semibold ">
+                    <h1 className=" text-xl md:text-3xl font-semibold ml-2 md:ml-0">
                         Empowering Teachers and Students in
                         <p className=" text-2xl md:text-6xl text-blue-400">
                             Nepal
@@ -34,7 +34,7 @@ export default function Section({ imgSrc, paragraph }: SectionProps) {
                     </p>
                 </motion.div>
                 <a
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-md hover:drop-shadow-lg "
+                    className="bg-blue-600 hover:bg-blue-700 text-white  font-bold py-2 px-3 rounded-md hover:drop-shadow-lg ml-20 mt-2 md:ml-2"
                     href="#"
                 >
                     Join Our Community

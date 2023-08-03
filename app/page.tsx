@@ -71,14 +71,38 @@ export default function Home() {
             </h1>
 
             <div className=" flex flex-row overflow-x-auto md:overflow-hidden  md:grid md:grid-cols-4 justify-around md:gap-2  border-2 border-slate-100 bg-slate-50 md:m-6 m-2 rounded-lg drop-shadow-lg mt-5 mb-5 pt-6 pb-6">
-                <Categories></Categories>
-                <Categories></Categories>
-                <Categories></Categories>
-                <Categories></Categories>
-                <Categories></Categories>
-                <Categories></Categories>
-                <Categories></Categories>
-                <Categories></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
+                <Categories
+                    title="Engineering"
+                    buttonLabel="Explore"
+                ></Categories>
             </div>
             <Footer></Footer>
         </>
