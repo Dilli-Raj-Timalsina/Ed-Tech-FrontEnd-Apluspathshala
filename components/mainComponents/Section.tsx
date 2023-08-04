@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface SectionProps {
     paragraph?: string;
@@ -33,12 +34,12 @@ export default function Section({ imgSrc, paragraph }: SectionProps) {
                         worldwide.` || paragraph}
                     </p>
                 </motion.div>
-                <a
+                <Link
                     className="bg-blue-600 hover:bg-blue-700 text-white  font-bold py-2 px-3 rounded-md hover:drop-shadow-lg ml-20 mt-2 md:ml-2"
-                    href="#"
+                    href="/signup"
                 >
                     Join Our Community
-                </a>
+                </Link>
             </div>
 
             <img
