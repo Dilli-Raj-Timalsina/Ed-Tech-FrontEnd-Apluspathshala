@@ -22,41 +22,49 @@ export default function Signup({ onSubmit }: SignupFormProps) {
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        onSubmit({
-            fullName,
-            email,
-            password,
-        });
-        const res = await fetch(
-            "https://a-pathshala-service-2.onrender.com/api/v1/user/signup",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: fullName,
-                    email: email,
-                    password: password,
-                    role: "user",
-                }),
-            }
-        );
-        console.log(res);
-        if (res.ok) {
-            const data = await res.json();
-            console.log(data);
-        }
-        router.push("/signupSuccess");
+
+        // onSubmit({
+        //     fullName,
+        //     email,
+        //     password,
+        // });
+        // const res = await fetch(
+        //     "https://a-pathshala-service-2.onrender.com/api/v1/user/signup",
+        //     {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({
+        //             name: fullName,
+        //             email: email,
+        //             password: password,
+        //             role: "user",
+        //         }),
+        //     }
+        // );
+        // console.log(res);
+        // if (res.ok) {
+        //     const data = await res.json();
+        //     console.log(data);
+        // }
+        router.push("/signupsuccess");
     }
     return (
-        <div className=" w-1/3 h-3/5 p-4 drop-shadow-2xl mt-6 rounded-2xl bg-white">
-            <h1 className="text-3xl font-bold ml-11 mt-4">
+        <div className="w-screen h-fit md:w-1/3 md:h-3/5 md:p-4 p-2 mx-1 my-10 drop-shadow-2xl md:mt-40 rounded-2xl bg-white ">
+            <h1 className="md:text-3xl text-2xl font-bold ml-6 md:ml-11 mt-4">
                 Create New Account
             </h1>
+            <button onClick={() => router.push("/")}>
+                <img
+                    src="/cancel-icon.svg"
+                    alt=""
+                    className=" absolute right-1 top-1 cursor-pointer"
+                />
+            </button>
 
             <div className="mt-1">
-                <span className="font-normal text-sm ml-20">
+                <span className="font-normal text-sm ml-6 md:ml-20">
                     Already have an Account ?
                 </span>
                 <span> </span>

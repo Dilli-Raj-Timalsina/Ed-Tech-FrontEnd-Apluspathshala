@@ -20,23 +20,6 @@ export default function Home() {
 
     return (
         <>
-            <NavBar>
-                <Logo className="hidden md:flex" />
-                <Category></Category>
-                <SearchBar></SearchBar>
-                <Logo className="flex sm:hidden" />
-
-                <div className="flex justify-around items-center gap-4">
-                    <NavItem>Teach on A+</NavItem>
-                    <NavItem>Contact us</NavItem>
-                </div>
-                <Cart cartItemCount={cartCount}></Cart>
-                <div className="hidden md:flex md:gap-2">
-                    <ButtonAuth pagePath="/signup">Signup</ButtonAuth>
-                    <ButtonAuth pagePath="/login">login</ButtonAuth>
-                </div>
-            </NavBar>
-
             {/* <SideBar></SideBar> */}
             {/* <DropDownItems></DropDownItems> */}
 
