@@ -11,6 +11,7 @@ import NavItem from "@/components/navComponents/NavItem";
 import SearchBar from "@/components/navComponents/SearchBar";
 import Category from "@/components/navComponents/Category";
 import Cart from "@/components/navComponents/Cart";
+import Footer from "@/components/footerComponents/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: Props) {
                     </div>
                 </NavBar>
                 {children}
+                <Footer></Footer>
             </body>
         </html>
     );

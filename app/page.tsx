@@ -122,7 +122,6 @@ export default function Home() {
                     buttonLabel="Explore"
                 ></Categories>
             </div>
-            <Footer></Footer>
         </>
     );
 }
