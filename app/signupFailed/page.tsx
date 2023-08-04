@@ -1,17 +1,11 @@
 export default function SignupFailed() {
     return (
-        <div>
-            <h1>Signup Failed</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia quasi ipsum sed facilis fuga tempora porro modi ab
-                doloremque reprehenderit perspiciatis harum aspernatur,
-                quibusdam dignissimos eaque? Veniam, aliquid quibusdam
-                asperiores beatae nam esse suscipit! Cumque nam laborum, illo
-                totam molestiae architecto suscipit a esse perspiciatis sequi
-                perferendis beatae quisquam fuga iure temporibus nobis! Non
-                eaque asperiores quas animi ut eius.
-            </p>
+        <div className=" w-96 relative h-screen m-96 y-10 bg-green-400 ">
+            <div className="w-52 h-20 bg-red-700"></div>
+            <div className="w-52 h-20  fixed top-px  bg-slate-700"></div>
+            {/* <div className="w-52 h-20 bg-blue-700 ">Hey wha</div>  */}
+            <div className="w-52 h-20 bg-blue-700 m-2 ">Hey wha</div>
+            <div className="w-52 h-20 bg-blue-700 ">Hey wha</div>
         </div>
     );
 }

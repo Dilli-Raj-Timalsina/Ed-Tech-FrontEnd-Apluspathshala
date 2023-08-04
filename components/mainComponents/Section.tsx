@@ -8,7 +8,7 @@ interface SectionProps {
 
 export default function Section({ imgSrc, paragraph }: SectionProps) {
     return (
-        <div className="flex m-1 md:m-8 hover:drop-shadow-5xl ">
+        <div className="flex m-1 md:mt-24 md:m-8 hover:drop-shadow-5xl ">
             <div className="md:mt-8 md:ml-10 ">
                 <motion.div
                     initial={{ opacity: 0, y: -40 }}
