@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 interface CourseCardProps {
     imgSrc?: string;
     title?: string;
     price?: number;
     rating?: number;
     student?: number;
+    cartCount: number;
+    setCartCount: (cartCount: number) => void;
 }
 
 export default function CourseCard({
@@ -12,7 +16,25 @@ export default function CourseCard({
     price,
     rating,
     student,
+    cartCount,
+    setCartCount,
 }: CourseCardProps) {
+    const [isClicked, setIsClicked] = useState(false);
+
+    function handleClick() {
+        if (!isClicked) {
+            setIsClicked(true);
+            setCartCount(cartCount + 1);
+        } else {
+            setIsClicked(false);
+            setCartCount(cartCount - 1);
+        }
+    }
+    function handleClickAddToCart() {
+        setIsClicked(!isClicked);
+        setCartCount(cartCount - 1);
+    }
+
     return (
         <div className=" w-80  h-fit p-2 rounded-lg drop-shadow-2xl bg-white  mx-4 mb-4  ">
             <a href="#">
@@ -87,12 +109,12 @@ export default function CourseCard({
                 <span className="text-3xl font-bold text-gray-900 dark:text-white">
                     {`$` + (price || "500")}
                 </span>
-                <a
-                    href="#"
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                <button
+                    className="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                    onClick={handleClick}
                 >
-                    Add to cart
-                </a>
+                    {isClicked ? "Remove  Cart " : "Add to cart"}
+                </button>
             </div>
         </div>
     );

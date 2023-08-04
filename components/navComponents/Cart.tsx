@@ -1,5 +1,5 @@
 interface CartProps {
-    cartItemCount?: number;
+    cartItemCount: number;
 }
 
 export default function Cart({ cartItemCount = 0 }: CartProps) {
