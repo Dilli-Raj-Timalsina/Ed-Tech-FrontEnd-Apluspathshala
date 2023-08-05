@@ -1,23 +1,13 @@
 "use client";
 
-import ButtonAuth from "@/components/navComponents/ButtonAuth";
-import Footer from "@/components/footerComponents/Footer";
-import NavBar from "@/components/navComponents/NavBar";
-import Logo from "@/components/navComponents/logo";
-import NavItem from "@/components/navComponents/NavItem";
-import SearchBar from "@/components/navComponents/SearchBar";
-import Category from "@/components/navComponents/Category";
-import Cart from "@/components/navComponents/Cart";
 import Section from "@/components/mainComponents/Section";
 import CourseCard from "@/components/mainComponents/CourseCard";
 import Categories from "@/components/mainComponents/Categories";
-import SideBar from "@/components/helperComponents/SideBar";
-import DropDownItems from "@/components/helperComponents/DropDownItems";
-import { useState } from "react";
+import { CartContext } from "./layout";
+import { useContext } from "react";
 
 export default function Home() {
-    const [cartCount, setCartCount] = useState(0);
-
+    const { cartCount, setCartCount } = useContext(CartContext);
     return (
         <>
             {/* <SideBar></SideBar> */}
