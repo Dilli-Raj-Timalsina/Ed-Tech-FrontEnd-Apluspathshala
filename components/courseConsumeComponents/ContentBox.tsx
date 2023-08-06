@@ -1,22 +1,71 @@
-const contentItem = [
-    "Creola Katherine Johnson: mathematician",
-    "Mario José Molina-Pasquel Henríquez: chemist",
-    "Mohammad Abdus Salam: physicist",
-    "Percy Lavon Julian: chemist",
-    "Subrahmanyan Chandrasekhar: astrophysicist",
-];
+"use client";
+import { useState } from "react";
 
+interface ExpandProps {
+    isTrue: boolean;
+}
 export default function ContentBox() {
-    const content = contentItem.map((content, index) => (
-        <li className="h-8 w-full p-2" key={index}>
-            {content}
+    const [expand, setExpand] = useState<ExpandProps[]>([]);
+
+    const handleClickMainDiv = (index: number) => {
+        if (expand.length <= index) {
+            setExpand([...expand, { isTrue: false }]);
+        } else {
+            const newExpand = expand.map((val, id) => {
+                if (id == index - 1) {
+                    return {
+                        isTrue: !val.isTrue,
+                    };
+                }
+            });
+        }
+    };
+
+    const content = sections.map((content, index) => (
+        <li
+            key={index}
+            className="h-fit "
+            onClick={() => handleClickMainDiv(index)}
+        >
+            <div className="flex flex-row items-center justify-between h-14 pr-2">
+                <div className="flex flex-row items-center p-2 ">
+                    <img
+                        src="/chevron-up.svg"
+                        className="w-4 h-4 inline-block "
+                    />
+                    <p className="w-full pl-2 font-semibold">{content.title}</p>
+                </div>
+                <p>3 minutes</p>
+            </div>
+
+            <ul
+                className={`bg-white h-fit w-full ${
+                    expand[index] && expand[index].isTrue ? "" : " hidden"
+                }`}
+            >
+                {content.topics.map((content, i) => (
+                    <li key={i} className={`h-fit `}>
+                        <div className="flex flex-row items-center justify-between p-2 hover:bg-slate-100 cursor-pointer">
+                            <div className="flex flex-row items-center pl-4 p-2 ">
+                                <img
+                                    src="/video-icon.svg"
+                                    className="w-4 h-4 inline-block "
+                                />
+                                <p className="w-full pl-2">{content.title}</p>
+                            </div>
+                            <p>04:35</p>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </li>
     ));
-    console.log(content);
-
     return (
-        <div className="w-1/2 h-fit bg-slate-50 border border-gray-100 m-8 mt-20">
-            <ul className="flex flex-col divide-y divide-blue-300">
+        <div className="w-1/2 h-fit bg-gray-200 border border-gray-300 m-8 mt-20 rounded-xl drop-shadow-xl">
+            <ul
+                className="w-full divide-y divide-gray-300 
+                    cursor-pointer "
+            >
                 {content}
             </ul>
         </div>
@@ -57,23 +106,23 @@ export default function ContentBox() {
 //                             <h2 className="text-base sm:text-lg font-bold">
 //                                 {section.name}: {section.title}
 //                             </h2>
-//                             <svg
-//                                 className={`ml-2 md:ml-4 h-4 sm:h-6 w-4 sm:w-6 transform ${
-//                                     isSectionExpanded(section.id)
-//                                         ? "rotate-180"
-//                                         : ""
-//                                 }`}
-//                                 fill="none"
-//                                 viewBox="0 0 24 24"
-//                                 stroke="currentColor"
-//                             >
-//                                 <path
-//                                     strokeLinecap="round"
-//                                     strokeLinejoin="round"
-//                                     strokeWidth={2}
-//                                     d="M19 9l-7 7-7-7"
-//                                 />
-//                             </svg>
+// <svg
+//     className={`ml-2 md:ml-4 h-4 sm:h-6 w-4 sm:w-6 transform ${
+//         isSectionExpanded(section.id)
+//             ? "rotate-180"
+//             : ""
+//     }`}
+//     fill="none"
+//     viewBox="0 0 24 24"
+//     stroke="currentColor"
+// >
+//     <path
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//         strokeWidth={2}
+//         d="M19 9l-7 7-7-7"
+//     />
+// </svg>
 //                         </div>
 //                         {isSectionExpanded(section.id) && (
 //                             <div className="flex flex-col mt-2">
@@ -169,25 +218,25 @@ const sections = [
             },
             {
                 id: 2,
-                title: "Different Domains of Computer Engineering (Mobile, Web, Cloud, DevOps, Networking, AI/ML)",
+                title: "Different Domains of Computer Engineering ",
                 free: false,
                 url: "",
             },
             {
                 id: 3,
-                title: "All about foundational subjects and their importance (O.S, DBMS, C.N, OOPS)",
+                title: "All about foundational subjects and their importance ",
                 free: false,
                 url: "",
             },
             {
                 id: 4,
-                title: "Which programming language to choose as a Beginner? (Java, C, C++, Python, JavaScript)",
+                title: "Which programming language to choose as a Beginner? ",
                 free: false,
                 url: "",
             },
             {
                 id: 5,
-                title: "How to choose a particular Domain of computer science and technology as a Newbie? (Web, Mobile, DevOps)",
+                title: "How to choose a particular Domain of computer science",
                 free: false,
                 url: "",
             },
@@ -212,7 +261,7 @@ const sections = [
             },
             {
                 id: 2,
-                title: "How companies ran previously when there were no Internet vs how it is now?",
+                title: "How companies ran previously when there ?",
                 free: false,
                 url: "",
             },
@@ -224,13 +273,13 @@ const sections = [
             },
             {
                 id: 4,
-                title: "Types and stages of startup: Series A funded, Series B funded, IPO",
+                title: "Types and stages of startup: Series A funded,",
                 free: false,
                 url: "",
             },
             {
                 id: 5,
-                title: "Your growth in startup / Risks in startup as an engineer vs in Big Tech Giants",
+                title: "Your growth in startup / Risks in startup as an engineer",
                 free: false,
                 url: "",
             },
@@ -254,7 +303,7 @@ const sections = [
             },
             {
                 id: 9,
-                title: "How can we bring all Big Tech Giant offices to Nepal? Is there a way?",
+                title: "How can we bring all Big Tech Giant offices to Nepal?",
                 free: false,
                 url: "",
             },
@@ -279,19 +328,19 @@ const sections = [
             },
             {
                 id: 2,
-                title: "Topics: Sorting, Searching, Binary search, time and space complexity",
+                title: "Topics: Sorting, Searching, Binary search, ",
                 free: false,
                 url: "",
             },
             {
                 id: 3,
-                title: "We will create LeetCode and GFG accounts and solve 5 easy questions",
+                title: "We will create LeetCode and GFG accounts",
                 free: false,
                 url: "",
             },
             {
                 id: 4,
-                title: "We will learn topics like sorting, searching, binary search, time and space complexity",
+                title: "We will learn topics like sorting, searching, ",
                 free: false,
                 url: "",
             },
@@ -310,19 +359,19 @@ const sections = [
             },
             {
                 id: 2,
-                title: "How to be consistent and connect with like-minded great folks outside Nepal?",
+                title: "How to be consistent and connect with ?",
                 free: false,
                 url: "",
             },
             {
                 id: 3,
-                title: "How much time does it require to learn DSA and crack coding interviews?",
+                title: "How much time does it require ?",
                 free: false,
                 url: "",
             },
             {
                 id: 4,
-                title: "How to maintain professional social handles like LinkedIn, LeetCode, GFG, and Twitter?",
+                title: "How to maintain professional social handles ?",
                 free: false,
                 url: "",
             },
@@ -331,7 +380,7 @@ const sections = [
     {
         id: 7,
         name: "Section 7",
-        title: "All about CP (Competitive Programming) and hiring through CP",
+        title: "All about CP (Competitive Programming)",
         topics: [
             {
                 id: 1,
@@ -359,7 +408,7 @@ const sections = [
             },
             {
                 id: 5,
-                title: "What are some of the top coding contests in CP, e.g., ICPC?",
+                title: "What are some of the top coding contests ?",
                 free: false,
                 url: "",
             },
@@ -384,19 +433,19 @@ const sections = [
             },
             {
                 id: 3,
-                title: "Let’s contribute to A+ pathshala code and see how hiring happens through open source",
+                title: "Let’s contribute to A+ pathshala code and",
                 free: false,
                 url: "",
             },
             {
                 id: 4,
-                title: "Doing (1000 project, learning 1000 languages) vs (learning 1 language and 1 tech stack properly)",
+                title: "Doing (1000 project, learning 1000 languages)",
                 free: false,
                 url: "",
             },
             {
                 id: 5,
-                title: "All about good first issues and simple documentation contribution",
+                title: "All about good first issues and simple ",
                 free: false,
                 url: "",
             },
@@ -433,7 +482,7 @@ const sections = [
             },
             {
                 id: 5,
-                title: "All about base pay + stock stipend + joining bonus + extra expenditure",
+                title: "All about base pay + stock stipend",
                 free: false,
                 url: "",
             },
@@ -442,17 +491,17 @@ const sections = [
     {
         id: 10,
         name: "Section 10",
-        title: "Hidden internships and opportunities for IT students that we are not aware of",
+        title: "Hidden internships and opportunities ",
         topics: [
             {
                 id: 1,
-                title: "What are some of the remote paid internships provided for all students?",
+                title: "What are some of the remote paid",
                 free: false,
                 url: "",
             },
             {
                 id: 2,
-                title: "We will target GSOC for next year, for that you have to stay connected with A+ pathshala",
+                title: "We will target GSOC for next year",
                 free: false,
                 url: "",
             },
@@ -477,7 +526,7 @@ const sections = [
             },
             {
                 id: 2,
-                title: "How to create freelancing profile, how to find clients as a freshman",
+                title: "How to create freelancing profile,",
                 free: false,
                 url: "",
             },
@@ -507,7 +556,7 @@ const sections = [
             },
             {
                 id: 7,
-                title: "What are the competitive edges for developers to enter into the world of entrepreneurship and startups?",
+                title: "What are the competitive edges for developerss?",
                 free: false,
                 url: "",
             },
@@ -520,13 +569,13 @@ const sections = [
         topics: [
             {
                 id: 1,
-                title: "Introduction to the field of Mobile Application Development",
+                title: "Introduction to the field of Mobile ",
                 free: false,
                 url: "",
             },
             {
                 id: 2,
-                title: "Different tech stacks used for App Development and Popular ones",
+                title: "Different tech stacks used for Popular ones",
                 free: false,
                 url: "",
             },
@@ -553,7 +602,7 @@ const sections = [
     {
         id: 13,
         name: "Section 13",
-        title: "Let’s Dive into another Domain of Computer Science: Networking and Cyber Security",
+        title: "Let’s Dive into another Domain of Computer Science",
         topics: [
             {
                 id: 1,
@@ -563,13 +612,13 @@ const sections = [
             },
             {
                 id: 2,
-                title: "Prerequisites to become a Cybersecurity expert and excel in this career domain",
+                title: "Prerequisites to become a Cybersecurity expert ",
                 free: false,
                 url: "",
             },
             {
                 id: 3,
-                title: "Roadmap to become a Network Engineer, career options, and job roles in the Networking domain",
+                title: "Roadmap to become a Network Engineer, career options",
                 free: false,
                 url: "",
             },
@@ -590,7 +639,7 @@ const sections = [
     {
         id: 14,
         name: "Section 14",
-        title: "All about Work Culture and Hiring Process in Nepali Software Companies",
+        title: "All about Work Culture and Hiring Process ",
         topics: [
             {
                 id: 1,
@@ -606,19 +655,19 @@ const sections = [
             },
             {
                 id: 3,
-                title: "What qualifications and skills are required to get hired?",
+                title: "What qualifications and skills are required to ?",
                 free: false,
                 url: "",
             },
             {
                 id: 4,
-                title: "Salary range of Nepali software engineers as per experience",
+                title: "Salary range of Nepali software engineers",
                 free: false,
                 url: "",
             },
             {
                 id: 5,
-                title: "Why is our education system not enough or not even basic?",
+                title: "Why is our education system not enough ?",
                 free: false,
                 url: "",
             },
@@ -631,13 +680,13 @@ const sections = [
         topics: [
             {
                 id: 1,
-                title: "Some of the best practices while learning for beginner, intermediate, and advanced engineers",
+                title: "Some of the best practices while",
                 free: false,
                 url: "",
             },
             {
                 id: 2,
-                title: "Let’s see how you can shape your career and future via A+ Pathshala",
+                title: "Let’s see how you can shape your ",
                 free: false,
                 url: "",
             },

@@ -13,7 +13,7 @@ export default function ButtonAuth({
     const router = useRouter();
     return (
         <button
-            className="bg-blue-600 px-3 py-1  rounded-md  text-white font-normal text-sm hover:drop-shadow-xl hover:bg-blue-700"
+            className="bg-blue-600 px-3 py-1  rounded-md whitespace-nowrap text-white font-normal text-sm hover:drop-shadow-xl hover:bg-blue-700"
             onClick={() => router.push(pagePath)}
         >
             {label || children}
