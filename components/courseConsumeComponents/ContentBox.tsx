@@ -1,63 +1,56 @@
 "use client";
 import { useState } from "react";
 
-interface ExpandProps {
-    isTrue: boolean;
-}
 export default function ContentBox() {
-    const [expand, setExpand] = useState<ExpandProps[]>([]);
+    const [expand, setExpand] = useState<number[]>([]);
 
     const handleClickMainDiv = (index: number) => {
-        if (expand.length <= index) {
-            setExpand([...expand, { isTrue: false }]);
+        if (expand.includes(index)) {
+            setExpand(expand.filter((i) => i !== index));
         } else {
-            const newExpand = expand.map((val, id) => {
-                if (id == index - 1) {
-                    return {
-                        isTrue: !val.isTrue,
-                    };
-                }
-            });
+            setExpand([...expand, index]);
         }
     };
 
     const content = sections.map((content, index) => (
-        <li
-            key={index}
-            className="h-fit "
-            onClick={() => handleClickMainDiv(index)}
-        >
-            <div className="flex flex-row items-center justify-between h-14 pr-2">
+        <li key={index} className="h-fit ">
+            <div
+                className="flex flex-row items-center justify-between h-14 pr-2"
+                onClick={() => handleClickMainDiv(index)}
+            >
                 <div className="flex flex-row items-center p-2 ">
                     <img
                         src="/chevron-up.svg"
-                        className="w-4 h-4 inline-block "
+                        className={`w-4 h-4 inline-block ${
+                            expand.includes(index)
+                                ? "rotate-180 duration-300"
+                                : ""
+                        } `}
                     />
                     <p className="w-full pl-2 font-semibold">{content.title}</p>
                 </div>
                 <p>3 minutes</p>
             </div>
-
-            <ul
-                className={`bg-white h-fit w-full ${
-                    expand[index] && expand[index].isTrue ? "" : " hidden"
-                }`}
-            >
-                {content.topics.map((content, i) => (
-                    <li key={i} className={`h-fit `}>
-                        <div className="flex flex-row items-center justify-between p-2 hover:bg-slate-100 cursor-pointer">
-                            <div className="flex flex-row items-center pl-4 p-2 ">
-                                <img
-                                    src="/video-icon.svg"
-                                    className="w-4 h-4 inline-block "
-                                />
-                                <p className="w-full pl-2">{content.title}</p>
+            {expand.includes(index) && (
+                <ul className={`bg-white h-fit w-full `}>
+                    {content.topics.map((content, i) => (
+                        <li key={i} className={`h-fit `}>
+                            <div className="flex flex-row items-center justify-between p-2 hover:bg-slate-100 cursor-pointer">
+                                <div className="flex flex-row items-center pl-4 p-2 ">
+                                    <img
+                                        src="/video-icon.svg"
+                                        className="w-4 h-4 inline-block "
+                                    />
+                                    <p className="w-full pl-2">
+                                        {content.title}
+                                    </p>
+                                </div>
+                                <p>04:35</p>
                             </div>
-                            <p>04:35</p>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </li>
     ));
     return (
@@ -71,138 +64,6 @@ export default function ContentBox() {
         </div>
     );
 }
-
-// export default function ContentBox() {
-//     const [expandedSections, setExpandedSections] = useState([]);
-//     const [showVideo, setShowVideo] = useState(false);
-
-//     const toggleSection = (sectionId) => {
-//         if (expandedSections.includes(sectionId)) {
-//             setExpandedSections(
-//                 expandedSections.filter((id) => id !== sectionId)
-//             );
-//         } else {
-//             setExpandedSections([...expandedSections, sectionId]);
-//         }
-//     };
-
-//     const isSectionExpanded = (sectionId) => {
-//         return expandedSections.includes(sectionId);
-//     };
-
-//     return (
-//         <>
-//             <h3 className="text-2xl py-2 font-bold">Course Content</h3>
-//             <div className="flex flex-col border-2">
-//                 {sections.map((section) => (
-//                     <div
-//                         key={section.id}
-//                         className="py-4 bg-blue-50 border-b justify-center items-center ps-4 p-0 md:px-2 rounded-md"
-//                     >
-//                         <div
-//                             className="flex items-center px-4 justify-between cursor-pointer"
-//                             onClick={() => toggleSection(section.id)}
-//                         >
-//                             <h2 className="text-base sm:text-lg font-bold">
-//                                 {section.name}: {section.title}
-//                             </h2>
-// <svg
-//     className={`ml-2 md:ml-4 h-4 sm:h-6 w-4 sm:w-6 transform ${
-//         isSectionExpanded(section.id)
-//             ? "rotate-180"
-//             : ""
-//     }`}
-//     fill="none"
-//     viewBox="0 0 24 24"
-//     stroke="currentColor"
-// >
-//     <path
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         strokeWidth={2}
-//         d="M19 9l-7 7-7-7"
-//     />
-// </svg>
-//                         </div>
-//                         {isSectionExpanded(section.id) && (
-//                             <div className="flex flex-col mt-2">
-//                                 {section.topics.map((video) => (
-//                                     <div
-//                                         key={video.id}
-//                                         className="flex items-center mt-2"
-//                                     >
-//                                         <svg
-//                                             xmlns="http://www.w3.org/2000/svg"
-//                                             width="12"
-//                                             height="12"
-//                                             className="mx-2 sm:mx-3 h-4 sm:h-5 w-4 sm:w-5"
-//                                         >
-//                                             <path
-//                                                 fillRule="evenodd"
-//                                                 clipRule="evenodd"
-//                                                 d="M3 3.5a1 1 0 00-1 1v7a1 1 0 001 1h10a1 1 0 001-1v-7a1 1 0 00-1-1H3zm-3 1a3 3 0 013-3h10a3 3 0 013 3v7a3 3 0 01-3 3H3a3 3 0 01-3-3v-7z"
-//                                             ></path>
-//                                             <path
-//                                                 fillRule="evenodd"
-//                                                 clipRule="evenodd"
-//                                                 d="M6.788 5.363a1 1 0 011.035.068l2.5 1.75a1 1 0 010 1.638l-2.5 1.75A1 1 0 016.25 9.75v-3.5a1 1 0 01.538-.887z"
-//                                             ></path>
-//                                         </svg>
-//                                         {showVideo && (
-//                                             <YouTubeVideo
-//                                                 videoId={"NE0dWeV5epA"}
-//                                             />
-//                                         )}
-//                                         {video.free ? (
-//                                             <button
-//                                                 onClick={() =>
-//                                                     setShowVideo(!showVideo)
-//                                                 }
-//                                                 className="text-blue-500 hover:text-blue-700 text-sm sm:text-base"
-//                                             >
-//                                                 <span>{video.title}</span>
-//                                             </button>
-//                                         ) : (
-//                                             <div className="flex items-center">
-//                                                 <span className="text-sm sm:text-base">
-//                                                     {video.title}
-//                                                 </span>
-//                                                 <img
-//                                                     src="/locked.svg"
-//                                                     className="ml-2 sm:ml-3 h-4 sm:h-5 w-4 sm:w-5"
-//                                                     alt=""
-//                                                 />
-//                                             </div>
-//                                         )}
-//                                     </div>
-//                                 ))}
-//                                 <div className="mt-2">
-//                                     <ul className="list-disc list-inside">
-//                                         {section.studyMaterials?.map(
-//                                             (material) => (
-//                                                 <li
-//                                                     key={material.id}
-//                                                     className="list-none ps-2"
-//                                                 >
-//                                                     <a
-//                                                         href={material.url}
-//                                                         className="text-sm sm:text-base"
-//                                                     >
-//                                                         {material.title}
-//                                                     </a>
-//                                                 </li>
-//                                             )
-//                                         )}
-//                                     </ul>
-//                                 </div>
-//                             </div>
-//                         )}
-//                     </div>
-//                 ))}
-//             </div>
-//         </>
-//     );
-// }
 
 const sections = [
     {
