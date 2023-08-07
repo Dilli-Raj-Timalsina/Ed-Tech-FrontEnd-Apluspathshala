@@ -1,18 +1,24 @@
 export default function CourseMetaData() {
     return (
-        <div className="m-3 mt-24">
-            <h1 className=" text-3xl font-semibold font-serif drop-shadow-md">
+        <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:ml-8 md:mt-32 md:w-1/2 ">
+            <h1 className=" text-3xl font-semibold font-serif drop-shadow-md mb-1">
                 Title :<span> </span>
-                <div className="text-2xl font-semibold font-serif drop-shadow-sm inline-block">
+                <div className="text-2xl font-semibold font-serif drop-shadow-sm inline">
                     JavaScript - The Complete Guide 2023 (Beginner + Advanced){" "}
                 </div>
             </h1>
-            <div className="text-base font-medium ">
+            <div className="text-base font-medium md:ml-1 ">
                 Modern JavaScript from the beginning - all the way up to JS
                 expert level! THE must-have JavaScript resource in 2023.
+                <br />
+                Modern JavaScript from the beginning - all the way up to JS
+                expert level! THE must-have JavaScript resource in 2023. Modern
+                <br />
+                JavaScript from the beginning - all the way up to JS expert
+                level! THE must-have JavaScript resource in 2023.
             </div>
 
-            <div className="flex items-center m-3 mb-0 cursor-pointer">
+            <div className="flex items-center m-3 md:ml-1 mb-0 cursor-pointer">
                 <span className="text-yellow-600 text-base font-bold pr-1 inline-block">
                     4.7
                 </span>
@@ -70,7 +76,7 @@ export default function CourseMetaData() {
                     181187 students
                 </p>
             </div>
-            <div className="text-md font-semibold text-gray-800 drop-shadow-sm">
+            <div className="text-md font-semibold text-gray-800 drop-shadow-sm md:ml-1">
                 Created by :{" "}
                 <span className="text-md hover:drop-shadow-sm text-blue-600 cursor-pointer underline">
                     Dilli Raj Timalsina

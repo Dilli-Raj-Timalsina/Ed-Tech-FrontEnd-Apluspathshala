@@ -7,8 +7,10 @@ import CourseMetaData from "@/components/courseConsumeComponents/CourseMetaData"
 export default function Home() {
     return (
         <div>
-            <CourseMetaData></CourseMetaData>
-            <VideoBox></VideoBox>
+            <div className="flex justify-between flex-col md:flex-row">
+                <CourseMetaData></CourseMetaData>
+                <VideoBox></VideoBox>
+            </div>
             <ContentBox></ContentBox>
             <RequirementsSection></RequirementsSection>
             <DescriptionBox></DescriptionBox>

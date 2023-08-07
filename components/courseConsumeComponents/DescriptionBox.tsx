@@ -1,6 +1,6 @@
 export default function DescriptionBox() {
     return (
-        <div className="w-2/3 ml-20 mt-8">
+        <div className="ml-2 mt-2 m-1 md:mt-4 md:ml-8 w-screen md:w-1/2">
             <h3 className=" mb-2 text-2xl font-semibold font-serif drop-shadow-sm">
                 Description
             </h3>

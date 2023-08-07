@@ -1,6 +1,6 @@
 export default function VideoBox() {
     return (
-        <div className="mt-30 ml-96 w-2/5  h-auto border-2 rounded-b-lg border-slate-200 flex flex-col justify-center">
+        <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:mr-8 md:mt-32  md:w-2/5  h-auto border-2 rounded-b-lg border-slate-200 flex flex-col justify-center md:fixed right-5 z-40 top-3">
             <video
                 className="w-full h-auto "
                 controls

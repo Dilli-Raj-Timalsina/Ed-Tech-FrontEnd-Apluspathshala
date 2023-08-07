@@ -27,9 +27,11 @@ export default function ContentBox() {
                                 : ""
                         } `}
                     />
-                    <p className="w-full pl-2 font-semibold">{content.title}</p>
+                    <p className="md:w-full pl-2 font-semibold text-xs md:text-base">
+                        {content.title}
+                    </p>
                 </div>
-                <p>3 minutes</p>
+                <p className="hidden md:flex text-base font-semibold ">3 min</p>
             </div>
             {expand.includes(index) && (
                 <ul className={`bg-white h-fit w-full `}>
@@ -54,7 +56,7 @@ export default function ContentBox() {
         </li>
     ));
     return (
-        <div className="w-1/2 h-fit bg-gray-200 border border-gray-300 m-8 mt-15 rounded-xl drop-shadow-xl">
+        <div className="ml-1 mr-1 mt-2 w-screen md:w-1/2 h-fit bg-gray-200 border border-gray-300 md:m-8 md:mt-2 md:mb-4 rounded-xl drop-shadow-xl">
             <ul
                 className="w-full divide-y divide-gray-300 
                      "
