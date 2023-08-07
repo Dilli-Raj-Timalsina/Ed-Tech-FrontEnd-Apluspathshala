@@ -3,6 +3,7 @@
 import "./globals.css";
 import { useState } from "react";
 import { createContext } from "react";
+import { useRef } from "react";
 
 import ButtonAuth from "@/components/navComponents/ButtonAuth";
 import NavBar from "@/components/navComponents/NavBar";
@@ -37,10 +38,17 @@ export const SideBarContext = createContext<SideBarToggleType>({
 export default function RootLayout({ children }: Props) {
     const [cartCount, setCartCount] = useState(0);
     const [sideBarToggle, setSideBarToggle] = useState(false);
+    const bodyRef = useRef();
 
     return (
         <html lang="en">
-            <body className={" overflow-x-hidden"}>
+            <body
+                className={` overflow-x-hidden ${
+                    sideBarToggle
+                        ? " overflow-y-hidden inset-0 bg-gray-300 z-20 "
+                        : ""
+                } `}
+            >
                 <SideBarContext.Provider
                     value={{ sideBarToggle, setSideBarToggle }}
                 >
