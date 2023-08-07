@@ -3,6 +3,7 @@
 import Section from "@/components/mainComponents/Section";
 import CourseCard from "@/components/mainComponents/CourseCard";
 import Categories from "@/components/mainComponents/Categories";
+import SideBar from "@/components/helperComponents/SideBar";
 import { CartContext } from "./layout";
 import { useContext } from "react";
 
@@ -10,7 +11,7 @@ export default function Home() {
     const { cartCount, setCartCount } = useContext(CartContext);
     return (
         <>
-            {/* <SideBar></SideBar> */}
+            <SideBar></SideBar>
             {/* <DropDownItems></DropDownItems> */}
 
             {/* <Signup

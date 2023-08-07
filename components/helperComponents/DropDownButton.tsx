@@ -17,7 +17,7 @@ export default function DropDownButton({
 
     return (
         <div>
-            <div onClick={handleClick}>
+            <div>
                 <img
                     src="/bar-icon.svg"
                     alt="icon"
@@ -26,6 +26,7 @@ export default function DropDownButton({
                 <button
                     className="hidden md:inline-flex text-blue-800 bg-white hover:text-blue-900 border border-slate-300 font-semibold rounded-lg text-base px-3 py-2 text-center items-center hover:drop-shadow-md "
                     type="button"
+                    onClick={handleClick}
                 >
                     {children}
                     <img

@@ -1,12 +1,12 @@
 interface DropDownItemsProps {
     clicked: boolean;
 }
-
+const items = [];
 export default function DropDownItems({ clicked }: DropDownItemsProps) {
     return (
         <div
             className={`top-16 z-50 ml-56 left-2 md:fixed  bg-slate-100 divide-y divide-gray-100 rounded-lg drop-shadow-md w-56 h-fit ${
-                clicked ? " flex" : " hidden"
+                clicked ? "flex" : " hidden"
             }`}
         >
             <ul className="py-2 text-base font-bold ">
