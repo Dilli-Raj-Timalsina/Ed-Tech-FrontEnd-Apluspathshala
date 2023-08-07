@@ -9,15 +9,17 @@ const requirements = [
 ];
 
 export default function RequirementsSection() {
-    const content = requirements.map((content) => (
-        <li className="">{content}</li>
+    const content = requirements.map((content, i) => (
+        <li key={i} className="">
+            {content}
+        </li>
     ));
     return (
-        <div>
-            <h2 className=" ml-10 mb-2 text-2xl font-semibold text-gray-900 drop-shadow-md">
-                Requirements:
+        <div className="ml-20">
+            <h2 className=" mb-3 text-2xl font-semibold font-serif drop-shadow-sm">
+                Requirements
             </h2>
-            <ul className="ml-10 list-disc max-w-md space-y-1 text-gray-700 list-outside text-base">
+            <ul className="ml-5 list-disc text-gray-800  space-y-1  list-outside ">
                 {content}
             </ul>
         </div>

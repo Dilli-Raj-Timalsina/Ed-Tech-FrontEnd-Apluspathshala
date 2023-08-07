@@ -18,7 +18,7 @@ export default function ContentBox() {
                 className="flex flex-row items-center justify-between h-14 pr-2"
                 onClick={() => handleClickMainDiv(index)}
             >
-                <div className="flex flex-row items-center p-2 ">
+                <div className="flex flex-row items-center p-2 cursor-pointer">
                     <img
                         src="/chevron-up.svg"
                         className={`w-4 h-4 inline-block ${
@@ -35,13 +35,13 @@ export default function ContentBox() {
                 <ul className={`bg-white h-fit w-full `}>
                     {content.topics.map((content, i) => (
                         <li key={i} className={`h-fit `}>
-                            <div className="flex flex-row items-center justify-between p-2 hover:bg-slate-100 cursor-pointer">
+                            <div className="flex flex-row items-center justify-between p-2  ">
                                 <div className="flex flex-row items-center pl-4 p-2 ">
                                     <img
                                         src="/video-icon.svg"
                                         className="w-4 h-4 inline-block "
                                     />
-                                    <p className="w-full pl-2">
+                                    <p className="w-full pl-2 cursor-pointer hover:text-blue-600 hover:underline">
                                         {content.title}
                                     </p>
                                 </div>
@@ -54,10 +54,10 @@ export default function ContentBox() {
         </li>
     ));
     return (
-        <div className="w-1/2 h-fit bg-gray-200 border border-gray-300 m-8 mt-20 rounded-xl drop-shadow-xl">
+        <div className="w-1/2 h-fit bg-gray-200 border border-gray-300 m-8 mt-15 rounded-xl drop-shadow-xl">
             <ul
                 className="w-full divide-y divide-gray-300 
-                    cursor-pointer "
+                     "
             >
                 {content}
             </ul>

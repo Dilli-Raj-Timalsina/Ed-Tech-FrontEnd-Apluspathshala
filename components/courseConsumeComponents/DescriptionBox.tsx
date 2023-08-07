@@ -1,7 +1,9 @@
 export default function DescriptionBox() {
     return (
-        <div>
-            <h3 className="text-2xl font-bold mb-4">Description</h3>
+        <div className="w-2/3 ml-20 mt-8">
+            <h3 className=" mb-2 text-2xl font-semibold font-serif drop-shadow-sm">
+                Description
+            </h3>
             <p>
                 <span className="font-bold text-sm md:text-base text-green-500">
                     (Enroll and Activate Your A+ Score){" "}
@@ -17,12 +19,25 @@ export default function DescriptionBox() {
                 insights into hiring processes and salaries, exploring global
                 opportunities and internships.
                 <br />
-                You will also understand freelancing and contract-based work,
-                discover networking and cybersecurity concepts, and obtainin
-                valuable advice from industry professionals. The program also
-                offers insights into the software industry in Nepal and provides
-                career-shaping opportunities through A+ Pathshala.,
+                <span className="hidden">
+                    You will also understand freelancing and contract-based
+                    work, discover networking and cybersecurity concepts, and
+                    obtainin valuable advice from industry professionals. The
+                    program also offers insights into the software industry in
+                    Nepal and provides career-shaping opportunities through A+
+                    Pathshala.,
+                </span>
             </p>
+
+            <button className="mt-1 text-blue-800 hover:text-blue-900 text-base drop-shadow-sm hover:underline font-semibold ">
+                show more
+            </button>
+            <span> </span>
+            <img
+                src="/show-more.svg"
+                alt="not found"
+                className="w-5 h-5 inline-block animate-bounce"
+            />
         </div>
     );
 }
