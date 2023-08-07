@@ -6,12 +6,14 @@ import Categories from "@/components/mainComponents/Categories";
 import SideBar from "@/components/helperComponents/SideBar";
 import { CartContext } from "./layout";
 import { useContext } from "react";
+import { SideBarContext } from "./layout";
 
 export default function Home() {
     const { cartCount, setCartCount } = useContext(CartContext);
+    const { sideBarToggle } = useContext(SideBarContext);
     return (
         <>
-            <SideBar></SideBar>
+            <SideBar sideBarToggle={sideBarToggle}></SideBar>
             {/* <DropDownItems></DropDownItems> */}
 
             {/* <Signup

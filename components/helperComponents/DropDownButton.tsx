@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DropDownItems from "./DropDownItems";
-
+import { useContext } from "react";
+import { SideBarContext } from "@/app/layout";
 // interface are written in UpperCamelCase
 interface DropDownButtonProps {
     children?: string;
@@ -9,6 +10,7 @@ interface DropDownButtonProps {
 export default function DropDownButton({
     children = "Categories",
 }: DropDownButtonProps) {
+    const { sideBarToggle, setSideBarToggle } = useContext(SideBarContext);
     const [clicked, setClicked] = useState(false);
 
     function handleClick() {
@@ -21,7 +23,10 @@ export default function DropDownButton({
                 <img
                     src="/bar-icon.svg"
                     alt="icon"
-                    className="w-10 h-10 md:hidden "
+                    className="w-10 h-10 md:hidden"
+                    onClick={() => {
+                        setSideBarToggle(!sideBarToggle);
+                    }}
                 />
                 <button
                     className="hidden md:inline-flex text-blue-800 bg-white hover:text-blue-900 border border-slate-300 font-semibold rounded-lg text-base px-3 py-2 text-center items-center hover:drop-shadow-md "
