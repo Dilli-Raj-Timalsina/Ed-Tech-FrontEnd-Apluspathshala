@@ -1,6 +1,6 @@
 export default function VideoBox() {
     return (
-        <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:mr-8 md:mt-32  md:w-2/5  h-auto border-2 rounded-b-lg border-slate-200 flex flex-col justify-center md:fixed right-5 z-40 top-3">
+        <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:mr-8 md:mt-32  md:w-2/5  h-auto border-2 rounded-b-lg border-slate-200 flex flex-col justify-center md:fixed right-5  bg-green-50  top-3">
             <video
                 className="w-full h-auto "
                 controls
@@ -10,7 +10,7 @@ export default function VideoBox() {
             <p className="font-bold text-3xl drop-shadow-sm text-gray-800 ml-1">
                 $16.10
             </p>
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-1 items-center ">
                 <img src="/clock-icon.svg" alt="" className="w-4 h-4" />
                 {/* <div className="text-red-500 text-xs font-medium font-serif inline-block "> */}
                 <span className="text-red-600 text-sm  font-semibold ">

@@ -1,19 +1,15 @@
 export default function CourseMetaData() {
     return (
         <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:ml-8 md:mt-32 md:w-1/2 ">
-            <h1 className=" text-3xl font-semibold font-serif drop-shadow-md mb-1">
-                Title :<span> </span>
-                <div className="text-2xl font-semibold font-serif drop-shadow-sm inline">
+            <h1 className=" text-3xl font-bold  text-gray-900 mb-1">
+                <span> Title : </span>
+                <div className="text-2xl  text-gray-800 inline">
                     JavaScript - The Complete Guide 2023 (Beginner + Advanced){" "}
                 </div>
             </h1>
-            <div className="text-base font-medium md:ml-1 ">
+            <div className="text-base font-medium text-gray-700 md:ml-1 ">
                 Modern JavaScript from the beginning - all the way up to JS
                 expert level! THE must-have JavaScript resource in 2023.
-                <br />
-                Modern JavaScript from the beginning - all the way up to JS
-                expert level! THE must-have JavaScript resource in 2023. Modern
-                <br />
                 JavaScript from the beginning - all the way up to JS expert
                 level! THE must-have JavaScript resource in 2023.
             </div>
