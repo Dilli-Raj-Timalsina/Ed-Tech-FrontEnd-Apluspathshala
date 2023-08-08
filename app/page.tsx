@@ -1,7 +1,7 @@
 "use client";
 import { useContext } from "react";
 import { CartContext } from "./layout";
-import { SideBarContext } from "./layout";
+
 import LandingSection from "@/components/mainComponents/LandingSection";
 import CourseCard from "@/components/mainComponents/CourseCard";
 import CategoriesCard from "@/components/mainComponents/CategoriesCard";
@@ -9,10 +9,10 @@ import SideBar from "@/components/navComponents/SideBar";
 
 export default function Home() {
     const { cartCount, setCartCount } = useContext(CartContext);
-    const { sideBarToggle } = useContext(SideBarContext);
+
     return (
         <div>
-            <SideBar sideBarToggle={sideBarToggle}></SideBar>
+            <SideBar></SideBar>
             <div className="w-screen h-fit  bg-white ">
                 <LandingSection></LandingSection>
             </div>

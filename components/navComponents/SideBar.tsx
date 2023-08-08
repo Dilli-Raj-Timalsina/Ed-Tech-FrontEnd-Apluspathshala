@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useContext } from "react";
+import { SideBarContext } from "@/app/layout";
 
-interface SideBarProps {
-    sideBarToggle: boolean;
-}
-export default function SideBar({ sideBarToggle }: SideBarProps) {
+export default function SideBar() {
+    const { sideBarToggle, setSideBarToggle } = useContext(SideBarContext);
     return (
         <aside
-            className={`  overflow-y-scroll  bg-white divide-y divide-gray-300  shadow w-4/5 h-screen mb-8 ${
+            className={`  overflow-y-scroll z-50 bg-white divide-y divide-gray-300  shadow w-4/5 h-screen mb-8 ${
                 sideBarToggle ? " flex flex-col " : " hidden"
             }`}
         >
