@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="sm:col-span-2">
-                    <Logo className=""></Logo>
+                    <Logo logoImageClass="" logoTitleClass=""></Logo>
                     <div className="mt-6 lg:max-w-sm">
                         <p className="text-sm text-gray-800">
                             Sed ut perspiciatis unde omnis iste natus error sit

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 import Link from "next/link";
 
 interface SideBarProps {
@@ -8,8 +8,8 @@ interface SideBarProps {
 export default function SideBar({ sideBarToggle }: SideBarProps) {
     return (
         <aside
-            className={` md:hidden  overflow-y-scroll  bg-white divide-y divide-gray-300  shadow w-4/5 h-screen mb-8 ${
-                sideBarToggle ? " flex flex-col" : "hidden"
+            className={`  overflow-y-scroll  bg-white divide-y divide-gray-300  shadow w-4/5 h-screen mb-8 ${
+                sideBarToggle ? " flex flex-col " : " hidden"
             }`}
         >
             <ul className="py-1 text-sm text-blue-600 underline font-semibold  border border-l-0 border-gray-300">

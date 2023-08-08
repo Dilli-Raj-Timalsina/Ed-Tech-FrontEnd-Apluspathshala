@@ -6,7 +6,7 @@ interface SectionProps {
     imgSrc?: string;
 }
 
-export default function Section({ imgSrc, paragraph }: SectionProps) {
+export default function LandingSection({ imgSrc, paragraph }: SectionProps) {
     return (
         <div className="flex m-1 md:mt-24 md:m-8 hover:drop-shadow-5xl ">
             <div className="md:mt-8 md:ml-10 ">

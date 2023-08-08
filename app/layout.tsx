@@ -10,7 +10,7 @@ import NavBar from "@/components/navComponents/NavBar";
 import Logo from "@/components/navComponents/logo";
 import NavItem from "@/components/navComponents/NavItem";
 import SearchBar from "@/components/navComponents/SearchBar";
-import Category from "@/components/navComponents/Category";
+import CategoriesDropDownButton from "@/components/navComponents/CategoriesDropDownButton";
 import Cart from "@/components/navComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
 
@@ -54,21 +54,28 @@ export default function RootLayout({ children }: Props) {
                 >
                     <CartContext.Provider value={{ cartCount, setCartCount }}>
                         <NavBar>
-                            <Logo className="hidden md:flex" />
-                            <Category></Category>
+                            <Logo
+                                logoImageClass="hidden md:flex"
+                                logoTitleClass="hidden md:flex"
+                            />
+                            <CategoriesDropDownButton></CategoriesDropDownButton>
                             <SearchBar></SearchBar>
-                            <Logo className="flex sm:hidden" />
+                            <Logo
+                                logoImageClass="flex md:hidden"
+                                logoTitleClass=" hidden"
+                            />
 
                             <div className="flex justify-around items-center gap-4">
                                 <NavItem>Teach on A+</NavItem>
                                 <NavItem>Contact us</NavItem>
                             </div>
                             <Cart cartItemCount={cartCount}></Cart>
-                            <div className="hidden md:flex md:gap-2">
+                            <div className="hidden md:flex md:gap-2 mr-2">
                                 <ButtonAuth pagePath="/signup">
                                     Signup
                                 </ButtonAuth>
-                                <ButtonAuth pagePath="/login">login</ButtonAuth>
+
+                                <ButtonAuth pagePath="/login">Login</ButtonAuth>
                             </div>
                         </NavBar>
                         {children}

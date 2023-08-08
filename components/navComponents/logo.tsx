@@ -16,9 +16,7 @@ export default function Logo({ logoImageClass, logoTitleClass }: logoProps) {
                     src="/logo.webp"
                     className={`h-16 w-16  ${logoImageClass}`}
                 />
-                <h1
-                    className={`text-xl font-semibold hidden ${logoTitleClass}`}
-                >
+                <h1 className={`text-xl font-semibold  ${logoTitleClass}`}>
                     Pathshala
                 </h1>
             </button>

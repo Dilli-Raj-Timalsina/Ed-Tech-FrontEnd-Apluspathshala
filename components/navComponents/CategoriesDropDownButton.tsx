@@ -1,13 +1,14 @@
 import { useState } from "react";
-import DropDownItems from "./DropDownItems";
 import { useContext } from "react";
 import { SideBarContext } from "@/app/layout";
+import CategoriesDropDownItems from "./CategoriesDropDownItems";
+
 // interface are written in UpperCamelCase
 interface DropDownButtonProps {
     children?: string;
 }
 
-export default function DropDownButton({
+export default function CategoriesDropDownButton({
     children = "Categories",
 }: DropDownButtonProps) {
     const { sideBarToggle, setSideBarToggle } = useContext(SideBarContext);
@@ -43,7 +44,9 @@ export default function DropDownButton({
                     />
                 </button>
             </div>
-            <DropDownItems clicked={clicked}></DropDownItems>
+            <CategoriesDropDownItems
+                clicked={clicked}
+            ></CategoriesDropDownItems>
         </div>
     );
 }
