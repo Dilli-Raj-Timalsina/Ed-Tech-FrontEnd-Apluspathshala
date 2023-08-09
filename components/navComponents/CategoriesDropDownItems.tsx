@@ -14,7 +14,7 @@ export default function CategoriesDropDownItems({
             <ul className="py-2 text-base font-bold ">
                 <li>
                     <a
-                        href="#"
+                        href="/web-development"
                         className="block px-4 py-2 w-56 hover:bg-blue-300 drop-shadow-sm"
                     >
                         Web Development

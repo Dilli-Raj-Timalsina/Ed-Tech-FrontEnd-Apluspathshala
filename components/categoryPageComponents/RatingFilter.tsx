@@ -1,6 +1,6 @@
 import FiveStar from "../helperComponents/FiveStar";
 
-export default function RatingFlter() {
+export default function RatingFilter() {
     return (
         <div>
             <div className="flex items-center">
@@ -10,10 +10,10 @@ export default function RatingFlter() {
                         <FiveStar
                             rating={4}
                             size="w-3 h-3 ml-1  "
-                            color="text-yellow-600"
+                            color="text-yellow-600 "
                         ></FiveStar>
 
-                        <span className="text-base text-gray-800 font-semibold ml-2">
+                        <span className="text-base text-gray-800 font-semibold ml-2 whitespace-nowrap">
                             4.0 and Above
                         </span>
                     </div>
