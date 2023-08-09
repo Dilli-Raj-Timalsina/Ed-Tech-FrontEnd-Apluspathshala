@@ -44,7 +44,8 @@ export default function LandingSection({ imgSrc, paragraph }: SectionProps) {
 
             <img
                 src={"/teacher.png" || imgSrc}
-                className="w-1/2 h-fit  hidden md:flex"
+                className="w-1/2 h-fit  hidden md:flex animate__animated
+                    animate__bounceInRight animate__delay-1s animate__slower"
             />
         </div>
     );
