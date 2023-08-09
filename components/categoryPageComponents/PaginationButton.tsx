@@ -1,6 +1,6 @@
 export default function PaginationButton() {
     return (
-        <div className="flex justify-around items-center mx-32 mt-14 mb-20">
+        <div className="flex justify-around space-x-4 items-center mt-8 mb-10 md:mx-32 md:mt-10 md:mb-20">
             <div className="flex items-center border-2 border-slate-600 hover:border-slate-700 text-gray-900 rounded-md font-semibold hover:drop-shadow-sm px-3 pl-2 py-1 justify-start">
                 <img
                     src="pagination-right.svg"
