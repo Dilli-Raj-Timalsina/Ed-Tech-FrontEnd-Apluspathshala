@@ -42,6 +42,16 @@ export default function RootLayout({ children }: Props) {
 
     return (
         <html lang="en">
+            <head>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+                />
+                <link
+                    rel="stylesheet"
+                    href="https://unpkg.com/aos@next/dist/aos.css"
+                />
+            </head>
             <body
                 className={` overflow-x-hidden ${
                     sideBarToggle
@@ -82,6 +92,8 @@ export default function RootLayout({ children }: Props) {
                     </CartContext.Provider>
                 </SideBarContext.Provider>
                 <Footer></Footer>
+                <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+                <script>AOS.init();</script>
             </body>
         </html>
     );
