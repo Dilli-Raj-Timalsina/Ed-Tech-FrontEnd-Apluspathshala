@@ -2,6 +2,8 @@ import CreateCourse from "@/components/becomeTeacherComponents/CreateCourse";
 import BuildBrand from "@/components/becomeTeacherComponents/BuildBrand";
 import ExpandReach from "@/components/becomeTeacherComponents/ExpandReach";
 import QualityCourse from "@/components/becomeTeacherComponents/QualityCourse";
+// import BuildBrandPara from "@/components/becomeTeacherComponents/BuildBrandPara";
+import HowItWorks from "@/components/becomeTeacherComponents/HowItWorks";
 
 export default function Home() {
     return (
@@ -10,6 +12,7 @@ export default function Home() {
             <div>
                 <div className="flex">
                     <BuildBrand></BuildBrand>
+
                     <p className="p-4 w-1/2 invisible">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Optio esse eligendi tenetur nobis fugiat nisi
@@ -38,6 +41,7 @@ export default function Home() {
                 </div>
                 <QualityCourse></QualityCourse>
             </div>
+            <HowItWorks></HowItWorks>
         </div>
     );
 }

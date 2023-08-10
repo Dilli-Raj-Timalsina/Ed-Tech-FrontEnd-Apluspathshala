@@ -8,7 +8,7 @@ export default function QualityCourse() {
             data-aos="fade-up-right"
             data-aos-delay="30"
             data-aos-duration="900"
-            className="h-1/2 w-1/2  ml-10 mt-6 bg-slate-200 rounded-l-full rounded-b-full drop-shadow-md flex flex-col "
+            className="h-1/2 w-1/2  ml-10  bg-slate-200 rounded-l-full rounded-b-full drop-shadow-md flex flex-col "
         >
             <div className="text-3xl  text-gray-900 font-bold mt-14 ml-40  drop-shadow-sm">
                 Offer High Quality Course
