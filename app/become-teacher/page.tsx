@@ -25,8 +25,8 @@ export default function Home() {
                         dolor!
                     </p>
                 </div>
-                <div className="flex p-4">
-                    <p className=" w-1/2 pr-3 invisible">
+                <div className="flex md:p-4">
+                    <p className=" w-1/2 pr-3 invisible  hidden md:flex">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Optio esse eligendi tenetur nobis fugiat nisi
                         consequatur, vero placeat, sit dolore deleniti sint. Et
