@@ -13,7 +13,7 @@ export default function Home() {
                 <div className="flex">
                     <BuildBrand></BuildBrand>
 
-                    <p className="p-4 w-1/2 invisible">
+                    <p className="p-4 w-1/2 invisible md:flex hidden">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Optio esse eligendi tenetur nobis fugiat nisi
                         consequatur, vero placeat, sit dolore deleniti sint. Et

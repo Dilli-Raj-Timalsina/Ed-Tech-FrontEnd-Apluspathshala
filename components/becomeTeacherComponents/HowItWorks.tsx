@@ -20,7 +20,7 @@ const Step = ({ stepNumber, title, description }: StepsProps) => {
 
 const HowItWorks = () => {
     return (
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start bg-white rounded-lg shadow-lg p-6 md:p-8 mx-6 my-8 border border-gray-300">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start bg-white rounded-lg shadow-lg p-6 md:p-8 md:mx-6 mx-2 md:mb-10   mb-4 mt-20 border border-gray-300">
             <div className="w-full md:w-1/2 mb-6 text-center md:mb-0">
                 <img src="/a.png" alt="how it works" className="w-96 h-fit" />
             </div>
