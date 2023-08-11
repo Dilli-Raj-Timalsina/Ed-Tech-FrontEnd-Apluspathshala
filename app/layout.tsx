@@ -76,7 +76,9 @@ export default function RootLayout({ children }: Props) {
                             />
 
                             <div className="flex justify-around items-center gap-4">
-                                <NavItem>Teach on A+</NavItem>
+                                <NavItem href="/become-teacher">
+                                    Teach on A+
+                                </NavItem>
                                 <NavItem>Contact us</NavItem>
                             </div>
                             <Cart cartItemCount={cartCount}></Cart>
