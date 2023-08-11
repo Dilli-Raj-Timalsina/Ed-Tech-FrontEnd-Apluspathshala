@@ -1,5 +1,7 @@
-import FiveStar from "../helperComponents/FiveStar";
+"use client";
 
+import FiveStar from "../helperComponents/FiveStar";
+import { useRouter } from "next/navigation";
 interface OneCourseProps {
     category: string;
     title: string;
@@ -11,12 +13,16 @@ interface OneCourseProps {
     totalStudent: number;
 }
 export default function OneCourse(props: OneCourseProps) {
+    const router = useRouter();
     return (
         <div className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer">
             <img
                 src="https://marketplace.canva.com/EAFQ_lV2WWs/1/0/1600w/canva-green-modern-how-to-make-money-online-youtube-thumbnail-oSD7Nn4_0lg.jpg"
                 alt=""
                 className="w-16 md:w-72 h-fit border md:border-2 border-gray-300 "
+                onClick={() => {
+                    router.push("/courses");
+                }}
             />
             <div className="flex flex-col justify-start ml-1 md:ml-4 ">
                 <div className="flex justify-between items-center">
