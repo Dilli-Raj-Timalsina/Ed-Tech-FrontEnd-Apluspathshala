@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import ButtonAuth from "../navComponents/ButtonAuth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 

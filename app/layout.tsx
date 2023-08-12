@@ -3,7 +3,6 @@
 import "./globals.css";
 import { useState } from "react";
 import { createContext } from "react";
-import { useRef } from "react";
 
 import ButtonAuth from "@/components/navComponents/ButtonAuth";
 import NavBar from "@/components/navComponents/NavBar";
@@ -14,7 +13,7 @@ import CategoriesDropDownButton from "@/components/navComponents/CategoriesDropD
 import Cart from "@/components/navComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
 
-interface Props {
+interface RootLayoutProps {
     children: React.ReactNode;
 }
 interface CartContextValue {
@@ -35,10 +34,9 @@ export const SideBarContext = createContext<SideBarToggleType>({
     setSideBarToggle: () => {},
 });
 
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children }: RootLayoutProps) {
     const [cartCount, setCartCount] = useState(0);
     const [sideBarToggle, setSideBarToggle] = useState(false);
-    const bodyRef = useRef();
 
     return (
         <html lang="en">

@@ -6,7 +6,7 @@ interface StepsProps {
 
 const Step = ({ stepNumber, title, description }: StepsProps) => {
     return (
-        <div className="flex items-start mb-8">
+        <div className="flex items-start mb-8 ">
             <div className="bg-blue-500 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4"></div>
             <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">
@@ -20,7 +20,12 @@ const Step = ({ stepNumber, title, description }: StepsProps) => {
 
 const HowItWorks = () => {
     return (
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start bg-white rounded-lg shadow-lg p-6 md:p-8 md:mx-6 mx-2 md:mb-10   mb-4 mt-20 border border-gray-300">
+        <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+            className="flex flex-col md:flex-row justify-between items-center md:items-start bg-white rounded-lg drop-shadow-lg p-6 md:p-6 md:mx-12 mx-2 md:mb-10   mb-4 mt-20 border-2 border-gray-300 "
+        >
             <div className="w-full md:w-1/2 mb-6 text-center md:mb-0">
                 <img src="/a.png" alt="how it works" className="w-96 h-fit" />
             </div>
