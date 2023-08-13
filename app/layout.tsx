@@ -10,9 +10,8 @@ import Logo from "@/components/navComponents/logo";
 import NavItem from "@/components/navComponents/NavItem";
 import SearchBar from "@/components/navComponents/SearchBar";
 import CategoriesDropDownButton from "@/components/navComponents/CategoriesDropDownButton";
-import Cart from "@/components/cartAndCheckoutComponents/Cart";
+import Cart from "@/components/cartComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
-import CartHover from "@/components/cartAndCheckoutComponents/CartHover";
 
 interface RootLayoutProps {
     children: React.ReactNode;

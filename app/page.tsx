@@ -1,15 +1,11 @@
 "use client";
-import { useContext } from "react";
-import { CartContext } from "./layout";
 
 import LandingSection from "@/components/mainComponents/LandingSection";
-import CourseCard from "@/components/mainComponents/CourseCard";
+import AllCourseMain from "@/components/mainComponents/AllCourseMain";
 import CategoriesCard from "@/components/mainComponents/CategoriesCard";
 import SideBar from "@/components/navComponents/SideBar";
 
 export default function Home() {
-    const { cartCount, setCartCount } = useContext(CartContext);
-
     return (
         <div>
             <SideBar></SideBar>
@@ -21,41 +17,9 @@ export default function Home() {
                     Popular Courses
                 </h1>
             </div>
-            <div className="flex flex-row  gap-3 m-6 border-2 border-slate-100 overflow-x-auto rounded-sm">
-                <CourseCard
-                    imgSrc="/itemclass.webp"
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-                <CourseCard
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-                <CourseCard
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-                <CourseCard
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-                <CourseCard
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-                <CourseCard
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-                <CourseCard
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-                <CourseCard
-                    cartCount={cartCount}
-                    setCartCount={setCartCount}
-                ></CourseCard>
-            </div>
+
+            <AllCourseMain></AllCourseMain>
+
             <h1 className="text-3xl font-semibold  drop-shadow-md p-4 pl-6">
                 Top Categories
             </h1>
