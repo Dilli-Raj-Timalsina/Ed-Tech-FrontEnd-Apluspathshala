@@ -3,6 +3,7 @@ interface FiveStarProps {
     size: string;
     color: string;
 }
+
 function roundRating(rating: number) {
     const decimalPart = rating % 1;
 
@@ -12,6 +13,7 @@ function roundRating(rating: number) {
         return Math.floor(rating);
     }
 }
+
 export default function FiveStar({ rating, size, color }: FiveStarProps) {
     rating = roundRating(rating);
     return (

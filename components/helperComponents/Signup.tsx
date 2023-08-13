@@ -11,10 +11,17 @@ interface SignupFormProps {
         password: string;
     }) => void;
 }
+interface Detail {
+    name: string;
+    email: string;
+    password: string;
+}
 export default function Signup({ onSubmit }: SignupFormProps) {
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [detail, setDetail] = useState<Detail>({
+        name: "",
+        email: "",
+        password: "",
+    });
     const [showPassword, setShowPassword] = useState(false);
 
     const router = useRouter();
@@ -82,7 +89,12 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                     <input
                         type="text"
                         id="fullName"
-                        onChange={(e) => setFullName(e.target.value)}
+                        onChange={(e) =>
+                            setDetail({
+                                ...detail,
+                                [e.target.name]: e.target.value,
+                            })
+                        }
                         placeholder="Name"
                         required
                         className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-72"
@@ -93,7 +105,12 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                     <input
                         type="text"
                         id="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) =>
+                            setDetail({
+                                ...detail,
+                                [e.target.name]: e.target.value,
+                            })
+                        }
                         placeholder="Email Address"
                         required
                         className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-80"
@@ -105,7 +122,12 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                     <input
                         type={!showPassword ? "password" : "text"}
                         id="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) =>
+                            setDetail({
+                                ...detail,
+                                [e.target.name]: e.target.value,
+                            })
+                        }
                         placeholder="Password"
                         required
                         className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-72"

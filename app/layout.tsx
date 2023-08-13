@@ -10,8 +10,9 @@ import Logo from "@/components/navComponents/logo";
 import NavItem from "@/components/navComponents/NavItem";
 import SearchBar from "@/components/navComponents/SearchBar";
 import CategoriesDropDownButton from "@/components/navComponents/CategoriesDropDownButton";
-import Cart from "@/components/navComponents/Cart";
+import Cart from "@/components/cartAndCheckoutComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
+import CartHover from "@/components/cartAndCheckoutComponents/CartHover";
 
 interface RootLayoutProps {
     children: React.ReactNode;
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                                 <ButtonAuth pagePath="/login">Login</ButtonAuth>
                             </div>
                         </NavBar>
+                        {/* <CartHover hover={hover}></CartHover> */}
                         {children}
                     </CartContext.Provider>
                 </SideBarContext.Provider>

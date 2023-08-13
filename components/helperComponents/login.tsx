@@ -1,16 +1,25 @@
 "use client";
 import { useState } from "react";
-import ButtonAuth from "../navComponents/ButtonAuth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface LoginFormProps {
     onSubmit: (FormData: { email: string; password: string }) => void;
 }
+interface Detail {
+    name: string;
+    email: string;
+    password: string;
+}
 
 export default function Login({ onSubmit }: LoginFormProps) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [detail, setDetail] = useState<Detail>({
+        name: "",
+        email: "",
+        password: "",
+    });
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const router = useRouter();
@@ -18,8 +27,7 @@ export default function Login({ onSubmit }: LoginFormProps) {
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         onSubmit({
-            email,
-            password,
+            ...detail,
         });
         console.log("success");
 
@@ -58,7 +66,13 @@ export default function Login({ onSubmit }: LoginFormProps) {
                     <input
                         type="text"
                         id="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="name"
+                        onChange={(e) =>
+                            setDetail({
+                                ...detail,
+                                [e.target.name]: e.target.value,
+                            })
+                        }
                         placeholder="Email Address"
                         required
                         className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-80"
@@ -70,7 +84,13 @@ export default function Login({ onSubmit }: LoginFormProps) {
                     <input
                         type={!showPassword ? "password" : "text"}
                         id="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        name="password"
+                        onChange={(e) =>
+                            setDetail({
+                                ...detail,
+                                [e.target.name]: e.target.value,
+                            })
+                        }
                         placeholder="Password"
                         required
                         className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-72"
@@ -80,6 +100,7 @@ export default function Login({ onSubmit }: LoginFormProps) {
                     <input
                         type="checkbox"
                         id="showPasswordCheckbox"
+                        name="showPassword"
                         checked={showPassword}
                         onChange={() => setShowPassword(!showPassword)}
                         className="form-checkbox h-4 w-4 text-blue-600"
