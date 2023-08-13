@@ -2,7 +2,7 @@
 
 export default function CheckOutButton() {
     return (
-        <div className="mr-28">
+        <div className="md:mr-28 ml-1">
             <div className="text-gray-500 text-lg font-semibold p-2">
                 Total :
             </div>

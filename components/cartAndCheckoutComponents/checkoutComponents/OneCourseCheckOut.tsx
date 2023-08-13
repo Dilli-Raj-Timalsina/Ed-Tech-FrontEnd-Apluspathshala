@@ -11,11 +11,15 @@ interface OneCourseProps {
     tutorName: string;
     totalLength: number;
     totalStudent: number;
+    key: number;
 }
 export default function OneCourseCheckOut(props: OneCourseProps) {
     const router = useRouter();
     return (
-        <div className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer">
+        <div
+            className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer"
+            key={props.key}
+        >
             <img
                 src="https://marketplace.canva.com/EAFQ_lV2WWs/1/0/1600w/canva-green-modern-how-to-make-money-online-youtube-thumbnail-oSD7Nn4_0lg.jpg"
                 alt=""

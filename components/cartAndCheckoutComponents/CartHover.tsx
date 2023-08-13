@@ -6,15 +6,20 @@ interface ContentComponentProps {
     price: number;
     image: string;
     instructor: string;
+    key: number;
 }
 function ContentComponent({
     title,
     price,
     image,
     instructor,
+    key,
 }: ContentComponentProps) {
     return (
-        <div className="flex w-full h-20  cursor-pointer items-center py-2 px-1 hover:bg-gray-100">
+        <div
+            className="flex w-full h-20  cursor-pointer items-center py-2 px-1 hover:bg-gray-100"
+            key={key}
+        >
             <img src={image} alt="" className="w-16 h-16 pr-1" />
             <div className="flex flex-col ">
                 <div className="text-sm font-bold text-gray-800 ">
@@ -33,7 +38,7 @@ function ContentComponent({
 export default function CartHover({ hover }: CartProps) {
     const content = data.map((content, index) => (
         <div>
-            <ContentComponent {...content} />
+            <ContentComponent {...content} key={index} />
             <hr />
         </div>
     ));

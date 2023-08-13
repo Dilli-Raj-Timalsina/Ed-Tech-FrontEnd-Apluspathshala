@@ -2,18 +2,18 @@ import OneCourseCheckOut from "@/components/cartAndCheckoutComponents/checkoutCo
 import CheckOutButton from "@/components/cartAndCheckoutComponents/checkoutComponents/CheckOutButton";
 
 export default function Home() {
-    const content = dummyData.map((item) => (
+    const content = dummyData.map((item, index) => (
         <div className="w-fit">
-            <OneCourseCheckOut {...item}></OneCourseCheckOut>
+            <OneCourseCheckOut {...item} key={index}></OneCourseCheckOut>
             <hr className="text-gray-900" />
         </div>
     ));
     return (
-        <div className="mt-36 ml-10">
+        <div className="md:mt-36 md:ml-10 mt-4 ml-1">
             <h1 className="font-bold text-gray-900 text-4xl mb-10">
                 Shopping Cart
             </h1>
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row justify-between">
                 <div>{content}</div>
                 <CheckOutButton></CheckOutButton>
             </div>
