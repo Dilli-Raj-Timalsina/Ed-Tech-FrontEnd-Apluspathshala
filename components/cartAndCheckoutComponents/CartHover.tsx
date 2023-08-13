@@ -14,7 +14,7 @@ function ContentComponent({
     instructor,
 }: ContentComponentProps) {
     return (
-        <div className="flex w-full h-20  cursor-pointer items-center py-2 px-1">
+        <div className="flex w-full h-20  cursor-pointer items-center py-2 px-1 hover:bg-gray-100">
             <img src={image} alt="" className="w-16 h-16 pr-1" />
             <div className="flex flex-col ">
                 <div className="text-sm font-bold text-gray-800 ">
