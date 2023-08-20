@@ -1,5 +1,5 @@
-import OneCourseCheckOut from "@/components/cartAndCheckoutComponents/checkoutComponents/OneCourseCheckOut";
-import CheckOutButton from "@/components/cartAndCheckoutComponents/checkoutComponents/CheckOutButton";
+import OneCourseCheckOut from "@/components/checkoutComponents/OneCourseCheckOut";
+import CheckOutButton from "@/components/checkoutComponents/CheckOutButton";
 
 export default function Home() {
     const content = dummyData.map((item, index) => (

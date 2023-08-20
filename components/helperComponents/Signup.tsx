@@ -3,26 +3,19 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface SignupFormProps {
-    onSubmit: (FormData: {
-        fullName: string;
-        email: string;
-
-        password: string;
-    }) => void;
-}
 interface Detail {
     name: string;
     email: string;
     password: string;
 }
-export default function Signup({ onSubmit }: SignupFormProps) {
+export default function Signup() {
     const [detail, setDetail] = useState<Detail>({
         name: "",
         email: "",
         password: "",
     });
     const [showPassword, setShowPassword] = useState(false);
+    const [role, setRole] = useState("user");
 
     const router = useRouter();
 
@@ -34,27 +27,23 @@ export default function Signup({ onSubmit }: SignupFormProps) {
         //     email,
         //     password,
         // });
-        // const res = await fetch(
-        //     "https://a-pathshala-service-2.onrender.com/api/v1/user/signup",
-        //     {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify({
-        //             name: fullName,
-        //             email: email,
-        //             password: password,
-        //             role: "user",
-        //         }),
-        //     }
-        // );
-        // console.log(res);
-        // if (res.ok) {
-        //     const data = await res.json();
-        //     console.log(data);
-        // }
-        router.push("/signupsuccess");
+        console.log(detail);
+        const res = await fetch("http://localhost:3001/api/v1/user/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...detail,
+                role: role,
+            }),
+        });
+        console.log(await res.json());
+        if (res.ok) {
+            const data = await res.json();
+            console.log(data);
+        }
+        // router.push("/signupsuccess");
     }
     return (
         <div className="w-screen h-fit md:w-1/3 md:h-3/5 md:p-4 p-2 mx-1 my-10 drop-shadow-2xl md:mt-40 rounded-2xl bg-white ">
@@ -89,6 +78,7 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                     <input
                         type="text"
                         id="fullName"
+                        name="name"
                         onChange={(e) =>
                             setDetail({
                                 ...detail,
@@ -105,6 +95,7 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                     <input
                         type="text"
                         id="email"
+                        name="email"
                         onChange={(e) =>
                             setDetail({
                                 ...detail,
@@ -122,6 +113,7 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                     <input
                         type={!showPassword ? "password" : "text"}
                         id="password"
+                        name="password"
                         onChange={(e) =>
                             setDetail({
                                 ...detail,
@@ -133,21 +125,41 @@ export default function Signup({ onSubmit }: SignupFormProps) {
                         className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-72"
                     />
                 </div>
-                <div className="flex  justify-start gap-1 text-center mb-4">
-                    <input
-                        type="checkbox"
-                        id="showPasswordCheckbox"
-                        checked={showPassword}
-                        onChange={() => setShowPassword(!showPassword)}
-                        className="form-checkbox h-4 w-4 text-blue-600"
-                    />
-                    <div> </div>
-                    <label
-                        htmlFor="showPasswordCheckbox"
-                        className="font-semibold text-sm "
-                    >
-                        Show Password
-                    </label>
+                <div className="flex  justify-between   text-center mb-4 mt-2">
+                    <div className="flex gap-1 items-center justify-start ">
+                        <input
+                            type="checkbox"
+                            id="showPasswordCheckbox"
+                            checked={showPassword}
+                            onChange={() => setShowPassword(!showPassword)}
+                            className="form-checkbox h-4 w-4 text-blue-600"
+                        />
+
+                        <label
+                            htmlFor="showPasswordCheckbox"
+                            className="font-semibold text-sm "
+                        >
+                            Show Password
+                        </label>
+                    </div>
+                    <div className="flex gap-1 items-center justify-start mr-12">
+                        <input
+                            type="checkbox"
+                            id="role"
+                            checked={role == "teacher"}
+                            onChange={() => {
+                                setRole(role == "user" ? "teacher" : "user");
+                            }}
+                            className="form-checkbox h-4 w-4 text-blue-600"
+                        />
+
+                        <label
+                            htmlFor="role"
+                            className="font-semibold text-sm "
+                        >
+                            I am Teacher
+                        </label>
+                    </div>
                 </div>
                 <div className="flex justify-center">
                     <button
