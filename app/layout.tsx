@@ -12,6 +12,7 @@ import SearchBar from "@/components/navComponents/SearchBar";
 import CategoriesDropDownButton from "@/components/navComponents/CategoriesDropDownButton";
 import Cart from "@/components/cartComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
+import ProfileIcon from "@/components/dashBoardComponents/ProfileIcon";
 
 interface RootLayoutProps {
     children: React.ReactNode;
@@ -81,11 +82,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
                             </div>
                             <Cart cartItemCount={cartCount}></Cart>
                             <div className="hidden md:flex md:gap-2 mr-2">
-                                <ButtonAuth pagePath="/signup">
+                                {/* <ButtonAuth pagePath="/signup">
                                     Signup
                                 </ButtonAuth>
 
-                                <ButtonAuth pagePath="/login">Login</ButtonAuth>
+                                <ButtonAuth pagePath="/login">Login</ButtonAuth> */}
+                                <ProfileIcon
+                                    name={"Nischal Timalsina"}
+                                ></ProfileIcon>
                             </div>
                         </NavBar>
                         {/* <CartHover hover={hover}></CartHover> */}
