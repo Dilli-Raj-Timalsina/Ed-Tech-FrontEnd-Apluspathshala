@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useContext } from "react";
+import { LogInContext } from "@/app/layout";
+import { JwtContext } from "@/app/layout";
 
 interface Detail {
     name: string;
@@ -9,6 +12,8 @@ interface Detail {
     password: string;
 }
 export default function Signup() {
+    const { logIn, setLogIn } = useContext(LogInContext);
+    const { jwt, setJwt } = useContext(JwtContext);
     const [detail, setDetail] = useState<Detail>({
         name: "",
         email: "",
@@ -19,31 +24,40 @@ export default function Signup() {
 
     const router = useRouter();
 
+    const isEmailValid = () => {
+        const emailRegex =
+            /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        return emailRegex.test(detail.email);
+    };
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
-        // onSubmit({
-        //     fullName,
-        //     email,
-        //     password,
-        // });
-        console.log(detail);
-        const res = await fetch("http://localhost:3001/api/v1/user/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...detail,
-                role: role,
-            }),
-        });
-        console.log(await res.json());
-        if (res.ok) {
-            const data = await res.json();
-            console.log(data);
+        try {
+            const res = await fetch(
+                "http://localhost:3001/api/v1/user/signup",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ...detail,
+                        role: role,
+                    }),
+                }
+            );
+            const result = await res.json();
+            console.log(result);
+
+            if (res.ok) {
+                setLogIn(true);
+                setJwt(result.token.split(" ")[1]);
+                router.back();
+            }
+        } catch (err) {
+            console.error(err);
         }
-        // router.push("/signupsuccess");
     }
     return (
         <div className="w-screen h-fit md:w-1/3 md:h-3/5 md:p-4 p-2 mx-1 my-10 drop-shadow-2xl md:mt-40 rounded-2xl bg-white ">
@@ -104,7 +118,11 @@ export default function Signup() {
                         }
                         placeholder="Email Address"
                         required
-                        className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-80"
+                        className={`${
+                            detail.email && !isEmailValid()
+                                ? "border-red-500"
+                                : ""
+                        } border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-80`}
                     />
                 </div>
 

@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { LogInContext } from "@/app/layout";
 interface CartProps {
     hover: boolean;
 }
@@ -31,6 +33,7 @@ function ContentComponent({
     );
 }
 export default function CartHover({ hover }: CartProps) {
+    const { logIn } = useContext(LogInContext);
     const content = data.map((content, index) => (
         <div key={index}>
             <ContentComponent {...content} />
@@ -39,7 +42,9 @@ export default function CartHover({ hover }: CartProps) {
     ));
     return (
         <div
-            className={` top-16 right-52 z-50 pt-1 pb-1 md:fixed bg-white w-72 h-80  absoulte  border border-slate-300 overflow-y-scroll  ${
+            className={` top-16 ${
+                logIn ? "right-32" : "right-52"
+            } z-50 pt-1 pb-1 md:fixed bg-white w-72 h-80  absoulte  border border-slate-300 overflow-y-scroll  ${
                 hover ? "flex flex-col" : "hidden"
             }`}
         >
