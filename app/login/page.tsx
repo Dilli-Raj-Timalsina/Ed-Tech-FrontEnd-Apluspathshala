@@ -4,7 +4,7 @@ import Login from "@/components/helperComponents/login";
 export default function LoginPage() {
     return (
         <div className="w-screen h-screen flex justify-center g-gradient-to-r from-pink-50 via-purple-50 to-indigo-50 ">
-            <Login onSubmit={() => {}} />
+            <Login />
         </div>
     );
 }

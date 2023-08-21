@@ -9,7 +9,7 @@ export default function ProfileIcon({ name, logIn }: ProfileIconProps) {
         <button
             className={`${
                 logIn ? "" : "hidden"
-            } rounded-full w-12 h-12 bg-blue-800 text-center  font-bold text-white text-xl drop`}
+            } rounded-full w-12 h-12 bg-blue-700 text-center  font-bold text-white text-xl drop hover:drop-shadow-md hover:bg-blue-800`}
             onClick={() => {
                 router.push("/dashboard");
             }}

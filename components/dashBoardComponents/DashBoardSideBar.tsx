@@ -1,6 +1,15 @@
+"use client";
+
 import ProfileIcon from "./ProfileIcon";
+import { useContext } from "react";
+import { useRouter } from "next/navigation";
+import { LogInContext } from "@/app/layout";
+import { JwtContext } from "@/app/layout";
 
 export default function DashBoardSideBar() {
+    const router = useRouter();
+    const { logIn, setLogIn } = useContext(LogInContext);
+    const { jwt, setJwt } = useContext(JwtContext);
     const items = obj.map((item) => {
         return (
             <div className="flex pl-16 items-center justify-start hover:bg-blue-600 text-blue-500 hover:text-white cursor-pointer ">
@@ -9,7 +18,16 @@ export default function DashBoardSideBar() {
                     alt=""
                     className="inline w-6 h-6 mr-3"
                 />
-                <button className="text-xl font-bold py-3 drop-shadow-sm ">
+                <button
+                    className={`text-xl font-bold py-3 drop-shadow-sm `}
+                    onClick={() => {
+                        if (item.title == "LOGOUT") {
+                            setLogIn(false);
+                            setJwt("");
+                            router.back();
+                        }
+                    }}
+                >
                     {item.title}
                 </button>
             </div>

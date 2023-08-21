@@ -3,35 +3,53 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface LoginFormProps {
-    onSubmit: (FormData: { email: string; password: string }) => void;
-}
+import { useContext } from "react";
+import { LogInContext } from "@/app/layout";
+import { JwtContext } from "@/app/layout";
+
 interface Detail {
-    name: string;
     email: string;
     password: string;
 }
 
-export default function Login({ onSubmit }: LoginFormProps) {
+export default function Login() {
+    const { logIn, setLogIn } = useContext(LogInContext);
+    const { jwt, setJwt } = useContext(JwtContext);
     const [detail, setDetail] = useState<Detail>({
-        name: "",
         email: "",
         password: "",
     });
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
 
+    const [showPassword, setShowPassword] = useState(false);
+    const [role, setRole] = useState("user");
     const router = useRouter();
 
-    function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        onSubmit({
-            ...detail,
-        });
-        console.log("success");
+        console.log(detail);
 
-        router.push("/signupsuccess");
+        try {
+            const res = await fetch("http://localhost:3001/api/v1/user/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...detail,
+                    // role: role,
+                }),
+            });
+            const result = await res.json();
+            console.log(result);
+
+            if (res.ok) {
+                setLogIn(true);
+                setJwt(result.token.split(" ")[1]);
+                router.back();
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
     return (
         <div className="w-screen h-fit md:w-1/3 md:h-3/5 md:p-4 p-2 mx-1 my-10 drop-shadow-2xl md:mt-40 rounded-2xl bg-white">
@@ -66,7 +84,7 @@ export default function Login({ onSubmit }: LoginFormProps) {
                     <input
                         type="text"
                         id="email"
-                        name="name"
+                        name="email"
                         onChange={(e) =>
                             setDetail({
                                 ...detail,
@@ -96,22 +114,42 @@ export default function Login({ onSubmit }: LoginFormProps) {
                         className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-72"
                     />
                 </div>
-                <div className="flex  justify-start gap-1 text-center mb-4">
-                    <input
-                        type="checkbox"
-                        id="showPasswordCheckbox"
-                        name="showPassword"
-                        checked={showPassword}
-                        onChange={() => setShowPassword(!showPassword)}
-                        className="form-checkbox h-4 w-4 text-blue-600"
-                    />
-                    <div> </div>
-                    <label
-                        htmlFor="showPasswordCheckbox"
-                        className="font-semibold text-sm "
-                    >
-                        Show Password
-                    </label>
+                <div className="flex  justify-between   text-center mb-4 mt-2">
+                    <div className="flex  justify-start gap-1 text-center mb-4">
+                        <input
+                            type="checkbox"
+                            id="showPasswordCheckbox"
+                            name="showPassword"
+                            checked={showPassword}
+                            onChange={() => setShowPassword(!showPassword)}
+                            className="form-checkbox h-4 w-4 text-blue-600"
+                        />
+                        <div> </div>
+                        <label
+                            htmlFor="showPasswordCheckbox"
+                            className="font-semibold text-sm "
+                        >
+                            Show Password
+                        </label>
+                    </div>
+                    <div className="flex gap-1 items-center justify-start mr-12">
+                        <input
+                            type="checkbox"
+                            id="role"
+                            checked={role == "teacher"}
+                            onChange={() => {
+                                setRole(role == "user" ? "teacher" : "user");
+                            }}
+                            className="form-checkbox h-4 w-4 text-blue-600"
+                        />
+
+                        <label
+                            htmlFor="role"
+                            className="font-semibold text-sm "
+                        >
+                            I am Teacher
+                        </label>
+                    </div>
                 </div>
                 <div className="flex justify-center">
                     <button

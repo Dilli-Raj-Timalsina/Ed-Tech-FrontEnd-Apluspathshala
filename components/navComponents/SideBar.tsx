@@ -3,16 +3,25 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { SideBarContext } from "@/app/layout";
+import { LogInContext } from "@/app/layout";
+import { useRouter } from "next/navigation";
+import ProfileIcon from "../dashBoardComponents/ProfileIcon";
 
 export default function SideBar() {
+    const { logIn } = useContext(LogInContext);
+    const router = useRouter();
     const { sideBarToggle, setSideBarToggle } = useContext(SideBarContext);
     return (
         <aside
-            className={`  overflow-y-scroll z-50 bg-white divide-y divide-gray-300  shadow w-4/5 h-screen mb-8 ${
+            className={`  overflow-y-scroll z-50 bg-white divide-y divide-gray-300  shadow w-4/5 h-screen mb-8  ${
                 sideBarToggle ? " flex flex-col " : " hidden"
             }`}
         >
-            <ul className="py-1 text-sm text-blue-600 underline font-semibold  border border-l-0 border-gray-300">
+            <ul
+                className={`py-1 text-sm text-blue-600 underline font-semibold  border border-l-0 border-gray-300 ${
+                    logIn ? " hidden" : ""
+                }`}
+            >
                 <li className="block px-4 py-2  drop-shadow-sm ">
                     <Link href="/login">Login</Link>
                 </li>
@@ -22,6 +31,14 @@ export default function SideBar() {
                     </Link>
                 </li>
             </ul>
+            <div
+                className="mx-4 my-2 w-fit h-fit"
+                onClick={() => {
+                    setSideBarToggle(!sideBarToggle);
+                }}
+            >
+                <ProfileIcon name={"Nischal"} logIn={logIn}></ProfileIcon>
+            </div>
             <ul className="py-2 text-base drop-shadow-sm font-semibold text-gray-900">
                 <li className=" px-4 py-2  flex items-center justify-between">
                     <a href="#">Web Developement</a>

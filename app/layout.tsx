@@ -13,6 +13,7 @@ import CategoriesDropDownButton from "@/components/navComponents/CategoriesDropD
 import Cart from "@/components/cartComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
 import ProfileIcon from "@/components/dashBoardComponents/ProfileIcon";
+import SideBar from "@/components/navComponents/SideBar";
 
 interface RootLayoutProps {
     children: React.ReactNode;
@@ -126,6 +127,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                                     </div>
                                 </NavBar>
                                 {/* <CartHover hover={hover}></CartHover> */}
+                                <SideBar></SideBar>
                                 {children}
                             </CartContext.Provider>
                         </SideBarContext.Provider>

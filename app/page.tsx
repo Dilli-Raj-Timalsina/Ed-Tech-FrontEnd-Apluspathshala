@@ -8,7 +8,6 @@ import SideBar from "@/components/navComponents/SideBar";
 export default function Home() {
     return (
         <div>
-            <SideBar></SideBar>
             <div className="w-screen h-fit  bg-white ">
                 <LandingSection></LandingSection>
             </div>
