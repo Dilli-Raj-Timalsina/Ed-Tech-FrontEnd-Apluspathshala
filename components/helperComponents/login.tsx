@@ -56,7 +56,7 @@ export default function Login() {
             <h1 className="md:text-3xl text-2xl font-bold ml-6 md:ml-11 mt-4">
                 Log Into Your Account
             </h1>
-            <button onClick={() => router.push("/")}>
+            <button onClick={() => router.back()}>
                 <img
                     src="/cancel-icon.svg"
                     alt=""

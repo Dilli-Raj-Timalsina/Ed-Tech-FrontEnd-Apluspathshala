@@ -64,7 +64,7 @@ export default function Signup() {
             <h1 className="md:text-3xl text-2xl font-bold ml-6 md:ml-11 mt-4">
                 Create New Account
             </h1>
-            <button onClick={() => router.push("/")}>
+            <button onClick={() => router.back()}>
                 <img
                     src="/cancel-icon.svg"
                     alt=""
