@@ -4,7 +4,15 @@ import { useContext } from "react";
 import { JwtContext } from "@/app/layout";
 import { useRouter } from "next/navigation";
 
-export default function AddSection() {
+interface AddSectionProps {
+    selectedNumbers: number[];
+    setSelectedNumbers: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+export default function AddSection({
+    selectedNumbers,
+    setSelectedNumbers,
+}: AddSectionProps) {
     const router = useRouter();
     const { jwt } = useContext(JwtContext);
     const [chapterName, setchapterName] = useState("");
@@ -12,10 +20,16 @@ export default function AddSection() {
     const [videoFiles, setVideoFiles] = useState<FileList>();
     const [pdfFiles, setPdfFiles] = useState<FileList>();
 
+    const handleClick = (number: number) => {
+        if (!(number == 0)) {
+            setSelectedNumbers([...selectedNumbers, number]);
+        }
+    };
+
     const handlechapterNameChange = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
-        setchapterName(event.target.value);
+        setchapterName("Chapter " + event.target.value);
     };
 
     const handlechapterTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +80,8 @@ export default function AddSection() {
                 setchapterTitle("");
                 setVideoFiles(undefined);
                 setPdfFiles(undefined);
+                handleClick(parseInt(chapterName.split(" ")[1], 10));
+                console.log(result);
                 console.log("successful vayo bro");
             }
         } catch (err) {
@@ -74,8 +90,8 @@ export default function AddSection() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="basis-1/2">
-            <div className=" rounded-md h-fit border border-gray-400 drop-shadow-sm py-6 px-4  mt-2">
+        <form onSubmit={handleSubmit} className="md:basis-1/2">
+            <div className=" rounded-md h-fit border border-gray-400 drop-shadow-sm py-6 md:px-4 px-1 mt-2">
                 <div className="mb-4">
                     <label
                         className="block font-bold mb-2 text-gray-600"
@@ -87,10 +103,11 @@ export default function AddSection() {
                         className="border rounded w-full py-2 px-3 focus:border-gray-400 outline-none"
                         id="chapterName"
                         name="chapterName"
+                        required
                         value={chapterName}
                         onChange={handlechapterNameChange}
                     >
-                        <option value={undefined}>Select a chapter</option>
+                        <option value={0}>Select a chapter</option>
                         {Array.from({ length: 20 }, (_, index) => (
                             <option key={index + 1} value={index + 1}>
                                 Chapter {index + 1}
@@ -109,6 +126,7 @@ export default function AddSection() {
                         className="border rounded w-full py-2 px-3 focus:border-gray-400 outline-none"
                         id="chapterTitle"
                         type="text"
+                        required
                         value={chapterTitle}
                         onChange={handlechapterTitleChange}
                     />
@@ -121,6 +139,7 @@ export default function AddSection() {
                         className="border rounded py-2 px-3"
                         type="file"
                         multiple
+                        required
                         accept=".mp4"
                         onChange={handleVideoFileChange}
                     />
@@ -133,6 +152,7 @@ export default function AddSection() {
                         className="border rounded py-2 px-3"
                         type="file"
                         multiple
+                        required
                         accept=".pdf"
                         onChange={handlePdfFileChange}
                     />

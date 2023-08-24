@@ -1,36 +1,25 @@
 "use client";
-import { useState } from "react";
 
-const ChapterBox: React.FC = () => {
-    const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
-
-    const handleClick = (number: number) => {
-        if (selectedNumbers.includes(number)) {
-            setSelectedNumbers(selectedNumbers.filter((num) => num !== number));
-        } else {
-            setSelectedNumbers([...selectedNumbers, number]);
-        }
-    };
-
+interface ChapterBoxProps {
+    selectedNumbers: number[];
+}
+export default function ChapterBox({ selectedNumbers }: ChapterBoxProps) {
     return (
-        <div className="grid grid-cols-5 basis-1/3 border border-blue-300 drop-shadow-lg mt-2 w-96 h-96">
+        <div className="grid md:grid-cols-5 grid-cols-4 md:basis-1/3 basis-1/4 border border-blue-300 drop-shadow-lg mt-2 md:w-96 md:h-96 w-full h-fit">
             {Array.from({ length: 20 }, (_, index) => index + 1).map(
                 (number) => (
-                    <button
+                    <div
                         key={number}
                         className={`p-2 border border-slate-400 text-3xl flex items-center justify-center font-bold   ${
                             selectedNumbers.includes(number)
                                 ? "bg-green-400"
                                 : "bg-gray-100"
                         }`}
-                        onClick={() => handleClick(number)}
                     >
                         {number}
-                    </button>
+                    </div>
                 )
             )}
         </div>
     );
-};
-
-export default ChapterBox;
+}
