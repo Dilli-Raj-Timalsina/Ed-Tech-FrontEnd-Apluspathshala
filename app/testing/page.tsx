@@ -1,5 +1,5 @@
 "use client";
-
+import { getCookie, setCookie } from "cookies-next";
 import { Dispatch, SetStateAction, useState } from "react";
 interface Props {
     title: string;
@@ -29,20 +29,19 @@ function Panel({ title, children, isActive, setIsActive }: Props) {
 }
 
 export default function Accordion() {
+    setCookie("jwt", "999");
+    setCookie("jwt", "888");
     const [isActive, setIsActive] = useState(0);
     return (
-        <>
+        <div className="m-44">
             <h2>Almaty, Kazakhstan</h2>
-            <Panel title="About" isActive={isActive} setIsActive={setIsActive}>
-                para1
-            </Panel>
-            <Panel
-                title="Etymology"
-                isActive={isActive}
-                setIsActive={setIsActive}
+            <button
+                onClick={() => {
+                    console.log(getCookie("jwt"));
+                }}
             >
-                para2
-            </Panel>
-        </>
+                Cick me
+            </button>
+        </div>
     );
 }

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { JwtContext } from "@/app/layout";
+import { useRouter } from "next/navigation";
 
 interface Course {
     title: string;
@@ -16,6 +17,7 @@ interface CategoryOption {
     label: string;
 }
 export default function CreateNewCourse() {
+    const router = useRouter();
     const { jwt } = useContext(JwtContext);
     const [course, setCourse] = useState<Course>({
         title: "",
@@ -82,7 +84,7 @@ export default function CreateNewCourse() {
             const result = await res.json();
 
             if (res.ok) {
-                console.log("you got it my boy");
+                router.push("/upload-chapter");
             }
         } catch (err) {
             console.error(err);
