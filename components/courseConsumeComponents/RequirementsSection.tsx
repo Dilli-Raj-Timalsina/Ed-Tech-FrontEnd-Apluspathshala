@@ -3,9 +3,14 @@ const requirements = [
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit ",
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit Lorem ipsum, dolor sit am",
 ];
-
-export default function RequirementsSection() {
-    const content = requirements.map((content, i) => (
+interface RequirementsSectionProps {
+    requirements: string;
+}
+export default function RequirementsSection({
+    requirements,
+}: RequirementsSectionProps) {
+    const requirementsArray = requirements.split(",");
+    const content = requirementsArray.map((content, i) => (
         <li key={i} className="">
             {content}
         </li>

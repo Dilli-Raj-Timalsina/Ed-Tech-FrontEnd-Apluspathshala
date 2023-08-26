@@ -1,4 +1,7 @@
-export default function DescriptionBox() {
+interface DescriptionBoxProps {
+    description: string;
+}
+export default function DescriptionBox({ description }: DescriptionBoxProps) {
     return (
         <div className="ml-2 mt-2 m-1 md:mt-4 md:ml-8 w-screen md:w-1/2">
             <h3 className=" mb-2 text-2xl font-semibold font-serif drop-shadow-sm">
@@ -8,16 +11,7 @@ export default function DescriptionBox() {
                 <span className="font-bold text-sm md:text-base text-green-500">
                     (Enroll and Activate Your A+ Score){" "}
                 </span>
-                Participating in the A+ Pathshala program include gaining a
-                strong foundation in computer science and technology, exploring
-                various career options, learning essential theory and subjects,
-                choosing the right programming language.
-                <br /> Not only that, you will also know company creation and
-                operation, experience real software development projects,
-                improving coding skills, mastering JavaScript and backend
-                development, contributing to open-source projects, gaining
-                insights into hiring processes and salaries, exploring global
-                opportunities and internships.
+                {description}
                 <br />
                 <span className="hidden">
                     You will also understand freelancing and contract-based

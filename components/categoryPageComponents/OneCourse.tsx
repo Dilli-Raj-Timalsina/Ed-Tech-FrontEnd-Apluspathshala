@@ -6,22 +6,26 @@ interface OneCourseProps {
     category: string;
     title: string;
     subTitle: string;
-    rating: number;
+    duration: string;
+    reviewScore: number;
     price: number;
     tutorName: string;
-    totalLength: number;
     totalStudent: number;
+    thumbNail: string;
+    id: string;
 }
 export default function OneCourse(props: OneCourseProps) {
     const router = useRouter();
     return (
         <div className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer">
             <img
-                src="https://marketplace.canva.com/EAFQ_lV2WWs/1/0/1600w/canva-green-modern-how-to-make-money-online-youtube-thumbnail-oSD7Nn4_0lg.jpg"
+                // src={`${props.thumbNail}`}
+                src={`https://marketplace.canva.com/EAFQ_lV2WWs/1/0/1600w/canva-green-modern-how-to-make-money-online-youtube-thumbnail-oSD7Nn4_0lg.jpg`}
                 alt=""
                 className="w-16 md:w-72 h-fit border md:border-2 border-gray-300 "
                 onClick={() => {
-                    router.push("/courses");
+                    let route = `/course/${props.id}`;
+                    router.push(route);
                 }}
             />
             <div className="flex flex-col justify-start ml-1 md:ml-4 ">
@@ -41,11 +45,11 @@ export default function OneCourse(props: OneCourseProps) {
                 </p>
                 <div className="flex items-center  ">
                     <span className="text-yellow-950 text-xs md:text-sm font-bold pr-1 inline-block">
-                        {props.rating}
+                        {props.reviewScore}
                     </span>
                     <FiveStar
                         size="md:w-3 md:h-3 w-2 h-2"
-                        rating={props.rating}
+                        rating={props.reviewScore}
                         color=" text-yellow-600"
                     ></FiveStar>
 
@@ -54,7 +58,7 @@ export default function OneCourse(props: OneCourseProps) {
                     </p>
                 </div>
                 <span className="text-xs md:text-sm text-gray-700 font-medium block">
-                    {props.totalLength} total hours
+                    {props.duration} total hours
                 </span>
             </div>
         </div>

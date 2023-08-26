@@ -1,9 +1,52 @@
+"use client";
 import OneCourse from "./OneCourse";
+import { useEffect, useState } from "react";
 
+interface Course {
+    id: string;
+    userIds: [];
+    createdAt: string;
+    description: string;
+    requirements: string;
+    updatedAt: string;
+    category: string;
+    title: string;
+    subTitle: string;
+    duration: string;
+    reviewScore: number;
+    price: number;
+    tutorName: string;
+    totalStudent: number;
+    thumbNail: string;
+}
 export default function AllCourse() {
-    const items = dummyData.map((current, index) => (
-        <OneCourse key={index} {...current}></OneCourse>
-    ));
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const output = await fetch(
+                "http://localhost:3001/api/v1/course/getAllCourses"
+            );
+            setData((await output.json()).courses);
+        }
+        fetchData();
+    }, []);
+    let items;
+    if (data && data[0]) {
+        items = data.map((current: Course, index) => {
+            current.totalStudent = current.userIds.length;
+            const {
+                userIds,
+                createdAt,
+                description,
+                requirements,
+                updatedAt,
+                ...rest
+            } = current;
+            return <OneCourse key={index} {...rest}></OneCourse>;
+        });
+    }
+
     return <div className="py-3 divide-y divide-gray-300 ">{items}</div>;
 }
 

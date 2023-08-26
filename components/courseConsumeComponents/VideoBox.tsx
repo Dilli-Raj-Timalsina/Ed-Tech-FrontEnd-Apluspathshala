@@ -1,4 +1,7 @@
-export default function VideoBox() {
+interface VideoBoxProps {
+    price: number;
+}
+export default function VideoBox({ price }: VideoBoxProps) {
     return (
         <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:mr-8 md:mt-32  md:w-2/5  h-auto border-2 rounded-b-lg border-slate-200 flex flex-col justify-center md:fixed right-5  bg-green-50  top-3">
             <video
@@ -8,7 +11,7 @@ export default function VideoBox() {
                 src="https://youtu.be/NE0dWeV5epA"
             ></video>
             <p className="font-bold text-3xl drop-shadow-sm text-gray-800 ml-1">
-                $16.10
+                {`$${price}`}
             </p>
             <div className="flex gap-1 items-center ">
                 <img src="/clock-icon.svg" alt="" className="w-4 h-4" />
