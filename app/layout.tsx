@@ -15,13 +15,14 @@ import Cart from "@/components/cartComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
 import ProfileIcon from "@/components/dashBoardComponents/ProfileIcon";
 import SideBar from "@/components/navComponents/SideBar";
+import Login from "@/components/helperComponents/login";
 
 interface RootLayoutProps {
     children: React.ReactNode;
 }
 interface CartContextValue {
-    cartCount: number;
-    setCartCount: React.Dispatch<React.SetStateAction<number>>;
+    cart: string[];
+    setCart: React.Dispatch<React.SetStateAction<string[]>>;
 }
 interface SideBarToggleType {
     sideBarToggle: boolean;
@@ -38,8 +39,8 @@ interface Jwttype {
 }
 
 export const CartContext = createContext<CartContextValue>({
-    cartCount: 0,
-    setCartCount: () => {},
+    cart: [],
+    setCart: () => {},
 });
 export const SideBarContext = createContext<SideBarToggleType>({
     sideBarToggle: false,
@@ -55,14 +56,34 @@ export const JwtContext = createContext<Jwttype>({
 });
 
 export default function RootLayout({ children }: RootLayoutProps) {
-    const [cartCount, setCartCount] = useState(0);
     const [sideBarToggle, setSideBarToggle] = useState(false);
     const [logIn, setLogIn] = useState(false);
     const [jwt, setJwt] = useState("");
+    const [cart, setCart] = useState<string[]>([]);
     const cookies = new Cookies();
     useEffect(() => {
+        async function fetchData() {
+            const res = await fetch(
+                "http://localhost:3001/api/v1/review/getCart",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${cookies.get("jwt")}`,
+                    },
+                }
+            );
+
+            const result = await res.json();
+            console.log(result);
+            setCart(result.cart);
+        }
+
         setJwt(cookies.get("jwt"));
         setLogIn(cookies.get("isLoggedIn"));
+        if (cookies.get("isLoggedIn")) {
+            fetchData();
+        }
     }, []);
 
     return (
@@ -90,9 +111,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                         <SideBarContext.Provider
                             value={{ sideBarToggle, setSideBarToggle }}
                         >
-                            <CartContext.Provider
-                                value={{ cartCount, setCartCount }}
-                            >
+                            <CartContext.Provider value={{ cart, setCart }}>
                                 <NavBar>
                                     <Logo
                                         logoImageClass="hidden md:flex"
@@ -111,7 +130,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                                         </NavItem>
                                         <NavItem>Contact us</NavItem>
                                     </div>
-                                    <Cart cartItemCount={cartCount}></Cart>
+                                    <Cart cart={cart}></Cart>
                                     <div className="hidden md:flex md:gap-2 mr-2">
                                         <ButtonAuth
                                             pagePath="/signup"

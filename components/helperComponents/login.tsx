@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
 import { JwtContext } from "@/app/layout";
+import { CartContext } from "@/app/layout";
+import Cookies from "universal-cookie";
 
 interface Detail {
     email: string;
@@ -15,6 +17,8 @@ interface Detail {
 export default function Login() {
     const { logIn, setLogIn } = useContext(LogInContext);
     const { jwt, setJwt } = useContext(JwtContext);
+    const { setCart } = useContext(CartContext);
+    const cookies = new Cookies();
     const [detail, setDetail] = useState<Detail>({
         email: "",
         password: "",
@@ -36,15 +40,31 @@ export default function Login() {
                 },
                 body: JSON.stringify({
                     ...detail,
-                    // role: role,
                 }),
             });
             const result = await res.json();
-            console.log(result);
 
             if (res.ok) {
                 setLogIn(true);
                 setJwt(result.token.split(" ")[1]);
+                cookies.set("jwt", result.token.split(" ")[1], {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
+                cookies.set("isLoggedIn", true, {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
+                const output = await fetch(
+                    "http://localhost:3001/api/v1/review/getCart",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${cookies.get("jwt")}`,
+                        },
+                    }
+                );
+                const cartOp = await output.json();
+                setCart(cartOp.cart);
                 router.back();
             }
         } catch (err) {

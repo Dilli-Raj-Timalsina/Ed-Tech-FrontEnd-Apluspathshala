@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { LogInContext } from "@/app/layout";
 import { JwtContext } from "@/app/layout";
+import { CartContext } from "@/app/layout";
 import Cookies from "universal-cookie";
 
 export default function DashBoardSideBar() {
@@ -11,6 +12,7 @@ export default function DashBoardSideBar() {
     const router = useRouter();
     const { logIn, setLogIn } = useContext(LogInContext);
     const { jwt, setJwt } = useContext(JwtContext);
+    const { setCart } = useContext(CartContext);
     const items = obj.map((item) => {
         return (
             <div className="flex pl-16 items-center justify-start hover:bg-blue-600 text-blue-500 hover:text-white cursor-pointer ">
@@ -27,6 +29,7 @@ export default function DashBoardSideBar() {
                             setJwt("");
                             cookies.set("jwt", "");
                             cookies.set("isLoggedIn", false);
+                            setCart([]);
                             router.back();
                         }
                     }}
