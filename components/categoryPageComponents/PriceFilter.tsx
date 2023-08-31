@@ -1,4 +1,7 @@
-export default function PriceFilter() {
+interface PriceFilterProps {
+    isFreeFilter: boolean;
+}
+export default function PriceFilter({ isFreeFilter }: PriceFilterProps) {
     return (
         <div>
             <div className="flex items-center">

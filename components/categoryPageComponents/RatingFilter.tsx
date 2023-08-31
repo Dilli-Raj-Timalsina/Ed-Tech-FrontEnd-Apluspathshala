@@ -1,6 +1,8 @@
 import FiveStar from "../helperComponents/FiveStar";
-
-export default function RatingFilter() {
+interface RatingFilterProps {
+    ratingFilter: number;
+}
+export default function RatingFilter({ ratingFilter }: RatingFilterProps) {
     return (
         <div>
             <div className="flex items-center">

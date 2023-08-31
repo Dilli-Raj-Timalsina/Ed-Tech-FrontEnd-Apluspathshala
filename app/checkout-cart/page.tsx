@@ -1,7 +1,29 @@
+"use client";
+import { useState, useEffect } from "react";
 import OneCourseCheckOut from "@/components/checkoutComponents/OneCourseCheckOut";
 import CheckOutButton from "@/components/checkoutComponents/CheckOutButton";
+import { useContext } from "react";
+import { LogInContext } from "@/app/layout";
 
 export default function Home() {
+    // const { logIn } = useContext(LogInContext);
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const res = await fetch(
+    //             "http://localhost:3001/api/v1/review/getCartItems",
+    //             {
+    //                 method: "GET",
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                 },
+    //             }
+    //         );
+    //         console.log(res);
+    //     }
+    //     if (logIn) {
+    //         fetchData();
+    //     }
+    // }, []);
     const content = dummyData.map((item, index) => (
         <div className="w-fit">
             <OneCourseCheckOut {...item} key={index}></OneCourseCheckOut>

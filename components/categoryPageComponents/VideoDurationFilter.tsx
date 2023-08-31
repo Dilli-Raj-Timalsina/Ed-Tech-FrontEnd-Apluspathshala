@@ -1,11 +1,17 @@
-export default function VideoDurationFilter() {
+interface VideoDurationFilterProps {
+    durationFilter: number;
+}
+export default function VideoDurationFilter({
+    durationFilter,
+}: VideoDurationFilterProps) {
     return (
         <div>
             <div className="flex items-center">
                 <input
-                    type="checkbox"
+                    type="radio"
                     id="option1"
-                    className=" w-4 h-4 border-2 border-gray-500 pt-1"
+                    name="video"
+                    className=" w-4 h-4 border border-gray-500 pt-1"
                 />
                 <label
                     htmlFor="option1"
@@ -16,8 +22,9 @@ export default function VideoDurationFilter() {
             </div>
             <div className="flex items-center">
                 <input
-                    type="checkbox"
+                    type="radio"
                     id="option2"
+                    name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
                 />
                 <label
@@ -29,8 +36,9 @@ export default function VideoDurationFilter() {
             </div>
             <div className="flex items-center">
                 <input
-                    type="checkbox"
+                    type="radio"
                     id="option3"
+                    name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
                 />
                 <label
@@ -42,8 +50,9 @@ export default function VideoDurationFilter() {
             </div>
             <div className="flex items-center">
                 <input
-                    type="checkbox"
+                    type="radio"
                     id="option4"
+                    name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
                 />
                 <label
@@ -55,8 +64,9 @@ export default function VideoDurationFilter() {
             </div>
             <div className="flex items-center">
                 <input
-                    type="checkbox"
+                    type="radio"
                     id="option5"
+                    name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
                 />
                 <label

@@ -1,8 +1,9 @@
 "use client";
 
 import "./globals.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createContext } from "react";
+import Cookies from "universal-cookie";
 
 import ButtonAuth from "@/components/navComponents/ButtonAuth";
 import NavBar from "@/components/navComponents/NavBar";
@@ -58,6 +59,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     const [sideBarToggle, setSideBarToggle] = useState(false);
     const [logIn, setLogIn] = useState(false);
     const [jwt, setJwt] = useState("");
+    const cookies = new Cookies();
+    useEffect(() => {
+        setJwt(cookies.get("jwt"));
+        setLogIn(cookies.get("isLoggedIn"));
+    }, []);
 
     return (
         <html lang="en">

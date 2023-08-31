@@ -1,12 +1,13 @@
 "use client";
 
-import ProfileIcon from "./ProfileIcon";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { LogInContext } from "@/app/layout";
 import { JwtContext } from "@/app/layout";
+import Cookies from "universal-cookie";
 
 export default function DashBoardSideBar() {
+    const cookies = new Cookies();
     const router = useRouter();
     const { logIn, setLogIn } = useContext(LogInContext);
     const { jwt, setJwt } = useContext(JwtContext);
@@ -24,6 +25,8 @@ export default function DashBoardSideBar() {
                         if (item.title == "LOGOUT") {
                             setLogIn(false);
                             setJwt("");
+                            cookies.set("jwt", "");
+                            cookies.set("isLoggedIn", false);
                             router.back();
                         }
                     }}

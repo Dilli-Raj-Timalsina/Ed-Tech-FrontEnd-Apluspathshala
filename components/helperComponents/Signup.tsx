@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
 import { JwtContext } from "@/app/layout";
+import Cookies from "universal-cookie";
 
 interface Detail {
     name: string;
@@ -14,6 +15,7 @@ interface Detail {
 export default function Signup() {
     const { logIn, setLogIn } = useContext(LogInContext);
     const { jwt, setJwt } = useContext(JwtContext);
+    const cookies = new Cookies();
     const [detail, setDetail] = useState<Detail>({
         name: "",
         email: "",
@@ -53,11 +55,18 @@ export default function Signup() {
             if (res.ok) {
                 setLogIn(true);
                 setJwt(result.token.split(" ")[1]);
+                cookies.set("jwt", result.token.split(" ")[1], {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
+                cookies.set("isLoggedIn", true, {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
                 router.back();
             }
         } catch (err) {
             console.error(err);
         }
+       
     }
     return (
         <div className="w-screen h-fit md:w-1/3 md:h-3/5 md:p-4 p-2 mx-1 my-10 drop-shadow-2xl md:mt-40 rounded-2xl bg-white ">
