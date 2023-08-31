@@ -39,7 +39,14 @@ export default function Home({ params }: { params: { category: string } }) {
                 <div className="w-fit ml-4 md:ml-0">
                     <hr />
                     <AllFilter
-                        {...{ isFreeFilter, ratingFilter, durationFilter }}
+                        {...{
+                            isFreeFilter,
+                            ratingFilter,
+                            durationFilter,
+                        }}
+                        setIsFreeFilter={setIsFreeFilter}
+                        setDurationFilter={setDurationFilter}
+                        setRatingFilter={setRatingFilter}
                     ></AllFilter>
                 </div>
                 <div className="md:ml-10 ">

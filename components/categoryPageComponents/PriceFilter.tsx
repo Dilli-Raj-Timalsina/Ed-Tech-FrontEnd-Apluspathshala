@@ -1,18 +1,19 @@
-interface PriceFilterProps {
-    isFreeFilter: boolean;
-}
-export default function PriceFilter({ isFreeFilter }: PriceFilterProps) {
+// interface PriceFilterProps {
+//     isFreeFilter: boolean;
+//     setIsFreeFilter: React.Dispatch<React.SetStateAction<boolean>>;
+// }
+export default function PriceFilter() {
     return (
         <div>
             <div className="flex items-center">
                 <input
                     type="checkbox"
-                    id="option1"
+                    id="free"
                     name="price"
                     className=" w-4 h-4 border-2 border-gray-500 pt-1"
                 />
                 <label
-                    htmlFor="option1"
+                    htmlFor="free"
                     className="text-base text-gray-800 font-semibold ml-6"
                 >
                     Free
@@ -21,12 +22,12 @@ export default function PriceFilter({ isFreeFilter }: PriceFilterProps) {
             <div className="flex items-center">
                 <input
                     type="checkbox"
-                    id="option2"
+                    id="paid"
                     name="price"
                     className=" w-4 h-4 border-2 border-gray-500"
                 />
                 <label
-                    htmlFor="option2"
+                    htmlFor="paid"
                     className="text-base text-gray-800 font-semibold ml-6"
                 >
                     Paid

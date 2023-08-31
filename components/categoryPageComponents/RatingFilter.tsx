@@ -1,12 +1,23 @@
 import FiveStar from "../helperComponents/FiveStar";
 interface RatingFilterProps {
     ratingFilter: number;
+    setRatingFilter: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function RatingFilter({ ratingFilter }: RatingFilterProps) {
+export default function RatingFilter({
+    ratingFilter,
+    setRatingFilter,
+}: RatingFilterProps) {
     return (
         <div>
             <div className="flex items-center">
-                <input type="radio" id="fourAbove" name="rating" />{" "}
+                <input
+                    type="radio"
+                    id="fourAbove"
+                    name="rating"
+                    onChange={() => {
+                        setRatingFilter(4);
+                    }}
+                />{" "}
                 <label htmlFor="fourAbove">
                     <div className="flex items-center ml-2 mb-1">
                         <FiveStar
@@ -22,7 +33,14 @@ export default function RatingFilter({ ratingFilter }: RatingFilterProps) {
                 </label>
             </div>
             <div className="flex items-center">
-                <input type="radio" id="threeAbove" name="rating" />{" "}
+                <input
+                    type="radio"
+                    id="threeAbove"
+                    name="rating"
+                    onChange={() => {
+                        setRatingFilter(3);
+                    }}
+                />{" "}
                 <label htmlFor="threeAbove">
                     <div className="flex items-center ml-2 mb-1">
                         <FiveStar
@@ -38,7 +56,14 @@ export default function RatingFilter({ ratingFilter }: RatingFilterProps) {
                 </label>
             </div>
             <div className="flex items-center">
-                <input type="radio" id="twoAbove" name="rating" />{" "}
+                <input
+                    type="radio"
+                    id="twoAbove"
+                    name="rating"
+                    onChange={() => {
+                        setRatingFilter(2);
+                    }}
+                />{" "}
                 <label htmlFor="twoAbove">
                     {" "}
                     <div className="flex items-center ml-2  mb-1">
@@ -55,7 +80,14 @@ export default function RatingFilter({ ratingFilter }: RatingFilterProps) {
                 </label>
             </div>
             <div className="flex items-center">
-                <input type="radio" id="oneAbove" name="rating" />{" "}
+                <input
+                    type="radio"
+                    id="oneAbove"
+                    name="rating"
+                    onChange={() => {
+                        setRatingFilter(1);
+                    }}
+                />{" "}
                 <label htmlFor="oneAbove">
                     {" "}
                     <div className="flex items-center ml-2  mb-1">

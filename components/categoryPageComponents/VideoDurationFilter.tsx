@@ -1,8 +1,10 @@
 interface VideoDurationFilterProps {
     durationFilter: number;
+    setDurationFilter: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function VideoDurationFilter({
     durationFilter,
+    setDurationFilter,
 }: VideoDurationFilterProps) {
     return (
         <div>
@@ -12,12 +14,13 @@ export default function VideoDurationFilter({
                     id="option1"
                     name="video"
                     className=" w-4 h-4 border border-gray-500 pt-1"
+                    onChange={() => setDurationFilter(0)}
                 />
                 <label
                     htmlFor="option1"
                     className="text-base text-gray-800 font-semibold ml-4"
                 >
-                    0 - 1 hours
+                    0 - All
                 </label>
             </div>
             <div className="flex items-center">
@@ -26,6 +29,7 @@ export default function VideoDurationFilter({
                     id="option2"
                     name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
+                    onChange={() => setDurationFilter(2)}
                 />
                 <label
                     htmlFor="option2"
@@ -40,6 +44,7 @@ export default function VideoDurationFilter({
                     id="option3"
                     name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
+                    onChange={() => setDurationFilter(4)}
                 />
                 <label
                     htmlFor="option3"
@@ -54,12 +59,13 @@ export default function VideoDurationFilter({
                     id="option4"
                     name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
+                    onChange={() => setDurationFilter(8)}
                 />
                 <label
                     htmlFor="option4"
                     className="text-base text-gray-800 font-semibold ml-4"
                 >
-                    8 - 12 hours
+                    8 - 16 hours
                 </label>
             </div>
             <div className="flex items-center">
@@ -68,12 +74,13 @@ export default function VideoDurationFilter({
                     id="option5"
                     name="video"
                     className=" w-4 h-4 border-2 border-gray-500"
+                    onChange={() => setDurationFilter(16)}
                 />
                 <label
                     htmlFor="option5"
                     className="text-base text-gray-800 font-semibold ml-4"
                 >
-                    12+ hours
+                    16+ hours
                 </label>
             </div>
         </div>

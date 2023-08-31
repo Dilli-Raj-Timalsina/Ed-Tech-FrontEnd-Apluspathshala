@@ -21,7 +21,6 @@ interface Course {
 }
 interface AllCourseProps {
     ratingFilter: number;
-    isFreeFilter: boolean;
     durationFilter: number;
     category: string;
     page: number;
@@ -31,7 +30,6 @@ interface AllCourseProps {
 
 export default function AllCourse({
     ratingFilter,
-    isFreeFilter,
     durationFilter,
     category,
     page,
@@ -50,7 +48,7 @@ export default function AllCourse({
             setTotalCourse(res.courseCount);
         }
         fetchData();
-    }, [ratingFilter, isFreeFilter, durationFilter, page]);
+    }, [ratingFilter, durationFilter, page]);
     let items;
     if (data && data[0]) {
         items = data.map((current: Course, index) => {
