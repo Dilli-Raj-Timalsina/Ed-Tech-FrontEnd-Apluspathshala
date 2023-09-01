@@ -1,5 +1,10 @@
+"use client";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
+import { CartContext } from "@/app/layout";
+import { useState, useEffect } from "react";
+import Cookies from "universal-cookie";
+
 interface CartProps {
     hover: boolean;
 }
@@ -8,6 +13,23 @@ interface ContentComponentProps {
     price: number;
     image: string;
     instructor: string;
+}
+interface Course {
+    id: string;
+    userIds: [];
+    createdAt: string;
+    description: string;
+    requirements: string;
+    updatedAt: string;
+    category: string;
+    title: string;
+    subTitle: string;
+    duration: string;
+    reviewScore: number;
+    price: number;
+    tutorName: string;
+    totalStudent: number;
+    thumbNail: string;
 }
 function ContentComponent({
     title,
@@ -34,9 +56,39 @@ function ContentComponent({
 }
 export default function CartHover({ hover }: CartProps) {
     const { logIn } = useContext(LogInContext);
-    const content = data.map((content, index) => (
+    const { cart } = useContext(CartContext);
+    const [cartData, setCartData] = useState<Course[]>([]);
+    const cookies = new Cookies();
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch(
+                "http://localhost:3001/api/v1/review/getCartData",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${cookies.get("jwt")}`,
+                    },
+                }
+            );
+            const updatedCartData: Course[] = (await res.json()).doc;
+            setCartData(updatedCartData);
+        }
+
+        if (cookies.get("isLoggedIn")) {
+            fetchData();
+        }
+    }, [hover]);
+
+    console.log(cartData);
+    const content = cartData.map((content, index) => (
         <div key={index}>
-            <ContentComponent {...content} />
+            <ContentComponent
+                image={content.thumbNail}
+                instructor={content.tutorName}
+                title={content.title}
+                price={content.price}
+            />
             <hr />
         </div>
     ));
@@ -52,47 +104,3 @@ export default function CartHover({ hover }: CartProps) {
         </div>
     );
 }
-const data = [
-    {
-        title: "Mastering React Lorem ipsum dolor sit amet consectetur",
-        price: 49.99,
-        image: "/itemclass.webp",
-        instructor: "John Smith",
-    },
-    {
-        title: "Full Stack Lorem ipsum dolor sit amet consectetur",
-        price: 59.99,
-        image: "/itemclass.webp",
-        instructor: "Jane Doe",
-    },
-    {
-        title: "Next.js: Lorem ipsum dolor sit amet consectetur",
-        price: 39.99,
-        image: "/itemclass.webp",
-        instructor: "Alex Johnson",
-    },
-    {
-        title: "Full Stack Lorem ipsum dolor sit amet consectetur",
-        price: 59.99,
-        image: "/itemclass.webp",
-        instructor: "Jane Doe",
-    },
-    {
-        title: "Next.js: Lorem ipsum dolor sit amet consectetur",
-        price: 39.99,
-        image: "/itemclass.webp",
-        instructor: "Alex Johnson",
-    },
-    {
-        title: "Full Stack Lorem ipsum dolor sit amet consectetur",
-        price: 59.99,
-        image: "/itemclass.webp",
-        instructor: "Jane Doe",
-    },
-    {
-        title: "Next.js: Lorem ipsum dolor sit amet consectetur",
-        price: 39.99,
-        image: "/itemclass.webp",
-        instructor: "Alex Johnson",
-    },
-];

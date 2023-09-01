@@ -1,8 +1,11 @@
 "use client";
-
+import { CartContext } from "@/app/layout";
+import { useContext } from "react";
 import FiveStar from "@/components/helperComponents/FiveStar";
 import { useRouter } from "next/navigation";
+import { JwtContext } from "@/app/layout";
 interface OneCourseProps {
+    id: string;
     category: string;
     title: string;
     subTitle: string;
@@ -11,14 +14,31 @@ interface OneCourseProps {
     tutorName: string;
     totalLength: number;
     totalStudent: number;
-    key: number;
+    index: number;
+    thumbNail: string;
 }
 export default function OneCourseCheckOut(props: OneCourseProps) {
+    const { jwt } = useContext(JwtContext);
+    const { cart, setCart } = useContext(CartContext);
     const router = useRouter();
+    async function handleClick() {
+        const updatedCart = cart.filter((item) => item !== props.id);
+        setCart(updatedCart);
+        await fetch("http://localhost:3001/api/v1/review/updateCart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${jwt}`,
+            },
+            body: JSON.stringify({
+                courseList: updatedCart,
+            }),
+        });
+    }
     return (
         <div
             className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer"
-            key={props.key}
+            key={props.index}
         >
             <img
                 src="https://marketplace.canva.com/EAFQ_lV2WWs/1/0/1600w/canva-green-modern-how-to-make-money-online-youtube-thumbnail-oSD7Nn4_0lg.jpg"
@@ -60,22 +80,18 @@ export default function OneCourseCheckOut(props: OneCourseProps) {
                         ({props.totalStudent}) students
                     </p>
                 </div>
-                <span className="text-xs md:text-sm text-gray-700 font-medium block">
-                    {props.totalLength} total hours
-                </span>
+                <div className="flex justify-between">
+                    <span className="text-xs md:text-sm text-gray-700 font-medium block">
+                        {props.totalLength} total hours
+                    </span>
+                    <button
+                        className="text-white bg-purple-700 hover:bg-purple-800  font-medium rounded-lg text-sm px-3 py-1 text-center whitespace-nowrap "
+                        onClick={handleClick}
+                    >
+                        Remove Cart
+                    </button>
+                </div>
             </div>
         </div>
     );
 }
-
-// const props = {
-//     category: "web development",
-//     title: "Develop modern, complex, responsive Design",
-//     tutorName: "Angela yu",
-//     subTitle:
-//         "Develop modern, complex, responsive and scalable web applications with AngularDevelop modern, complex, responsive",
-//     rating: 4.7,
-//     price: 12.99,
-//     totalLength: 53.2,
-//     totalStudent: 1209838,
-// };

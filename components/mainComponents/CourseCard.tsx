@@ -1,10 +1,14 @@
 import { useState } from "react";
 import FiveStar from "../helperComponents/FiveStar";
 import { useContext } from "react";
-import { CartContext } from "./../../app/layout";
+import { LogInContext } from "@/app/layout";
+import { useRouter } from "next/navigation";
+import { CartContext } from "@/app/layout";
+import { JwtContext } from "@/app/layout";
 
 interface CourseCardProps {
-    imgSrc: string;
+    id: string;
+    thumNail: string;
     title: string;
     price: number;
     rating: number;
@@ -12,30 +16,49 @@ interface CourseCardProps {
 }
 
 export default function CourseCard({
-    imgSrc,
+    id,
+    thumNail,
     title,
     price,
     rating,
     student,
 }: CourseCardProps) {
-    const { cartCount, setCartCount } = useContext(CartContext);
+    const { logIn } = useContext(LogInContext);
+    const { jwt } = useContext(JwtContext);
+    const { cart, setCart } = useContext(CartContext);
     const [isClicked, setIsClicked] = useState(false);
+    const router = useRouter();
 
-    function handleClick() {
-        if (!isClicked) {
-            setIsClicked(true);
-            setCartCount(cartCount + 1);
+    async function handleClick() {
+        if (!logIn) {
+            router.push("/login");
         } else {
-            setIsClicked(false);
-            setCartCount(cartCount - 1);
+            if (!cart.includes(id)) {
+                setIsClicked(!isClicked);
+                setCart([...cart, id]);
+                await fetch("http://localhost:3001/api/v1/review/updateCart", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${jwt}`,
+                    },
+                    body: JSON.stringify({
+                        courseList: [...cart, id],
+                    }),
+                });
+            }
         }
     }
 
     return (
-        <div className=" w-80  h-96 py-2 px-4 rounded-lg hover:drop-shadow-xl bg-white  mx-4 mb-4  ">
+        <div
+            className={` w-80  h-96 py-2 px-4 rounded-lg hover:drop-shadow-xl bg-white  mx-4 mb-4 ${
+                isClicked ? "hidden" : ""
+            }`}
+        >
             <a href="#">
                 <img
-                    src={"/madam.jpg" || imgSrc}
+                    src={"/madam.jpg" || thumNail}
                     className="rounded-md w-80 h-fit mb-2"
                 />
             </a>
@@ -47,7 +70,7 @@ export default function CourseCard({
 
             <div className="flex items-center m-3">
                 <FiveStar
-                    rating={4.2}
+                    rating={rating}
                     size="w-4 h-4 mr-1"
                     color="text-yellow-400"
                 ></FiveStar>
@@ -58,14 +81,14 @@ export default function CourseCard({
                 <span className="text-sm font-semibold">({student})</span>
             </div>
             <div className="flex items-center justify-between">
-                <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                <span className="text-3xl font-bold text-gray-900 dark:text-white mr-1">
                     {`$` + price}
                 </span>
                 <button
-                    className="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center whitespace-nowrap "
+                    className="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-4 py-2.5 text-center whitespace-nowrap "
                     onClick={handleClick}
                 >
-                    {isClicked ? "Remove Cart" : "Add to Cart"}
+                    Add to Cart
                 </button>
             </div>
         </div>

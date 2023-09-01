@@ -1,15 +1,74 @@
 "use client";
 
 import CourseCard from "./CourseCard";
+import { useContext } from "react";
+import { LogInContext } from "@/app/layout";
+import { CartContext } from "@/app/layout";
+import { JwtContext } from "@/app/layout";
+import { useState, useEffect } from "react";
+
+interface Course {
+    id: string;
+    userIds: [];
+    createdAt: string;
+    description: string;
+    requirements: string;
+    updatedAt: string;
+    category: string;
+    title: string;
+    subTitle: string;
+    duration: string;
+    reviewScore: number;
+    price: number;
+    tutorName: string;
+    totalStudent: number;
+    thumbNail: string;
+}
 
 export default function AllCourseMain() {
-    const content = data.map((item, index) => {
-        return <CourseCard key={index} {...item}></CourseCard>;
-    });
+    const { jwt } = useContext(JwtContext);
+    const [courseData, setCourseData] = useState<Course[]>([]);
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch(
+                "http://localhost:3001/api/v1/course/getPopularCourse",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${jwt}`,
+                    },
+                }
+            );
+            const op = (await res.json()).course;
+            console.log(op);
+            setCourseData(op);
+        }
+
+        fetchData();
+    }, []);
+    let content;
+    if (courseData) {
+        content = courseData.map((item, index) => {
+            return (
+                <CourseCard
+                    key={index}
+                    thumNail={item.thumbNail}
+                    title={item.title}
+                    price={item.price}
+                    rating={item.reviewScore}
+                    student={item.totalStudent}
+                    id={item.id}
+                ></CourseCard>
+            );
+        });
+    }
     return (
-        <div className="flex flex-row  gap-3 m-6 border bg-gray-100 border-slate-200 overflow-x-auto rounded-sm ">
-            {content}
-        </div>
+        courseData && (
+            <div className="flex flex-row  gap-3 m-6 border bg-gray-100 border-slate-200 overflow-x-auto rounded-sm ">
+                {content}
+            </div>
+        )
     );
 }
 

@@ -2,19 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import CartHover from "./CartHover";
+// import CartHover from "./CartHover";
 interface CartProps {
     cart: string[];
 }
 
 export default function Cart({ cart }: CartProps) {
     const router = useRouter();
-    const [hover, setHover] = useState(false);
+    // const [hover, setHover] = useState(false);
     return (
         <div
             className=" inline-block"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+            // onMouseEnter={() => setHover(true)}
+            // onMouseLeave={() => setHover(false)}
         >
             <button
                 className="hidden relative  sm:flex py-8"
@@ -29,7 +29,7 @@ export default function Cart({ cart }: CartProps) {
                     {cart.length}
                 </span>
             </button>
-            <CartHover hover={hover}></CartHover>
+            {/* <CartHover hover={hover}></CartHover> */}
         </div>
     );
 }
