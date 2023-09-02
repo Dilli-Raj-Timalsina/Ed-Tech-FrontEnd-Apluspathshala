@@ -34,6 +34,14 @@ export default function Signup() {
         return emailRegex.test(detail.email);
     };
 
+    const extractInitials = (name: string) => {
+        const nameParts = name.split(" ");
+        const firstNameInitials = nameParts[0].charAt(0);
+        const lastNameInitial = nameParts[nameParts.length - 1].charAt(0);
+
+        return `${firstNameInitials}${lastNameInitial}`;
+    };
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
@@ -62,7 +70,15 @@ export default function Signup() {
                 cookies.set("isLoggedIn", true, {
                     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 });
-                console.log("hhjkhkhkh");
+                cookies.set("name", detail.name, {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
+                cookies.set("email", detail.email, {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
+                cookies.set("icon", extractInitials(detail.name), {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
                 const output = await fetch(
                     "http://localhost:3001/api/v1/review/getCart",
                     {

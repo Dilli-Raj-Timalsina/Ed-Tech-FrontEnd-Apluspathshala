@@ -7,14 +7,14 @@ export default function CategoriesCard({
     buttonLabel,
 }: CategoriesProps) {
     return (
-        <div className="w-72 h-60 bg-white rounded-xl m-1 mx-4 md:m-4 flex flex-col justify-center items-center hover:drop-shadow-2xl border border-slate-200 px-2">
+        <div className="w-76 h-60 bg-white rounded-xl m-1 mx-4 md:m-4 flex flex-col justify-center items-center hover:drop-shadow-2xl border border-slate-200 px-2">
             <h1 className=" mb-1 mt-0 text-gray-900 text-2xl font-bold ">
                 {title}
             </h1>
             <img
                 src="/madam.jpg"
                 alt="not found"
-                className="w-52 h-fit rounded-sm drop-shadow-sm"
+                className="w-52 h-fit rounded-sm "
             />
 
             <button

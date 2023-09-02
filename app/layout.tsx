@@ -147,7 +147,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                                         </ButtonAuth>
                                         <ProfileIcon
                                             logIn={logIn}
-                                            name={"Nischal Timalsina"}
                                         ></ProfileIcon>
                                     </div>
                                 </NavBar>

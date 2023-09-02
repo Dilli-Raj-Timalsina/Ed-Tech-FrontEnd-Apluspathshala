@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <div className=" md:mt-20 flex">
             <DashBoardSideBar></DashBoardSideBar>
-            <DashBoardContent name={"Nischal Timalsina"}></DashBoardContent>
+            <DashBoardContent></DashBoardContent>
         </div>
     );
 }

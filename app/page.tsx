@@ -3,7 +3,6 @@
 import LandingSection from "@/components/mainComponents/LandingSection";
 import AllCourseMain from "@/components/mainComponents/AllCourseMain";
 import AllCategories from "@/components/mainComponents/AllCategories";
-import SideBar from "@/components/navComponents/SideBar";
 
 export default function Home() {
     return (

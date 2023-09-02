@@ -1,9 +1,11 @@
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 interface ProfileIconProps {
-    name: String;
     logIn: boolean;
 }
-export default function ProfileIcon({ name, logIn }: ProfileIconProps) {
+export default function ProfileIcon({ logIn }: ProfileIconProps) {
+    const cookies = new Cookies();
+
     const router = useRouter();
     return (
         <button
@@ -14,7 +16,7 @@ export default function ProfileIcon({ name, logIn }: ProfileIconProps) {
                 router.push("/dashboard");
             }}
         >
-            NT
+            {logIn && cookies.get("icon")}
         </button>
     );
 }

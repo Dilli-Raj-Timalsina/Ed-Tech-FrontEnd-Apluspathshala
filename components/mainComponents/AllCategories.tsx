@@ -31,7 +31,7 @@ const data = [
         buttonLabel: "Explore",
     },
     {
-        title: "Machine Learning Essential",
+        title: "Machine Learning ",
         buttonLabel: "Explore",
     },
     {
@@ -43,7 +43,7 @@ const data = [
         buttonLabel: "Explore",
     },
     {
-        title: "Cloud Computing",
+        title: "Cmat Exam",
         buttonLabel: "Explore",
     },
     // Add more objects here if needed
