@@ -128,7 +128,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
                                         <NavItem href="/become-teacher">
                                             Teach on A+
                                         </NavItem>
-                                        <NavItem>Contact us</NavItem>
+                                        <NavItem href="/contact">
+                                            Contact us
+                                        </NavItem>
                                     </div>
                                     <Cart cart={cart}></Cart>
                                     <div className="hidden md:flex md:gap-2 mr-2">
