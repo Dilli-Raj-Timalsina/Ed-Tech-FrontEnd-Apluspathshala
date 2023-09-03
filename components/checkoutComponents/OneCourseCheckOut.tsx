@@ -21,7 +21,8 @@ export default function OneCourseCheckOut(props: OneCourseProps) {
     const { jwt } = useContext(JwtContext);
     const { cart, setCart } = useContext(CartContext);
     const router = useRouter();
-    //handle click
+
+    //handle remove cart click
     async function handleClick() {
         const updatedCart = cart.filter((item) => item !== props.id);
         setCart(updatedCart);
@@ -37,18 +38,25 @@ export default function OneCourseCheckOut(props: OneCourseProps) {
         });
     }
     return (
-        <div className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer">
+        <div className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 ">
             <img
                 src="https://marketplace.canva.com/EAFQ_lV2WWs/1/0/1600w/canva-green-modern-how-to-make-money-online-youtube-thumbnail-oSD7Nn4_0lg.jpg"
                 alt=""
-                className="w-14 md:w-52 h-fit border md:border-2 border-gray-300 "
+                className="w-14 md:w-52 h-fit border md:border-2 border-gray-300 cursor-pointer"
                 onClick={() => {
-                    router.push("/courses");
+                    let route = `/course/${props.id}`;
+                    router.push(route);
                 }}
             />
             <div className="flex flex-col justify-start ml-1 md:ml-3 ">
                 <div className="flex justify-between items-center">
-                    <h1 className=" text-sm md:text-xl w-44 md:w-fit font-bold text-gray-800 ">
+                    <h1
+                        className=" text-sm md:text-xl w-44 md:w-fit font-bold text-gray-800 cursor-pointer"
+                        onClick={() => {
+                            let route = `/course/${props.id}`;
+                            router.push(route);
+                        }}
+                    >
                         {props.title}
                     </h1>
                     <span className="text-sm md:text-base font-bold pl-4 md:pl-20 text-purple-700">
@@ -61,7 +69,7 @@ export default function OneCourseCheckOut(props: OneCourseProps) {
                     </span>
                 </div>
 
-                <p className="text-xs md:text-sm font-semibold text-blue-600  hover:underline">
+                <p className="text-xs md:text-sm font-semibold text-blue-600  hover:underline cursor-pointer">
                     By : {props.tutorName}
                 </p>
                 <div className="flex items-center  ">

@@ -69,7 +69,7 @@ export default function Home() {
                     price={item.price}
                     tutorName={item.tutorName}
                     totalLength={parseFloat(item.duration)}
-                    totalStudent={item.totalStudent}
+                    totalStudent={item.userIds.length}
                     thumbNail={item.thumbNail}
                     id={item.id}
                     name="checkout"

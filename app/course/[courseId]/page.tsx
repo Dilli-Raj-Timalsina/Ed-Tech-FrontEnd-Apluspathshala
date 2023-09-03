@@ -26,19 +26,17 @@ export default function Home({ params }: { params: { courseId: string } }) {
     const [data, setData] = useState<Course>();
     useEffect(() => {
         async function fetchData() {
-            const output = await fetch(
-                "http://localhost:3001/api/v1/course/getCourseMetaData",
+            const res = await fetch(
+                `http://localhost:3001/api/v1/course/getCourseMetaData/${params.courseId}`,
                 {
-                    method: "POST",
+                    method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({
-                        courseId: params.courseId,
-                    }),
                 }
             );
-            setData((await output.json()).doc);
+            const course = (await res.json()).course;
+            setData(course);
         }
         fetchData();
     }, []);
@@ -53,7 +51,7 @@ export default function Home({ params }: { params: { courseId: string } }) {
                         subTitle={data.subTitle}
                         reviewScore={data.reviewScore}
                         tutorName={data.tutorName}
-                        totalStudent={data.totalStudent}
+                        totalStudent={data.userIds.length}
                     ></CourseMetaData>
                     <VideoBox price={data.price}></VideoBox>
                 </div>

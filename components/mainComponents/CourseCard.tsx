@@ -56,14 +56,14 @@ export default function CourseCard({
                 isClicked ? "hidden" : ""
             }`}
         >
-            <a href="#">
+            <a href={`/course/${id}`}>
                 <img
                     src={"/madam.jpg" || thumNail}
                     className="rounded-md w-80 h-fit mb-2"
                 />
             </a>
             <div>
-                <a href="#">
+                <a href={`/course/${id}`}>
                     <h5 className="text-xl font-semibold  h-28">{title}</h5>
                 </a>
             </div>
