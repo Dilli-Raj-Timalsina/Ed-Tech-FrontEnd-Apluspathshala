@@ -1,16 +1,43 @@
 "use client";
 import Cookies from "universal-cookie";
+import CourseContent from "./CourseContent";
+import { useContext } from "react";
+import { LogInContext } from "@/app/layout";
 
-export default function DashBoardContent() {
+interface DashBoardContentProps {
+    clickedItem: string;
+    setClickedItem: React.Dispatch<React.SetStateAction<string>>;
+}
+
+//dash board component
+function DashBoardComponent() {
     const cookies = new Cookies();
+    const { logIn, setLogIn } = useContext(LogInContext);
     let name = cookies.get("name");
+
     return (
-        <div className="w-full h-screen bg-slate-100 border-b border-gray-300 hidden md:flex">
-            <div className="pt-10 pl-10">
-                <h1 className="text-center text-gray-700 font-bold text-3xl">
-                    Welcome Back , {name} :
-                </h1>
+        logIn && (
+            <div className="w-full h-screen bg-slate-50 border-b border-gray-300 hidden md:flex">
+                <div className="pt-10 pl-10">
+                    <h1 className="text-center text-gray-700 font-bold text-3xl">
+                        Welcome Back , {name} :
+                    </h1>
+                </div>
             </div>
-        </div>
+        )
     );
+}
+
+export default function DashBoardContent({
+    clickedItem,
+}: DashBoardContentProps) {
+    //function to get correct component to render on dashBoard
+    const getComponent = (name: string) => {
+        if (name == "DASHBOARD") {
+            return <DashBoardComponent></DashBoardComponent>;
+        } else if (name == "COURSES") {
+            return <CourseContent></CourseContent>;
+        }
+    };
+    return getComponent(clickedItem);
 }

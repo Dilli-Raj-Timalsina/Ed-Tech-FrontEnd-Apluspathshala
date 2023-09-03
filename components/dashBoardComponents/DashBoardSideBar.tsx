@@ -7,7 +7,15 @@ import { JwtContext } from "@/app/layout";
 import { CartContext } from "@/app/layout";
 import Cookies from "universal-cookie";
 
-export default function DashBoardSideBar() {
+interface DashBoardSideBarProps {
+    clickedItem: string;
+    setClickedItem: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function DashBoardSideBar({
+    clickedItem,
+    setClickedItem,
+}: DashBoardSideBarProps) {
     const cookies = new Cookies();
     const router = useRouter();
     const { logIn, setLogIn } = useContext(LogInContext);
@@ -27,6 +35,10 @@ export default function DashBoardSideBar() {
                         cookies.set("isLoggedIn", false);
                         setCart([]);
                         router.back();
+                    } else if (item.title == "COURSES") {
+                        setClickedItem("COURSES");
+                    } else if (item.title == "DASHBOARD") {
+                        setClickedItem("DASHBOARD");
                     }
                 }}
             >
@@ -42,23 +54,25 @@ export default function DashBoardSideBar() {
         );
     });
     return (
-        <aside className="w-80 h-screen bg-white  border-b border-gray-300   ">
-            <div className="flex flex-col pt-10  ">
-                <button className="rounded-full w-24 h-24 bg-blue-800 text-center  font-bold text-white text-3xl drop-shadow-sm border-blue-200 border-2 ml-20 mb-5 ">
-                    {cookies.get("icon")}
-                </button>
-                <div className="flex flex-col items-center">
-                    <div className=" text-xl font-bold text-gray-800">
-                        {cookies.get("name")}
+        logIn && (
+            <aside className="w-80 h-screen bg-white  border-b border-gray-300   ">
+                <div className="flex flex-col pt-10  ">
+                    <button className="rounded-full w-24 h-24 bg-blue-800 text-center  font-bold text-white text-3xl drop-shadow-sm border-blue-200 border-2 ml-20 mb-5 ">
+                        {cookies.get("icon")}
+                    </button>
+                    <div className="flex flex-col items-center">
+                        <div className=" text-xl font-bold text-gray-800">
+                            {cookies.get("name")}
+                        </div>
+                        <div className="mb-10  text-xs text-gray-500">
+                            {cookies.get("email")}
+                        </div>
                     </div>
-                    <div className="mb-10  text-xs text-gray-500">
-                        {cookies.get("email")}
-                    </div>
-                </div>
 
-                {items}
-            </div>
-        </aside>
+                    {items}
+                </div>
+            </aside>
+        )
     );
 }
 

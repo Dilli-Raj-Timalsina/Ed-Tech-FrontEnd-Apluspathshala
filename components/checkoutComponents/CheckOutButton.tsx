@@ -1,5 +1,6 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
+import Cookies from "universal-cookie";
 interface Course {
     price: number;
     title: string;
@@ -7,11 +8,14 @@ interface Course {
 interface CheckOutButtonProps {
     totalPrice: number;
     carts: Course[];
+    courseIds: string[];
 }
 export default function CheckOutButton({
     totalPrice,
     carts,
+    courseIds,
 }: CheckOutButtonProps) {
+    const cookies = new Cookies();
     // payment integration
     const makePayment = async () => {
         const stripe = await loadStripe(
@@ -20,6 +24,9 @@ export default function CheckOutButton({
 
         const body = {
             products: carts,
+            userId: cookies.get("id"),
+            courseIds: courseIds,
+            ok: [1, 2, 3, 4],
         };
         const headers = {
             "Content-Type": "application/json",
@@ -34,7 +41,7 @@ export default function CheckOutButton({
         );
 
         const session = await response.json();
-
+        console.log(session);
         const result = stripe!.redirectToCheckout({
             sessionId: session.id,
         });

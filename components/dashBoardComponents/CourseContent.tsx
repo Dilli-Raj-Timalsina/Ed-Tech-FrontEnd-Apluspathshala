@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import OneCourseCheckOut from "@/components/checkoutComponents/OneCourseCheckOut";
-import CheckOutButton from "@/components/checkoutComponents/CheckOutButton";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
 import { CartContext } from "@/app/layout";
@@ -25,31 +24,26 @@ interface Course {
     thumbNail: string;
 }
 
-export default function Home() {
+export default function CourseContent() {
     const { logIn } = useContext(LogInContext);
     const { cart } = useContext(CartContext);
     const { jwt } = useContext(JwtContext);
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [courseData, setCourseData] = useState<Course[]>([]);
 
+    const [courseData, setCourseData] = useState<Course[]>([]);
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/review/getCartData",
+                "http://localhost:3001/api/v1/course/getPurchasedCourse",
                 {
-                    method: "POST",
+                    method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${jwt}`,
                     },
-                    body: JSON.stringify({
-                        cart: cart,
-                    }),
                 }
             );
             const courses = await res.json();
             setCourseData(courses.doc);
-            setTotalPrice(courses.totalPrice);
         }
         if (logIn) {
             fetchData();
@@ -72,7 +66,7 @@ export default function Home() {
                     totalStudent={item.totalStudent}
                     thumbNail={item.thumbNail}
                     id={item.id}
-                    name="checkout"
+                    name="dashboard"
                 ></OneCourseCheckOut>
                 <hr className="text-gray-900" />
             </div>
@@ -80,17 +74,12 @@ export default function Home() {
     }
 
     return (
-        <div className="md:mt-36 md:ml-10 mt-4 ml-1">
+        <div className="w-full h-fit bg-slate-50 border-b border-gray-300 pt-4 md:pl-6 ">
             <h1 className="font-bold text-gray-900 text-4xl mb-10">
-                Shopping Cart
+                Your Purchase :
             </h1>
             <div className="flex flex-col md:flex-row justify-between">
                 {courseData && <div>{content}</div>}
-                <CheckOutButton
-                    totalPrice={totalPrice}
-                    carts={courseData}
-                    courseIds={cart}
-                ></CheckOutButton>
             </div>
         </div>
     );

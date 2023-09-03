@@ -70,6 +70,9 @@ export default function Login() {
                 cookies.set("icon", extractInitials(result.userProfile.name), {
                     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 });
+                cookies.set("id", result.userProfile.id, {
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                });
                 const output = await fetch(
                     "http://localhost:3001/api/v1/review/getCart",
                     {

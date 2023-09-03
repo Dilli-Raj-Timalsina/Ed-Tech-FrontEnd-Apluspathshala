@@ -14,13 +14,14 @@ interface OneCourseProps {
     tutorName: string;
     totalLength: number;
     totalStudent: number;
-    index: number;
     thumbNail: string;
+    name: string;
 }
 export default function OneCourseCheckOut(props: OneCourseProps) {
     const { jwt } = useContext(JwtContext);
     const { cart, setCart } = useContext(CartContext);
     const router = useRouter();
+    //handle click
     async function handleClick() {
         const updatedCart = cart.filter((item) => item !== props.id);
         setCart(updatedCart);
@@ -36,10 +37,7 @@ export default function OneCourseCheckOut(props: OneCourseProps) {
         });
     }
     return (
-        <div
-            className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer"
-            key={props.index}
-        >
+        <div className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 cursor-pointer">
             <img
                 src="https://marketplace.canva.com/EAFQ_lV2WWs/1/0/1600w/canva-green-modern-how-to-make-money-online-youtube-thumbnail-oSD7Nn4_0lg.jpg"
                 alt=""
@@ -85,7 +83,9 @@ export default function OneCourseCheckOut(props: OneCourseProps) {
                         {props.totalLength} total hours
                     </span>
                     <button
-                        className="text-white bg-purple-700 hover:bg-purple-800  font-medium rounded-lg text-sm px-3 py-1 text-center whitespace-nowrap "
+                        className={`text-white bg-purple-700 hover:bg-purple-800  font-medium rounded-lg text-sm px-3 py-1 text-center whitespace-nowrap ${
+                            props.name == "checkout" ? "" : "hidden"
+                        }`}
                         onClick={handleClick}
                     >
                         Remove Cart
