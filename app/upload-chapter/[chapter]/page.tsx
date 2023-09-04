@@ -3,7 +3,8 @@ import { useState } from "react";
 import AddSection from "@/components/uploadCourseComponents/sections/AddSection";
 import ChapterBox from "@/components/uploadCourseComponents/sections/ChapterBox";
 
-export default function Home() {
+export default function Home({ params }: { params: { chapter: string } }) {
+    console.log(params.chapter, "hii");
     const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
 
     return (
@@ -34,6 +35,7 @@ export default function Home() {
                 <AddSection
                     selectedNumbers={selectedNumbers}
                     setSelectedNumbers={setSelectedNumbers}
+                    courseId={params.chapter}
                 ></AddSection>
                 <div className="flex md:hidden">
                     <h2 className="md:text-3xl text-xl font-extrabold text-blue-500 drop-shadow-sm md:mb-4 mb-0  md:mr-48  inline mt-8 md:mt-0 ml-1 md:ml-0">

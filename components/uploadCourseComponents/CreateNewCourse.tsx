@@ -10,6 +10,7 @@ interface Course {
     requirements: string;
     description: string;
     price: number;
+    duration: number;
     thumbnail: File | null;
 }
 interface CategoryOption {
@@ -26,14 +27,21 @@ export default function CreateNewCourse() {
         description: "",
         price: 0,
         thumbnail: null,
+        duration: 0,
     });
     const [category, setCategory] = useState("web-development");
     const [language, setLanguage] = useState("english");
+    const [isFree, setIsFree] = useState(false);
 
     const handleCategoryChange = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
         setCategory(event.target.value);
+    };
+    const handleIsFreeChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        setIsFree(event.target.value === "true");
     };
     const handleLanguageChange = (
         event: React.ChangeEvent<HTMLSelectElement>
@@ -68,7 +76,11 @@ export default function CreateNewCourse() {
         form.append("price", course.price.toString());
         form.append("language", language);
         form.append("category", category);
+        form.append("duration", course.duration + "");
+        form.append("isFree", isFree + "");
         form.append("binary", course.thumbnail!);
+
+        console.log(form);
 
         try {
             const res = await fetch(
@@ -82,9 +94,8 @@ export default function CreateNewCourse() {
                 }
             );
             const result = await res.json();
-
             if (res.ok) {
-                router.push("/upload-chapter");
+                router.push(`/upload-chapter/${result.newCourse.id}`);
             }
         } catch (err) {
             console.error(err);
@@ -178,6 +189,22 @@ export default function CreateNewCourse() {
                     />
                 </div>
                 <div className="mb-4 md:w-1/2 w-full px-3 md:p-0">
+                    <label
+                        htmlFor="price"
+                        className="block text-gray-800 font-bold mb-2"
+                    >
+                        Total Course Duration
+                    </label>
+                    <input
+                        id="duration"
+                        type="number"
+                        name="duration"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        required
+                        onChange={handleInput}
+                    />
+                </div>
+                <div className="mb-4 md:w-1/2 w-full px-3 md:p-0">
                     <label className="block text-gray-800 font-bold mb-2">
                         Language
                     </label>
@@ -211,6 +238,26 @@ export default function CreateNewCourse() {
                         required
                     >
                         {categoryOptions.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="mb-4 md:w-1/2 w-full px-3 md:p-0">
+                    <label className="block text-gray-800 font-bold mb-2">
+                        Free or Paid ?
+                    </label>
+
+                    <select
+                        id="isFree"
+                        name="isFree"
+                        value={isFree + ""}
+                        onChange={handleIsFreeChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        required
+                    >
+                        {isFreeOption.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
                             </option>
@@ -292,4 +339,8 @@ const languageOptions: CategoryOption[] = [
     { value: "nepali", label: "Nepali" },
     { value: "hindi", label: "Hindi" },
     { value: "chinese", label: "Chinese" },
+];
+const isFreeOption: CategoryOption[] = [
+    { value: "false", label: "Make it Free" },
+    { value: "true", label: "Make it Paid " },
 ];

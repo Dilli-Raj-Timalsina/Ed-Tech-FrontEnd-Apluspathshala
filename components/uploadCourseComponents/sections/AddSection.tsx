@@ -7,11 +7,13 @@ import { useRouter } from "next/navigation";
 interface AddSectionProps {
     selectedNumbers: number[];
     setSelectedNumbers: React.Dispatch<React.SetStateAction<number[]>>;
+    courseId: string;
 }
 
 export default function AddSection({
     selectedNumbers,
     setSelectedNumbers,
+    courseId,
 }: AddSectionProps) {
     const router = useRouter();
     const { jwt } = useContext(JwtContext);
@@ -29,7 +31,7 @@ export default function AddSection({
     const handlechapterNameChange = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
-        setchapterName("Chapter " + event.target.value);
+        setchapterName(event.target.value);
     };
 
     const handlechapterTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +40,6 @@ export default function AddSection({
 
     const handleVideoFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            console.log(e.target.files);
             setVideoFiles(e.target.files);
         }
     };
@@ -51,9 +52,10 @@ export default function AddSection({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        console.log("hi");
         const form = new FormData();
         form.append("chapterName", chapterName);
+        form.append("courseId", courseId);
         form.append("chapterTitle", chapterTitle);
         for (let i = 0; i < videoFiles!.length; i++) {
             form.append("binary", videoFiles![i]);
@@ -107,9 +109,14 @@ export default function AddSection({
                         value={chapterName}
                         onChange={handlechapterNameChange}
                     >
-                        <option value={0}>Select a chapter</option>
+                        <option key={-1} value="0">
+                            Select a chapter
+                        </option>
                         {Array.from({ length: 20 }, (_, index) => (
-                            <option key={index + 1} value={index + 1}>
+                            <option
+                                key={index + 1}
+                                value={"Chapter " + (index + 1)}
+                            >
                                 Chapter {index + 1}
                             </option>
                         ))}
