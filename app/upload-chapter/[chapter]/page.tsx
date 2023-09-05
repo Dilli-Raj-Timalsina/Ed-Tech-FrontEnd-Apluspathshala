@@ -4,7 +4,6 @@ import AddSection from "@/components/uploadCourseComponents/sections/AddSection"
 import ChapterBox from "@/components/uploadCourseComponents/sections/ChapterBox";
 
 export default function Home({ params }: { params: { chapter: string } }) {
-    console.log(params.chapter, "hii");
     const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
 
     return (

@@ -5,6 +5,7 @@ import RequirementsSection from "@/components/courseConsumeComponents/Requiremen
 import DescriptionBox from "@/components/courseConsumeComponents/DescriptionBox";
 import VideoBox from "@/components/courseConsumeComponents/VideoBox";
 import CourseMetaData from "@/components/courseConsumeComponents/CourseMetaData";
+import CommentBox from "@/components/courseConsumeComponents/CommentBox";
 interface Course {
     id: string;
     userIds: [];
@@ -61,6 +62,7 @@ export default function Home({ params }: { params: { courseId: string } }) {
                     requirements={data.requirements}
                 ></RequirementsSection>
                 <DescriptionBox description={data.description}></DescriptionBox>
+                <CommentBox courseId={data.id}></CommentBox>
             </div>
         )
     );
