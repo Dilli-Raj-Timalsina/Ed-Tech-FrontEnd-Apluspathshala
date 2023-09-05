@@ -11,6 +11,7 @@ export default function PaginationButton({
     setPage,
 }: PaginationButtonProps) {
     let items: ReactNode[] = [];
+
     for (let index = 0; index <= totalCourse / 6; index++) {
         if (totalCourse / 6 > 11) break;
         items[index] = (

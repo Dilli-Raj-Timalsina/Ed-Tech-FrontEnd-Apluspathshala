@@ -52,10 +52,11 @@ export default function Home({ params }: { params: { courseId: string } }) {
                         reviewScore={data.reviewScore}
                         tutorName={data.tutorName}
                         totalStudent={data.userIds.length}
+                        description={data.description}
                     ></CourseMetaData>
-                    <VideoBox price={data.price}></VideoBox>
+                    <VideoBox price={data.price} id={data.id}></VideoBox>
                 </div>
-                <ContentBox></ContentBox>
+                <ContentBox courseId={data.id}></ContentBox>
                 <RequirementsSection
                     requirements={data.requirements}
                 ></RequirementsSection>

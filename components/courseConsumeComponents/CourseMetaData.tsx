@@ -10,6 +10,7 @@ interface CourseMetaProps {
     reviewScore: number;
     tutorName: string;
     totalStudent: number;
+    description: string;
 }
 export default function CourseMeta({
     createdAt,
@@ -19,14 +20,30 @@ export default function CourseMeta({
     reviewScore,
     tutorName,
     totalStudent,
+    description,
 }: CourseMetaProps) {
+    function getFirst60Words(sentence: string) {
+        // Split the sentence into words using whitespace as the delimiter
+        const words = sentence.split(/\s+/);
+
+        // Check if the sentence has fewer than 60 words
+        if (words.length <= 70) {
+            // If it does, return the entire sentence
+            return sentence;
+        } else {
+            // If it has more than 60 words, return the first 60 words
+            return words.slice(0, 70).join(" ");
+        }
+    }
     return (
-        <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:ml-8 md:mt-32 md:w-1/2 ">
-            <h1 className=" text-3xl font-bold  text-gray-900 mb-1">
+        <div className=" ml-2 mt-2 m-1 w-screen md:m-3 md:ml-16 md:mt-32 md:w-1/2  ">
+            <h1 className=" text-3xl md:text-4xl font-bold  text-gray-900 mb-1">
                 <span> Title : </span>
-                <div className="text-2xl  text-gray-800 inline">{title}</div>
+                <div className="text-2xl md:text-3xl text-gray-800 inline">
+                    {title}
+                </div>
             </h1>
-            <div className="text-base font-medium text-gray-700 md:ml-1 ">
+            <div className="text-base font-medium text-gray-700 md:ml-1 md:mb-1 ">
                 {subTitle}
             </div>
 
@@ -52,6 +69,9 @@ export default function CourseMeta({
                 <span className="text-md hover:drop-shadow-sm text-blue-600 cursor-pointer underline">
                     {tutorName}
                 </span>
+                <p className="text-gray-800 text-md mt-2 mb-6">
+                    {getFirst60Words(description) + " . . . ."}
+                </p>
                 <div className="flex items-center">
                     <div className="flex items-center">
                         <img
