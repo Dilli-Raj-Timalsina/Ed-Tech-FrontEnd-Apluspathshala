@@ -1,6 +1,10 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
+import { useState } from "react";
 import Cookies from "universal-cookie";
+import BounceSpinners from "../spinners/BounceSpinner";
+import ErrorMessage from "../spinners/ErrorMessage";
+
 interface Course {
     price: number;
     title: string;
@@ -16,8 +20,23 @@ export default function CheckOutButton({
     courseIds,
 }: CheckOutButtonProps) {
     const cookies = new Cookies();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+
     // payment integration
     const makePayment = async () => {
+        if (totalPrice == 0) {
+            setLoading(true);
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+            setError(true);
+            setTimeout(() => {
+                setError(false);
+            }, 3000);
+            return;
+        }
+
         const stripe = await loadStripe(
             "pk_test_51NlrnVSBJAs7xqOycLFkGL57T8GdtyIFRP5RaGdVEl0yn6rqwSh17RwX3JnqkIcTlhu6F6HP2zDlhRC6fHdjxRCp00fHPExiVb"
         );
@@ -48,6 +67,11 @@ export default function CheckOutButton({
     };
     return (
         <div className="md:mr-28 ml-1">
+            {error && (
+                <ErrorMessage
+                    message={"Empty Cart , Please Select an Item ! "}
+                />
+            )}
             <div className="text-gray-500 text-lg font-semibold p-2">
                 Total :
             </div>
@@ -57,8 +81,9 @@ export default function CheckOutButton({
             <button
                 className="text-xl font-semibold px-12 py-3 bg-purple-600 rounded-sm my-2 text-white mb-6"
                 onClick={makePayment}
+                disabled={loading}
             >
-                Checkout
+                {loading ? <BounceSpinners /> : "Checkout"}
             </button>
             <hr />
             <div className="mt-6">

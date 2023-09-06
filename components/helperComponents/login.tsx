@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import BounceSpinners from "../spinners/BounceSpinner";
+import ErrorMessage from "../spinners/ErrorMessage";
 
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
@@ -18,6 +20,9 @@ export default function Login() {
     const { logIn, setLogIn } = useContext(LogInContext);
     const { jwt, setJwt } = useContext(JwtContext);
     const { setCart } = useContext(CartContext);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const cookies = new Cookies();
     const [detail, setDetail] = useState<Detail>({
         email: "",
@@ -27,6 +32,13 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [role, setRole] = useState("user");
     const router = useRouter();
+
+    const isEmailValid = () => {
+        console.log("whatsapp");
+        const emailRegex =
+            /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        return emailRegex.test(detail.email);
+    };
 
     const extractInitials = (name: string) => {
         const nameParts = name.split(" ");
@@ -38,7 +50,11 @@ export default function Login() {
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        console.log(detail);
+
+        if (!isEmailValid()) {
+            return;
+        }
+        setLoading(true);
 
         try {
             const res = await fetch("http://localhost:3001/api/v1/user/login", {
@@ -53,6 +69,11 @@ export default function Login() {
             const result = await res.json();
 
             if (res.ok) {
+                setSuccess(true);
+                setTimeout(() => {
+                    setSuccess(false);
+                }, 3000);
+                setLoading(false);
                 setLogIn(true);
                 setJwt(result.token.split(" ")[1]);
                 cookies.set("jwt", result.token.split(" ")[1], {
@@ -86,8 +107,15 @@ export default function Login() {
                 const cartOp = await output.json();
                 setCart(cartOp.cart);
                 router.back();
+            } else {
+                setError(true);
+                setTimeout(() => {
+                    setError(false);
+                }, 3000);
+                setLoading(false);
             }
         } catch (err) {
+            setLoading(false);
             console.error(err);
         }
     }
@@ -133,7 +161,11 @@ export default function Login() {
                         }
                         placeholder="Email Address"
                         required
-                        className=" border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-80"
+                        className={`${
+                            detail.email && !isEmailValid()
+                                ? "border-red-500"
+                                : ""
+                        } border  border-gray-300 rounded-md m-2  focus:outline-none focus:border-gray-400 focus:drop-shadow-md px-2 py-1 w-80`}
                     />
                 </div>
 
@@ -195,8 +227,9 @@ export default function Login() {
                     <button
                         className="bg-purple-600 px-3 py-1 m-1 rounded-md  text-white font-normal text-sm hover:drop-shadow-xl hover:bg-purple-700 w-32"
                         type="submit"
+                        disabled={loading}
                     >
-                        Login
+                        {loading ? <BounceSpinners /> : "Login"}
                     </button>
                 </div>
                 <div className="flex justify-center">
@@ -208,6 +241,11 @@ export default function Login() {
                     </Link>
                 </div>
             </form>
+            {error && (
+                <ErrorMessage
+                    message={"Incorrect Username Or Password, Try Again ! "}
+                />
+            )}
         </div>
     );
 }

@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import BounceSpinners from "../spinners/BounceSpinner";
+import SuccessMessage from "../spinners/SuccessMessage";
+import ErrorMessage from "../spinners/ErrorMessage";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
 import { JwtContext } from "@/app/layout";
@@ -17,6 +20,9 @@ export default function Signup() {
     const { logIn, setLogIn } = useContext(LogInContext);
     const { jwt, setJwt } = useContext(JwtContext);
     const { setCart } = useContext(CartContext);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const cookies = new Cookies();
     const [detail, setDetail] = useState<Detail>({
         name: "",
@@ -44,6 +50,10 @@ export default function Signup() {
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
+        if (!isEmailValid()) {
+            return;
+        }
+        setLoading(true);
 
         try {
             const res = await fetch(
@@ -62,6 +72,12 @@ export default function Signup() {
             const result = await res.json();
 
             if (res.ok) {
+                setSuccess(true);
+                setTimeout(() => {
+                    setSuccess(false);
+                }, 3000);
+                setLoading(false);
+
                 setLogIn(true);
                 setJwt(result.token.split(" ")[1]);
                 cookies.set("jwt", result.token.split(" ")[1], {
@@ -95,10 +111,17 @@ export default function Signup() {
                 const cartOp = await output.json();
                 console.log(cartOp);
                 setCart(cartOp.cart);
+
                 router.back();
+            } else {
+                setError(true);
+                setTimeout(() => {
+                    setError(false);
+                }, 3000);
+                setLoading(false);
             }
         } catch (err) {
-            console.error(err);
+            setLoading(false);
         }
     }
     return (
@@ -106,6 +129,7 @@ export default function Signup() {
             <h1 className="md:text-3xl text-2xl font-bold ml-6 md:ml-11 mt-4">
                 Create New Account
             </h1>
+
             <button onClick={() => router.back()}>
                 <img
                     src="/cancel-icon.svg"
@@ -225,11 +249,15 @@ export default function Signup() {
                     <button
                         className="bg-purple-600 px-3 py-1 m-1 rounded-md  text-white font-normal text-sm hover:drop-shadow-xl hover:bg-purple-700 w-32"
                         type="submit"
+                        disabled={loading}
                     >
-                        Signup
+                        {loading ? <BounceSpinners /> : "Signup"}
                     </button>
                 </div>
             </form>
+            {error && (
+                <ErrorMessage message={"User Already Exist, Login Please ?"} />
+            )}
         </div>
     );
 }

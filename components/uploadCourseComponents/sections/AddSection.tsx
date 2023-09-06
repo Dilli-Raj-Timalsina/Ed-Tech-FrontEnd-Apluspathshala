@@ -3,6 +3,9 @@ import React, { useState, ChangeEvent } from "react";
 import { useContext } from "react";
 import { JwtContext } from "@/app/layout";
 import { useRouter } from "next/navigation";
+import BounceSpinners from "@/components/spinners/BounceSpinner";
+import SuccessMessage from "@/components/spinners/SuccessMessage";
+import ErrorMessage from "@/components/spinners/ErrorMessage";
 
 interface AddSectionProps {
     selectedNumbers: number[];
@@ -21,6 +24,9 @@ export default function AddSection({
     const [chapterTitle, setchapterTitle] = useState("");
     const [videoFiles, setVideoFiles] = useState<FileList>();
     const [pdfFiles, setPdfFiles] = useState<FileList>();
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     const handleClick = (number: number) => {
         if (!(number == 0)) {
@@ -52,7 +58,7 @@ export default function AddSection({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("hi");
+        setLoading(true);
         const form = new FormData();
         form.append("chapterName", chapterName);
         form.append("courseId", courseId);
@@ -78,15 +84,27 @@ export default function AddSection({
             const result = await res.json();
 
             if (res.ok) {
+                setSuccess(true);
+                setTimeout(() => {
+                    setSuccess(false);
+                }, 3000);
+                setLoading(false);
+
                 setchapterName("");
                 setchapterTitle("");
                 setVideoFiles(undefined);
                 setPdfFiles(undefined);
                 handleClick(parseInt(chapterName.split(" ")[1], 10));
-                console.log(result);
-                console.log("successful vayo bro");
+            } else {
+                setError(true);
+                console.log("hey");
+                setTimeout(() => {
+                    setError(false);
+                }, 3000);
+                setLoading(false);
             }
         } catch (err) {
+            setLoading(false);
             console.error(err);
         }
     };
@@ -167,14 +185,34 @@ export default function AddSection({
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 flex items-center  rounded"
                     type="submit"
+                    disabled={loading}
                 >
-                    Upload Chapter
-                    <img
-                        src="/upload-chapter-icon.svg"
-                        alt=""
-                        className="w-6 h-6 pl-1 inline "
-                    />
+                    {loading ? (
+                        <BounceSpinners />
+                    ) : (
+                        <div className="flex gap-1 items-center">
+                            <span>Upload Chapter</span>
+                            <img
+                                src="/upload-chapter-icon.svg"
+                                alt=""
+                                className="w-6 h-6 pl-1 inline "
+                            />
+                        </div>
+                    )}
                 </button>
+                {success ? (
+                    <SuccessMessage
+                        message={
+                            "Chapter Uploaded Sucessfully , Upload next .."
+                        }
+                    />
+                ) : (
+                    error && (
+                        <ErrorMessage
+                            message={"Something Went Wrong , Please try Again!"}
+                        />
+                    )
+                )}
             </div>
         </form>
     );

@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { JwtContext } from "@/app/layout";
 import { useRouter } from "next/navigation";
+import BounceSpinners from "../spinners/BounceSpinner";
+import ErrorMessage from "../spinners/ErrorMessage";
+import { LogInContext } from "@/app/layout";
 
 interface Course {
     title: string;
@@ -20,6 +23,8 @@ interface CategoryOption {
 export default function CreateNewCourse() {
     const router = useRouter();
     const { jwt } = useContext(JwtContext);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [course, setCourse] = useState<Course>({
         title: "",
         subTitle: "",
@@ -68,6 +73,7 @@ export default function CreateNewCourse() {
     //handle the submission of th form:
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         const form = new FormData();
         form.append("title", course.title);
         form.append("subTitle", course.subTitle);
@@ -79,9 +85,6 @@ export default function CreateNewCourse() {
         form.append("duration", course.duration + "");
         form.append("isFree", isFree + "");
         form.append("binary", course.thumbnail!);
-
-        console.log(form);
-
         try {
             const res = await fetch(
                 "http://localhost:3001/api/v1/course/createCourse",
@@ -95,9 +98,17 @@ export default function CreateNewCourse() {
             );
             const result = await res.json();
             if (res.ok) {
+                setLoading(false);
                 router.push(`/upload-chapter/${result.newCourse.id}`);
+            } else {
+                setError(true);
+                setTimeout(() => {
+                    setError(false);
+                }, 4000);
+                setLoading(false);
             }
         } catch (err) {
+            setLoading(false);
             console.error(err);
         }
     };
@@ -313,15 +324,29 @@ export default function CreateNewCourse() {
                     <button
                         className="bg-purple-600 px-3 py-1 m-1 rounded-md  text-white font-normal text-base hover:drop-shadow-xl hover:bg-purple-700 w-28 flex items-center gap-1"
                         type="submit"
+                        disabled={loading}
                     >
-                        <span>Continue</span>
-                        <img
-                            src="/nextarrow-icon.svg"
-                            alt=""
-                            className="inline-block w-4 h-fit pt-1"
-                        />
+                        {loading ? (
+                            <BounceSpinners />
+                        ) : (
+                            <div className="flex gap-1 items-center">
+                                <span>Continue</span>
+                                <img
+                                    src="/nextarrow-icon.svg"
+                                    alt=""
+                                    className="inline-block w-4 h-fit pt-1"
+                                />
+                            </div>
+                        )}
                     </button>
                 </div>
+                {error && (
+                    <ErrorMessage
+                        message={
+                            "Please Signup as Teacher, you have Student Account"
+                        }
+                    />
+                )}
             </div>
         </form>
     );

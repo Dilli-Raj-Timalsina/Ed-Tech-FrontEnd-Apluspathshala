@@ -1,7 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { LogInContext } from "@/app/layout";
+import { useContext } from "react";
 
 export default function CreateCourse() {
+    const { logIn } = useContext(LogInContext);
     const router = useRouter();
     return (
         <div className="md:mt-44 mt-10 ">
@@ -38,6 +41,10 @@ export default function CreateCourse() {
                     className="text-xl bg-purple-600 text-white font-semibold px-3 py-1 
                 text-center border  border-purple-700 hover:drop-shadow-sm rounded-md mb-28"
                     onClick={() => {
+                        if (!logIn) {
+                            router.push("/login");
+                            return;
+                        }
                         router.push("/become-teacher/create-course");
                     }}
                 >
