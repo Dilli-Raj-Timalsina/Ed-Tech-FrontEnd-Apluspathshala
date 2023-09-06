@@ -37,11 +37,11 @@ export default function SideBar() {
                     setSideBarToggle(!sideBarToggle);
                 }}
             >
-                <ProfileIcon name={"Nischal"} logIn={logIn}></ProfileIcon>
+                <ProfileIcon logIn={logIn}></ProfileIcon>
             </div>
             <ul className="py-2 text-base drop-shadow-sm font-semibold text-gray-900">
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">Web Developement</a>
+                    <a href="/categories/web-development">Web Development</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -49,7 +49,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">Entrance Preparation</a>
+                    <a href="categories/open-source">Open Source</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -57,7 +57,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">MBBS Entrance Preparation</a>
+                    <a href="/categories/cloud-and-devops">Cloud and DevOps</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -65,7 +65,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">IIT</a>
+                    <a href="/categories/class-10">Class 10th MatheMatics</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -73,7 +73,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">Entrance Preparation</a>
+                    <a href="/categories/cmat">CMAT Entrance Preparation</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -81,7 +81,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">Class 11</a>
+                    <a href="/categories/class-11">Class 11</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -89,7 +89,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">class 12 </a>
+                    <a href="categories/class-12">class 12 </a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -97,7 +97,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">10th Mathmatics</a>
+                    <a href="/categories/backend-dev">Backend Development</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -105,7 +105,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">BBA</a>
+                    <a href="/categories/bba">BBA</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""
@@ -113,7 +113,7 @@ export default function SideBar() {
                     />
                 </li>
                 <li className=" px-4 py-2  flex items-center justify-between">
-                    <a href="#">CMAT</a>
+                    <a href="/categories/ias">IAS Officer</a>
                     <img
                         src="/side-arrow.svg"
                         alt=""

@@ -18,15 +18,17 @@ export default function Home({ params }: { params: { category: string } }) {
         } else if (slug == "cloud-and-devops") {
             return "Cloud and DevOps";
         } else if (slug == "class-10") {
-            return "Class 10";
+            return "Class 10th MatheMatics";
         } else if (slug == "class-11") {
             return "Class 11";
         } else if (slug == "cmat") {
             return "CMAT Entrance Preparation";
         } else if (slug == "class-12") {
             return "Class 12";
-        } else if (slug == "MBBS") {
-            return "CMAT Entrance Preparation";
+        } else if (slug == "backend-dev") {
+            return "Backend Development";
+        } else if (slug == "open-source") {
+            return "Open Source";
         }
     }
 

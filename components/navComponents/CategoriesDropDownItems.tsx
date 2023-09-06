@@ -14,7 +14,7 @@ export default function CategoriesDropDownItems({
             <ul className="py-2 text-base font-bold ">
                 <li>
                     <a
-                        href="/web-development"
+                        href="categories/web-development"
                         className="block px-4 py-2 w-56 hover:bg-blue-300 drop-shadow-sm"
                     >
                         Web Development
@@ -22,23 +22,23 @@ export default function CategoriesDropDownItems({
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="categories/open-source"
                         className="block px-4 py-2 hover:bg-blue-300 drop-shadow-sm"
                     >
-                        Entrance Preparation
+                        Open Source
                     </a>
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="/categories/backend-dev"
                         className="block px-4 py-2 hover:bg-blue-300 drop-shadow-sm"
                     >
-                        MBBS
+                        Backend Dev
                     </a>
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="categories/class-11"
                         className="block px-4 py-2 hover:bg-blue-300 drop-shadow-sm"
                     >
                         class 11
@@ -46,7 +46,7 @@ export default function CategoriesDropDownItems({
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="categories/class-12"
                         className="block px-4 py-2 hover:bg-blue-300 drop-shadow-sm"
                     >
                         class 12
@@ -54,7 +54,7 @@ export default function CategoriesDropDownItems({
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="categories/class-10"
                         className="block px-4 py-2 hover:bg-blue-300 drop-shadow-sm"
                     >
                         10th Mathematics
@@ -62,15 +62,15 @@ export default function CategoriesDropDownItems({
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="categories/cloud-and-devops"
                         className="block px-4 py-2 hover:bg-blue-300 drop-shadow-sm"
                     >
-                        BBA
+                        Cloud and DevOps
                     </a>
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="categories/cmat"
                         className="block px-4 py-2 hover:bg-blue-300 drop-shadow-sm"
                     >
                         CMAT Preparation
