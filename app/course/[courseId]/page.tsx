@@ -28,7 +28,10 @@ export default function Home({ params }: { params: { courseId: string } }) {
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                `http://localhost:3001/api/v1/course/getCourseMetaData/${params.courseId}`,
+                `${process.env.NEXT_PUBLIC_BACKEND!}${
+                    process.env.NEXT_PUBLIC_COURSEMETADATA
+                }/
+                ${params.courseId}`,
                 {
                     method: "GET",
                     headers: {

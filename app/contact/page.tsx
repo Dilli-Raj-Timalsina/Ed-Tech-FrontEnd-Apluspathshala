@@ -47,7 +47,8 @@ const ContactPage = () => {
         setLoading(true);
         try {
             const res = await fetch(
-                "http://localhost:3001/api/v1/review/contactUs",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_CONTACTUS,
                 {
                     method: "POST",
                     headers: {
@@ -69,7 +70,6 @@ const ContactPage = () => {
                     setError(false);
                 }, 5000);
                 setLoading(false);
-                console.log(data);
             }
         } catch (error) {
             console.log(error);

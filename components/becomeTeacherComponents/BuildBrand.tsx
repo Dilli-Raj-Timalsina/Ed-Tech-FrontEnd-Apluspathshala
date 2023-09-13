@@ -1,5 +1,4 @@
 "use client";
-import LearnMoreButton from "./LearnMoreButton";
 export default function BuildBrand() {
     return (
         <div className="h-1/2 md:w-1/2 pb-10 mb-10 md:mb-0 md:pb-0 w-screen  bg-slate-200 rounded-l-full rounded-t-full drop-shadow-md flex flex-col animate__fadeInTopLeft animate__animated  animate__slower">

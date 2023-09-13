@@ -66,15 +66,3 @@ export default function OneCourse(props: OneCourseProps) {
         </div>
     );
 }
-
-// const props = {
-//     category: "web development",
-//     title: "Develop modern, complex, responsive Design",
-//     tutorName: "Angela yu",
-//     subTitle:
-//         "Develop modern, complex, responsive and scalable web applications with AngularDevelop modern, complex, responsive",
-//     rating: 4.7,
-//     price: 12.99,
-//     totalLength: 53.2,
-//     totalStudent: 1209838,
-// };

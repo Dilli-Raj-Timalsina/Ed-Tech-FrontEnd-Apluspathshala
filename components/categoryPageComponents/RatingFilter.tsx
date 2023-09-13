@@ -1,12 +1,10 @@
 import FiveStar from "../helperComponents/FiveStar";
+
 interface RatingFilterProps {
-    ratingFilter: number;
     setRatingFilter: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function RatingFilter({
-    ratingFilter,
-    setRatingFilter,
-}: RatingFilterProps) {
+
+export default function RatingFilter({ setRatingFilter }: RatingFilterProps) {
     return (
         <div>
             <div className="flex items-center">

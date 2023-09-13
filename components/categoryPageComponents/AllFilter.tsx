@@ -14,9 +14,7 @@ interface AllFilterProps {
 export default function AllFilter({
     ratingFilter,
     setDurationFilter,
-    setIsFreeFilter,
     setRatingFilter,
-    isFreeFilter,
     durationFilter,
 }: AllFilterProps) {
     return (

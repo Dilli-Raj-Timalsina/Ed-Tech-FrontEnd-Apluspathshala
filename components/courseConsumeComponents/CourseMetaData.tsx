@@ -1,6 +1,5 @@
 "use client";
 import FiveStar from "../helperComponents/FiveStar";
-import { useState, useEffect } from "react";
 
 interface CourseMetaProps {
     createdAt: string;
@@ -23,15 +22,10 @@ export default function CourseMeta({
     description,
 }: CourseMetaProps) {
     function getFirst60Words(sentence: string) {
-        // Split the sentence into words using whitespace as the delimiter
         const words = sentence.split(/\s+/);
-
-        // Check if the sentence has fewer than 60 words
         if (words.length <= 70) {
-            // If it does, return the entire sentence
             return sentence;
         } else {
-            // If it has more than 60 words, return the first 60 words
             return words.slice(0, 70).join(" ");
         }
     }
@@ -59,7 +53,6 @@ export default function CourseMeta({
                 <a className="text-sm font-semibold text-blue-600 underline inline-block cursor-pointer">
                     (52545 rating)
                 </a>
-                {/* className="w-4 h-4 text-slate-300 mr-1" */}
                 <p className="text-sm font-semibold ml-1 inline-block">
                     {totalStudent} students
                 </p>

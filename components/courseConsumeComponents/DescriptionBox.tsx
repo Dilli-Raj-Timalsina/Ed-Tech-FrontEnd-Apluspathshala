@@ -5,15 +5,10 @@ interface DescriptionBoxProps {
 export default function DescriptionBox({ description }: DescriptionBoxProps) {
     const [clicked, setClicked] = useState(false);
     function getFirst100Words(sentence: string) {
-        // Split the sentence into words using whitespace as the delimiter
         const words = sentence.split(/\s+/);
-
-        // Check if the sentence has fewer than 60 words
         if (words.length <= 60) {
-            // If it does, return the entire sentence
             return sentence;
         } else {
-            // If it has more than 60 words, return the first 60 words
             return words.slice(0, 100).join(" ");
         }
     }

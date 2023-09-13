@@ -1,7 +1,6 @@
 "use client";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
-import { CartContext } from "@/app/layout";
 import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 
@@ -56,13 +55,13 @@ function ContentComponent({
 }
 export default function CartHover({ hover }: CartProps) {
     const { logIn } = useContext(LogInContext);
-    const { cart } = useContext(CartContext);
     const [cartData, setCartData] = useState<Course[]>([]);
     const cookies = new Cookies();
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/review/getCartData",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_GETCARTDATA,
                 {
                     method: "GET",
                     headers: {
@@ -79,8 +78,6 @@ export default function CartHover({ hover }: CartProps) {
             fetchData();
         }
     }, [hover]);
-
-    console.log(cartData);
     const content = cartData.map((content, index) => (
         <div key={index}>
             <ContentComponent

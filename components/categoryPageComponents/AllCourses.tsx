@@ -41,7 +41,9 @@ export default function AllCourse({
     useEffect(() => {
         async function fetchData() {
             const output = await fetch(
-                `http://localhost:3001/api/v1/course/getAllCourses/${category}?rating=${ratingFilter}&duration=${durationFilter}&page=${page}`
+                `${process.env.NEXT_PUBLIC_BACKEND!}${
+                    process.env.NEXT_PUBLIC_GETALLCOURSES
+                }/${category}?rating=${ratingFilter}&duration=${durationFilter}&page=${page}`
             );
             const res = await output.json();
             setData(res.courses);

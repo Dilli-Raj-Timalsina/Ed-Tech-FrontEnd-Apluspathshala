@@ -1,8 +1,3 @@
-const requirements = [
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit Lorem ipsum, dolor sit am",
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit ",
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit Lorem ipsum, dolor sit am",
-];
 interface RequirementsSectionProps {
     requirements: string;
 }
@@ -11,9 +6,7 @@ export default function RequirementsSection({
 }: RequirementsSectionProps) {
     const requirementsArray = requirements.split(",");
     const content = requirementsArray.map((content, i) => (
-        <li key={i} className="">
-            {content}
-        </li>
+        <li key={i}>{content}</li>
     ));
     return (
         <div className="ml-2 mt-2 m-1 md:mt-4 md:ml-8">

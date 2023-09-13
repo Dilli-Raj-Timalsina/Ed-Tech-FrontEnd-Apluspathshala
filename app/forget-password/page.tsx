@@ -17,7 +17,8 @@ export default function Home() {
     const handleResetPassword = async () => {
         setLoading(true);
         const res = await fetch(
-            "http://localhost:3001/api/v1/user/forgetPassword",
+            process.env.NEXT_PUBLIC_BACKEND! +
+                process.env.NEXT_PUBLIC_FORGETPASSWORD,
             {
                 method: "POST",
                 headers: {

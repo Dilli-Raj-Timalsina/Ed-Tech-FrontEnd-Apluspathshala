@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { useContext } from "react";
 import { JwtContext } from "@/app/layout";
+
 interface CommentBoxProps {
     courseId: string;
 }
@@ -44,7 +45,8 @@ export default function CommentBox({ courseId }: CommentBoxProps) {
     }
     async function handleSubmit() {
         const res = await fetch(
-            "http://localhost:3001/api/v1/review/writeReview",
+            process.env.NEXT_PUBLIC_BACKEND! +
+                process.env.NEXT_PUBLIC_WRITEREVIEW,
             {
                 method: "POST",
                 headers: {
@@ -58,7 +60,6 @@ export default function CommentBox({ courseId }: CommentBoxProps) {
                 }),
             }
         );
-        const result = await res.json();
         if (res.ok) {
             setMessage("");
             setStar([]);

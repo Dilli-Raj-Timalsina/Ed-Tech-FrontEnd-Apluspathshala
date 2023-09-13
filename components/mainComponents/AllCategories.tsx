@@ -46,5 +46,4 @@ const data = [
         title: "Cmat Exam",
         buttonLabel: "Explore",
     },
-    // Add more objects here if needed
 ];

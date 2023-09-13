@@ -9,7 +9,7 @@ import { LogInContext } from "@/app/layout";
 
 function PaymentSuccess() {
     const router = useRouter();
-    const { cart, setCart } = useContext(CartContext);
+    const { setCart } = useContext(CartContext);
     const { jwt } = useContext(JwtContext);
     const { logIn } = useContext(LogInContext);
 
@@ -17,7 +17,8 @@ function PaymentSuccess() {
         setCart([]);
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/review/updateCart",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_UPDATECART,
                 {
                     method: "POST",
                     headers: {

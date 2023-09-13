@@ -1,7 +1,4 @@
 "use client";
-
-import LearnMoreButton from "./LearnMoreButton";
-
 export default function QualityCourse() {
     return (
         <div

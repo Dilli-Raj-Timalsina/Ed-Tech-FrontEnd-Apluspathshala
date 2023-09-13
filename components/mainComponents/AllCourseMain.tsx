@@ -2,8 +2,6 @@
 
 import CourseCard from "./CourseCard";
 import { useContext } from "react";
-import { LogInContext } from "@/app/layout";
-import { CartContext } from "@/app/layout";
 import { JwtContext } from "@/app/layout";
 import { useState, useEffect } from "react";
 
@@ -31,7 +29,8 @@ export default function AllCourseMain() {
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/course/getPopularCourse",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_GETPOPULARCOURSE,
                 {
                     method: "GET",
                     headers: {
@@ -41,7 +40,6 @@ export default function AllCourseMain() {
                 }
             );
             const op = (await res.json()).course;
-            console.log(op);
             setCourseData(op);
         }
 

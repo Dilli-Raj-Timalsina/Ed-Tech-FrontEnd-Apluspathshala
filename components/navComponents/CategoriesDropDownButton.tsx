@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { SideBarContext } from "@/app/layout";
 import CategoriesDropDownItems from "./CategoriesDropDownItems";
 
-// interface are written in UpperCamelCase
 interface DropDownButtonProps {
     children?: string;
 }

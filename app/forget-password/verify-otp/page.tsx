@@ -25,7 +25,8 @@ function VerifyOTP() {
     const verifyOTP = async () => {
         setLoading(true);
         const res = await fetch(
-            "http://localhost:3001/api/v1/user/verifyToken",
+            process.env.NEXT_PUBLIC_BACKEND! +
+                process.env.NEXT_PUBLIC_VERIFYTOKEN,
             {
                 method: "POST",
                 headers: {
@@ -38,9 +39,6 @@ function VerifyOTP() {
                 }),
             }
         );
-
-        console.log(await res.json());
-
         if (res.ok) {
             setMessage(`Password Changed Succesfully`);
             setSucess(true);

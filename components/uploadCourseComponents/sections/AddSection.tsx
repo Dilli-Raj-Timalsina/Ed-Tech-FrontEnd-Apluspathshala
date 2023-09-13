@@ -2,7 +2,6 @@
 import React, { useState, ChangeEvent } from "react";
 import { useContext } from "react";
 import { JwtContext } from "@/app/layout";
-import { useRouter } from "next/navigation";
 import BounceSpinners from "@/components/spinners/BounceSpinner";
 import SuccessMessage from "@/components/spinners/SuccessMessage";
 import ErrorMessage from "@/components/spinners/ErrorMessage";
@@ -18,7 +17,6 @@ export default function AddSection({
     setSelectedNumbers,
     courseId,
 }: AddSectionProps) {
-    const router = useRouter();
     const { jwt } = useContext(JwtContext);
     const [chapterName, setchapterName] = useState("");
     const [chapterTitle, setchapterTitle] = useState("");
@@ -72,7 +70,8 @@ export default function AddSection({
 
         try {
             const res = await fetch(
-                "http://localhost:3001/api/v1/course/uploadChapter",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_UPLOADCHAPTER,
                 {
                     method: "POST",
                     headers: {
@@ -81,7 +80,6 @@ export default function AddSection({
                     body: form,
                 }
             );
-            const result = await res.json();
 
             if (res.ok) {
                 setSuccess(true);
@@ -97,7 +95,6 @@ export default function AddSection({
                 handleClick(parseInt(chapterName.split(" ")[1], 10));
             } else {
                 setError(true);
-                console.log("hey");
                 setTimeout(() => {
                     setError(false);
                 }, 3000);

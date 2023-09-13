@@ -1,7 +1,5 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-// import { useRef } from "react";
-import VideoBox from "./VideoBox";
 
 interface ContentBoxProps {
     courseId: string;
@@ -28,7 +26,7 @@ export default function ContentBox({ courseId }: ContentBoxProps) {
         // Create an anchor element
         const a = document.createElement("a");
         a.href = url;
-        a.target = "_blank"; // Open the link in a new tab
+        a.target = "_blank";
         a.rel = "noopener noreferrer";
 
         // Simulate a click on the anchor element to trigger the download
@@ -63,7 +61,8 @@ export default function ContentBox({ courseId }: ContentBoxProps) {
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/course/getAllChapters",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_GETALLCHAPTERS,
                 {
                     method: "POST",
                     headers: {
@@ -75,8 +74,6 @@ export default function ContentBox({ courseId }: ContentBoxProps) {
                 }
             );
             const result = await res.json();
-
-            console.log(result);
             setAllChapter(result.allChapter);
         }
         fetchData();
@@ -119,7 +116,10 @@ export default function ContentBox({ courseId }: ContentBoxProps) {
                                             className="w-full pl-2 cursor-pointer hover:text-blue-600 hover:underline"
                                             onClick={async () => {
                                                 const res = await fetch(
-                                                    "http://localhost:3001/api/v1/course/getFile",
+                                                    process.env
+                                                        .NEXT_PUBLIC_BACKEND! +
+                                                        process.env
+                                                            .NEXT_PUBLIC_GETFILE,
                                                     {
                                                         method: "POST",
                                                         headers: {
@@ -206,7 +206,10 @@ export default function ContentBox({ courseId }: ContentBoxProps) {
                                             className="w-full pl-2 cursor-pointer hover:text-blue-600 hover:underline"
                                             onClick={async () => {
                                                 const res = await fetch(
-                                                    "http://localhost:3001/api/v1/course/getFile",
+                                                    process.env
+                                                        .NEXT_PUBLIC_BACKEND! +
+                                                        process.env
+                                                            .NEXT_PUBLIC_GETFILE,
                                                     {
                                                         method: "POST",
                                                         headers: {

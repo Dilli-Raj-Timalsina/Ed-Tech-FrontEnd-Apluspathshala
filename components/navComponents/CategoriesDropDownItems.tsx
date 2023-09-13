@@ -1,7 +1,6 @@
 interface DropDownItemsProps {
     clicked: boolean;
 }
-const items = [];
 export default function CategoriesDropDownItems({
     clicked,
 }: DropDownItemsProps) {

@@ -15,7 +15,6 @@ import Cart from "@/components/cartComponents/Cart";
 import Footer from "@/components/footerComponents/Footer";
 import ProfileIcon from "@/components/dashBoardComponents/ProfileIcon";
 import SideBar from "@/components/navComponents/SideBar";
-import Login from "@/components/helperComponents/login";
 
 interface RootLayoutProps {
     children: React.ReactNode;
@@ -64,7 +63,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/review/getCart",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_GETCARTINFO,
                 {
                     method: "GET",
                     headers: {
@@ -75,7 +75,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             );
 
             const result = await res.json();
-            console.log(result);
             setCart(result.cart);
         }
 
@@ -152,7 +151,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                                         ></ProfileIcon>
                                     </div>
                                 </NavBar>
-                                {/* <CartHover hover={hover}></CartHover> */}
                                 <SideBar></SideBar>
                                 {children}
                             </CartContext.Provider>

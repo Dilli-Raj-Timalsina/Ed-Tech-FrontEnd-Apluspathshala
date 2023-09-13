@@ -1,21 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-// import CartHover from "./CartHover";
 interface CartProps {
     cart: string[];
 }
 
 export default function Cart({ cart }: CartProps) {
     const router = useRouter();
-    // const [hover, setHover] = useState(false);
+
     return (
-        <div
-            className=" inline-block"
-            // onMouseEnter={() => setHover(true)}
-            // onMouseLeave={() => setHover(false)}
-        >
+        <div className=" inline-block">
             <button
                 className="hidden relative  sm:flex py-8"
                 onClick={() => router.push("/checkout-cart")}
@@ -29,7 +23,6 @@ export default function Cart({ cart }: CartProps) {
                     {cart.length}
                 </span>
             </button>
-            {/* <CartHover hover={hover}></CartHover> */}
         </div>
     );
 }

@@ -17,8 +17,8 @@ interface Detail {
 }
 
 export default function Login() {
-    const { logIn, setLogIn } = useContext(LogInContext);
-    const { jwt, setJwt } = useContext(JwtContext);
+    const { setLogIn } = useContext(LogInContext);
+    const { setJwt } = useContext(JwtContext);
     const { setCart } = useContext(CartContext);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
@@ -57,15 +57,19 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const res = await fetch("http://localhost:3001/api/v1/user/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    ...detail,
-                }),
-            });
+            const res = await fetch(
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_LOGIN,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ...detail,
+                    }),
+                }
+            );
             const result = await res.json();
 
             if (res.ok) {
@@ -95,7 +99,8 @@ export default function Login() {
                     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 });
                 const output = await fetch(
-                    "http://localhost:3001/api/v1/review/getCart",
+                    process.env.NEXT_PUBLIC_BACKEND! +
+                        process.env.NEXT_PUBLIC_GETCARTINFO,
                     {
                         method: "GET",
                         headers: {

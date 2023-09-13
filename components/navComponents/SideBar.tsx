@@ -4,12 +4,10 @@ import Link from "next/link";
 import { useContext } from "react";
 import { SideBarContext } from "@/app/layout";
 import { LogInContext } from "@/app/layout";
-import { useRouter } from "next/navigation";
 import ProfileIcon from "../dashBoardComponents/ProfileIcon";
 
 export default function SideBar() {
     const { logIn } = useContext(LogInContext);
-    const router = useRouter();
     const { sideBarToggle, setSideBarToggle } = useContext(SideBarContext);
     return (
         <aside

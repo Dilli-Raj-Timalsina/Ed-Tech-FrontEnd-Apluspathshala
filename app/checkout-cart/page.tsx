@@ -35,7 +35,8 @@ export default function Home() {
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/review/getCartData",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_GETCARTDATA,
                 {
                     method: "POST",
                     headers: {

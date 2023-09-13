@@ -1,14 +1,14 @@
-import { useRef } from "react";
-import { useState } from "react";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
 import { useRouter } from "next/navigation";
 import { CartContext } from "@/app/layout";
 import { JwtContext } from "@/app/layout";
+
 interface VideoBoxProps {
     price: number;
     id: string;
 }
+
 export default function VideoBox({ price, id }: VideoBoxProps) {
     const { logIn } = useContext(LogInContext);
     const { jwt } = useContext(JwtContext);
@@ -23,7 +23,8 @@ export default function VideoBox({ price, id }: VideoBoxProps) {
             if (!cart.includes(id)) {
                 setCart([...cart, id]);
                 const res = await fetch(
-                    "http://localhost:3001/api/v1/review/updateCart",
+                    process.env.NEXT_PUBLIC_BACKEND! +
+                        process.env.NEXT_PUBLIC_UPDATECART,
                     {
                         method: "POST",
                         headers: {
@@ -51,7 +52,6 @@ export default function VideoBox({ price, id }: VideoBoxProps) {
             </p>
             <div className="flex gap-1 items-center ">
                 <img src="/clock-icon.svg" alt="" className="w-4 h-4" />
-                {/* <div className="text-red-500 text-xs font-medium font-serif inline-block "> */}
                 <span className="text-red-600 text-sm  font-semibold ">
                     2 days
                 </span>
@@ -59,7 +59,6 @@ export default function VideoBox({ price, id }: VideoBoxProps) {
                 <span className="text-red-500 text-sm font-medium font-serif">
                     left at this price!
                 </span>
-                {/* </div> */}
             </div>
             <button
                 className="text-white bg-purple-700 hover:bg-purple-800  font-medium rounded-md text-sm px-2 py-2.5 mt-3   text-center "

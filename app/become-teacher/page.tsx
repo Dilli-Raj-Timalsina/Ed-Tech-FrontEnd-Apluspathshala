@@ -2,7 +2,6 @@ import CreateCourse from "@/components/becomeTeacherComponents/CreateCourse";
 import BuildBrand from "@/components/becomeTeacherComponents/BuildBrand";
 import ExpandReach from "@/components/becomeTeacherComponents/ExpandReach";
 import QualityCourse from "@/components/becomeTeacherComponents/QualityCourse";
-// import BuildBrandPara from "@/components/becomeTeacherComponents/BuildBrandPara";
 import HowItWorks from "@/components/becomeTeacherComponents/HowItWorks";
 
 export default function Home() {

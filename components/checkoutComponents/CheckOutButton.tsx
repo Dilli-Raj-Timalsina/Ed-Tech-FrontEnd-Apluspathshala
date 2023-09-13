@@ -37,9 +37,7 @@ export default function CheckOutButton({
             return;
         }
 
-        const stripe = await loadStripe(
-            "pk_test_51NlrnVSBJAs7xqOycLFkGL57T8GdtyIFRP5RaGdVEl0yn6rqwSh17RwX3JnqkIcTlhu6F6HP2zDlhRC6fHdjxRCp00fHPExiVb"
-        );
+        const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE!);
 
         const body = {
             products: carts,
@@ -51,7 +49,7 @@ export default function CheckOutButton({
             "Content-Type": "application/json",
         };
         const response = await fetch(
-            "http://localhost:3001/api/create-checkout-session",
+            process.env.NEXT_PUBLIC_BACKEND! + process.env.NEXT_PUBLIC_CHECKOUT,
             {
                 method: "POST",
                 headers: headers,
@@ -60,8 +58,7 @@ export default function CheckOutButton({
         );
 
         const session = await response.json();
-        console.log(session);
-        const result = stripe!.redirectToCheckout({
+        stripe!.redirectToCheckout({
             sessionId: session.id,
         });
     };

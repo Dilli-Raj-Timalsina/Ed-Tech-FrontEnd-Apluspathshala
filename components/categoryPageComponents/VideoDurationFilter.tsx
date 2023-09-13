@@ -1,9 +1,7 @@
 interface VideoDurationFilterProps {
-    durationFilter: number;
     setDurationFilter: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function VideoDurationFilter({
-    durationFilter,
     setDurationFilter,
 }: VideoDurationFilterProps) {
     return (

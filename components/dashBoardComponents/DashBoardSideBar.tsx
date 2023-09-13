@@ -8,18 +8,16 @@ import { CartContext } from "@/app/layout";
 import Cookies from "universal-cookie";
 
 interface DashBoardSideBarProps {
-    clickedItem: string;
     setClickedItem: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function DashBoardSideBar({
-    clickedItem,
     setClickedItem,
 }: DashBoardSideBarProps) {
     const cookies = new Cookies();
     const router = useRouter();
     const { logIn, setLogIn } = useContext(LogInContext);
-    const { jwt, setJwt } = useContext(JwtContext);
+    const { setJwt } = useContext(JwtContext);
     const { setCart } = useContext(CartContext);
 
     const items = obj.map((item, index) => {

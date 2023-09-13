@@ -36,16 +36,20 @@ export default function CourseCard({
             if (!cart.includes(id)) {
                 setIsClicked(!isClicked);
                 setCart([...cart, id]);
-                await fetch("http://localhost:3001/api/v1/review/updateCart", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${jwt}`,
-                    },
-                    body: JSON.stringify({
-                        courseList: [...cart, id],
-                    }),
-                });
+                await fetch(
+                    process.env.NEXT_PUBLIC_BACKEND! +
+                        process.env.NEXT_PUBLIC_UPDATECART,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${jwt}`,
+                        },
+                        body: JSON.stringify({
+                            courseList: [...cart, id],
+                        }),
+                    }
+                );
             }
         }
     }

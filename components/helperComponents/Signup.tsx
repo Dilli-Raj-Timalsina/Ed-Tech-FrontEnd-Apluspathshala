@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import BounceSpinners from "../spinners/BounceSpinner";
-import SuccessMessage from "../spinners/SuccessMessage";
 import ErrorMessage from "../spinners/ErrorMessage";
 import { useContext } from "react";
 import { LogInContext } from "@/app/layout";
@@ -17,8 +16,8 @@ interface Detail {
     password: string;
 }
 export default function Signup() {
-    const { logIn, setLogIn } = useContext(LogInContext);
-    const { jwt, setJwt } = useContext(JwtContext);
+    const { setLogIn } = useContext(LogInContext);
+    const { setJwt } = useContext(JwtContext);
     const { setCart } = useContext(CartContext);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
@@ -57,7 +56,8 @@ export default function Signup() {
 
         try {
             const res = await fetch(
-                "http://localhost:3001/api/v1/user/signup",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_SIGNUP,
                 {
                     method: "POST",
                     headers: {
@@ -99,7 +99,8 @@ export default function Signup() {
                     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 });
                 const output = await fetch(
-                    "http://localhost:3001/api/v1/review/getCart",
+                    process.env.NEXT_PUBLIC_BACKEND! +
+                        process.env.NEXT_PUBLIC_GETCARTINFO,
                     {
                         method: "GET",
                         headers: {
@@ -109,7 +110,6 @@ export default function Signup() {
                     }
                 );
                 const cartOp = await output.json();
-                console.log(cartOp);
                 setCart(cartOp.cart);
 
                 router.back();

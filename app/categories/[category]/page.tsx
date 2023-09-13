@@ -1,11 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AllCourse from "@/components/categoryPageComponents/AllCourses";
 import AllFilter from "@/components/categoryPageComponents/AllFilter";
 import PaginationButton from "@/components/categoryPageComponents/PaginationButton";
 
 export default function Home({ params }: { params: { category: string } }) {
-    const [courses, setCourses] = useState([]);
     const [ratingFilter, setRatingFilter] = useState(1);
     const [isFreeFilter, setIsFreeFilter] = useState(true);
     const [durationFilter, setDurationFilter] = useState(0);

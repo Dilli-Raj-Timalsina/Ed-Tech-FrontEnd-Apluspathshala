@@ -33,7 +33,8 @@ export default function CourseContent() {
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(
-                "http://localhost:3001/api/v1/course/getPurchasedCourse",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_GETPURCHASEDCOURSE,
                 {
                     method: "GET",
                     headers: {

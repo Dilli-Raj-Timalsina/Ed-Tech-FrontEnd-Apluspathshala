@@ -5,7 +5,6 @@ import { JwtContext } from "@/app/layout";
 import { useRouter } from "next/navigation";
 import BounceSpinners from "../spinners/BounceSpinner";
 import ErrorMessage from "../spinners/ErrorMessage";
-import { LogInContext } from "@/app/layout";
 
 interface Course {
     title: string;
@@ -70,7 +69,7 @@ export default function CreateNewCourse() {
         });
     };
 
-    //handle the submission of th form:
+    //handle the submission of thE form:
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -87,7 +86,8 @@ export default function CreateNewCourse() {
         form.append("binary", course.thumbnail!);
         try {
             const res = await fetch(
-                "http://localhost:3001/api/v1/course/createCourse",
+                process.env.NEXT_PUBLIC_BACKEND! +
+                    process.env.NEXT_PUBLIC_CREATECOURSE,
                 {
                     method: "POST",
                     headers: {

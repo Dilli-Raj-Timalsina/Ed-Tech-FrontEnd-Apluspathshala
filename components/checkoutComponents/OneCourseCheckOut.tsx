@@ -22,20 +22,23 @@ export default function OneCourseCheckOut(props: OneCourseProps) {
     const { cart, setCart } = useContext(CartContext);
     const router = useRouter();
 
-    //handle remove cart click
     async function handleClick() {
         const updatedCart = cart.filter((item) => item !== props.id);
         setCart(updatedCart);
-        await fetch("http://localhost:3001/api/v1/review/updateCart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${jwt}`,
-            },
-            body: JSON.stringify({
-                courseList: updatedCart,
-            }),
-        });
+        await fetch(
+            process.env.NEXT_PUBLIC_BACKEND! +
+                process.env.NEXT_PUBLIC_UPDATECART,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwt}`,
+                },
+                body: JSON.stringify({
+                    courseList: updatedCart,
+                }),
+            }
+        );
     }
     return (
         <div className="flex w-fit mr-2 md:mr-8  py-3 md:py-5 ">

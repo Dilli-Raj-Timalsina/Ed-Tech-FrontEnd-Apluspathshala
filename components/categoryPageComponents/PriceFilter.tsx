@@ -1,7 +1,3 @@
-// interface PriceFilterProps {
-//     isFreeFilter: boolean;
-//     setIsFreeFilter: React.Dispatch<React.SetStateAction<boolean>>;
-// }
 export default function PriceFilter() {
     return (
         <div>

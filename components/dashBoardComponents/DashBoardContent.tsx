@@ -9,10 +9,9 @@ interface DashBoardContentProps {
     setClickedItem: React.Dispatch<React.SetStateAction<string>>;
 }
 
-//dash board component
 function DashBoardComponent() {
     const cookies = new Cookies();
-    const { logIn, setLogIn } = useContext(LogInContext);
+    const { logIn } = useContext(LogInContext);
     let name = cookies.get("name");
 
     return (
@@ -31,7 +30,6 @@ function DashBoardComponent() {
 export default function DashBoardContent({
     clickedItem,
 }: DashBoardContentProps) {
-    //function to get correct component to render on dashBoard
     const getComponent = (name: string) => {
         if (name == "DASHBOARD") {
             return <DashBoardComponent></DashBoardComponent>;
