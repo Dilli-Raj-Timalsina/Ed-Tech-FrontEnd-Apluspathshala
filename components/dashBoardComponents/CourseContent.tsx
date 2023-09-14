@@ -44,12 +44,13 @@ export default function CourseContent() {
                 }
             );
             const courses = await res.json();
+            console.log(courses);
             setCourseData(courses.doc);
         }
         if (logIn) {
             fetchData();
         }
-    }, [cart]);
+    }, []);
 
     let content;
     if (courseData) {

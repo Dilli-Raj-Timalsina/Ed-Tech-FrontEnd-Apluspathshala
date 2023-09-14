@@ -52,7 +52,7 @@ export default function AllCourseMain() {
             return (
                 <CourseCard
                     key={index}
-                    thumNail={item.thumbNail}
+                    thumbNail={item.thumbNail}
                     title={item.title}
                     price={item.price}
                     rating={item.reviewScore}

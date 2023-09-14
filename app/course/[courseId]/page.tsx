@@ -30,8 +30,7 @@ export default function Home({ params }: { params: { courseId: string } }) {
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND!}${
                     process.env.NEXT_PUBLIC_COURSEMETADATA
-                }/
-                ${params.courseId}`,
+                }/${params.courseId}`,
                 {
                     method: "GET",
                     headers: {

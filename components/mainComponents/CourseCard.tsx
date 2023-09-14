@@ -8,7 +8,7 @@ import { JwtContext } from "@/app/layout";
 
 interface CourseCardProps {
     id: string;
-    thumNail: string;
+    thumbNail: string;
     title: string;
     price: number;
     rating: number;
@@ -17,7 +17,7 @@ interface CourseCardProps {
 
 export default function CourseCard({
     id,
-    thumNail,
+    thumbNail,
     title,
     price,
     rating,
@@ -62,7 +62,7 @@ export default function CourseCard({
         >
             <a href={`/course/${id}`}>
                 <img
-                    src={"/madam.jpg" || thumNail}
+                    src={"/madam.jpg" || thumbNail}
                     className="rounded-md w-80 h-fit mb-2"
                 />
             </a>

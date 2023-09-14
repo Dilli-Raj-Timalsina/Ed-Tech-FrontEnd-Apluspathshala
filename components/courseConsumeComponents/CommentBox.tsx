@@ -1,6 +1,9 @@
 import { useState, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { JwtContext } from "@/app/layout";
+import BounceSpinners from "../spinners/BounceSpinner";
+import ErrorMessage from "../spinners/ErrorMessage";
 
 interface CommentBoxProps {
     courseId: string;
@@ -8,8 +11,11 @@ interface CommentBoxProps {
 export default function CommentBox({ courseId }: CommentBoxProps) {
     const [count, setCount] = useState(0);
     const [message, setMessage] = useState("");
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [star, setStar] = useState<number[]>([]);
     const { jwt } = useContext(JwtContext);
+    const router = useRouter();
 
     function handleSetStar(num: number) {
         if (star.includes(num)) {
@@ -44,6 +50,7 @@ export default function CommentBox({ courseId }: CommentBoxProps) {
         }
     }
     async function handleSubmit() {
+        setLoading(true);
         const res = await fetch(
             process.env.NEXT_PUBLIC_BACKEND! +
                 process.env.NEXT_PUBLIC_WRITEREVIEW,
@@ -61,9 +68,20 @@ export default function CommentBox({ courseId }: CommentBoxProps) {
             }
         );
         if (res.ok) {
+            setLoading(false);
             setMessage("");
             setStar([]);
             setCount(0);
+        } else {
+            setMessage("");
+            setStar([]);
+            setCount(0);
+            setError(true);
+            setTimeout(() => {
+                setError(false);
+                setLoading(false);
+                router.push("/checkout-cart");
+            }, 3000);
         }
     }
 
@@ -156,9 +174,15 @@ export default function CommentBox({ courseId }: CommentBoxProps) {
                 <button
                     className="bg-blue-500 text-white hover:bg-blue-600 rounded-md px-4 py-2 mt-4"
                     onClick={() => handleSubmit()}
+                    disabled={loading}
                 >
-                    Submit Review
+                    {loading ? <BounceSpinners /> : "Submit Review"}
                 </button>
+                {error && (
+                    <ErrorMessage
+                        message={"Purchase the course , before reviewing !"}
+                    />
+                )}
             </div>
         </div>
     );

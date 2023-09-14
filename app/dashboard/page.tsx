@@ -8,7 +8,6 @@ export default function Home() {
     return (
         <div className=" md:mt-20 flex md:flex-row flex-col">
             <DashBoardSideBar
-                clickedItem={clickedItem}
                 setClickedItem={setClickedItem}
             ></DashBoardSideBar>
             <DashBoardContent
