@@ -7,7 +7,6 @@ interface CartProps {
 
 export default function Cart({ cart }: CartProps) {
     const router = useRouter();
-
     return (
         <div className=" inline-block">
             <button

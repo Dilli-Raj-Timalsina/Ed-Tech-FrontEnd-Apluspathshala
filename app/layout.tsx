@@ -75,6 +75,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             );
 
             const result = await res.json();
+            console.log(result);
             setCart(result.cart);
         }
 
