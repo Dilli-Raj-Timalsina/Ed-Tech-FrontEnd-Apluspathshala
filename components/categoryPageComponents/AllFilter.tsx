@@ -20,15 +20,11 @@ export default function AllFilter({
     return (
         <div className="">
             <p className="text-gray-800 text-xl font-bold my-5">Ratings</p>
-            <RatingFilter
-                ratingFilter={ratingFilter}
-                setRatingFilter={setRatingFilter}
-            ></RatingFilter>
+            <RatingFilter setRatingFilter={setRatingFilter}></RatingFilter>
             <p className="text-gray-800 text-xl font-bold my-5">
                 Video Duration{" "}
             </p>
             <VideoDurationFilter
-                durationFilter={durationFilter}
                 setDurationFilter={setDurationFilter}
             ></VideoDurationFilter>
             <p className="text-gray-800 text-xl font-bold my-5">Price</p>
