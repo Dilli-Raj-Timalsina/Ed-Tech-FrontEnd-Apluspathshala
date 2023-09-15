@@ -40,7 +40,6 @@ export default function AllCourseMain() {
                 }
             );
             const op = await res.json();
-            console.log(op);
             setCourseData(op.course);
         }
 
