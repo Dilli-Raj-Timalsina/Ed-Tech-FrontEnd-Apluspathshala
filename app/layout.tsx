@@ -56,6 +56,7 @@ export const JwtContext = createContext<Jwttype>({
 
 export default function RootLayout({ children }: RootLayoutProps) {
     const [sideBarToggle, setSideBarToggle] = useState(false);
+    const [searchToggle, setSearchToggle] = useState(false);
     const [logIn, setLogIn] = useState(false);
     const [jwt, setJwt] = useState("");
     const [cart, setCart] = useState<string[]>([]);
@@ -103,7 +104,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     sideBarToggle
                         ? " overflow-y-hidden inset-0 bg-gray-300 z-20 "
                         : ""
-                } `}
+                } ${searchToggle ? "inset-0 backdrop-blur-md z-20" : ""} `}
             >
                 <JwtContext.Provider value={{ jwt, setJwt }}>
                     <LogInContext.Provider value={{ logIn, setLogIn }}>

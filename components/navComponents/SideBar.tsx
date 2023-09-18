@@ -9,6 +9,7 @@ import ProfileIcon from "../dashBoardComponents/ProfileIcon";
 export default function SideBar() {
     const { logIn } = useContext(LogInContext);
     const { sideBarToggle, setSideBarToggle } = useContext(SideBarContext);
+
     return (
         <aside
             className={`  overflow-y-scroll z-50 bg-white divide-y divide-gray-300  shadow w-4/5 h-screen mb-8  ${
@@ -26,6 +27,11 @@ export default function SideBar() {
                 <li className="block px-4 py-2  drop-shadow-sm ">
                     <Link href="/signup" className="">
                         Signup
+                    </Link>
+                </li>
+                <li className="block px-4 py-2  drop-shadow-sm ">
+                    <Link href="/checkout-cart" className="">
+                        Cart
                     </Link>
                 </li>
             </ul>
