@@ -11,12 +11,11 @@ function PaymentSuccess() {
     const router = useRouter();
     const { setCart } = useContext(CartContext);
     const { jwt } = useContext(JwtContext);
-    const { logIn } = useContext(LogInContext);
 
     useEffect(() => {
         setCart([]);
         async function fetchData() {
-            const res = await fetch(
+            await fetch(
                 process.env.NEXT_PUBLIC_BACKEND! +
                     process.env.NEXT_PUBLIC_UPDATECART,
                 {
@@ -31,9 +30,7 @@ function PaymentSuccess() {
                 }
             );
         }
-        if (logIn) {
-            fetchData();
-        }
+        fetchData();
     }, []);
 
     return (
