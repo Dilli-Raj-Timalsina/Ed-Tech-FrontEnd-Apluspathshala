@@ -11,6 +11,7 @@ function PaymentSuccess() {
     const router = useRouter();
     const { setCart } = useContext(CartContext);
     const { jwt } = useContext(JwtContext);
+    const { logIn } = useContext(LogInContext);
 
     useEffect(() => {
         setCart([]);
@@ -30,7 +31,9 @@ function PaymentSuccess() {
                 }
             );
         }
-        fetchData();
+        if (logIn) {
+            fetchData();
+        }
     }, []);
 
     return (
